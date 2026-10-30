@@ -20,6 +20,21 @@ public class GameController : MonoBehaviour
     public GameData gameData;
     public bool gameStarted = false;
 
+    [Header("Pick And Place")]
+    [Tooltip("Held-item point, a child of the camera. Created in front of the camera when left empty.")]
+    public Transform parentOFPickedObj;
+    public ItemPickandPlace currentPicketItem;
+
+    /// <summary>True while the hands are busy: a single carried item or a pile of notes.</summary>
+    public bool IsHoldingItem
+    {
+        get
+        {
+            return currentPicketItem != null
+                || (NotePickupManager.instance != null && NotePickupManager.instance.HeldCount > 0);
+        }
+    }
+
     public delegate void ChangeGameStatus(bool _enable);
     public ChangeGameStatus changeGameStatus;
 
@@ -52,11 +67,21 @@ public class GameController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            EnsurePickedObjectParent();
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    void EnsurePickedObjectParent()
+    {
+        if (parentOFPickedObj != null || gameMainCamera == null)
+            return;
+        var _holder = new GameObject("Picked Object Parent");
+        _holder.transform.SetParent(gameMainCamera.transform, false);
+        parentOFPickedObj = _holder.transform;
     }
 
     void Start()

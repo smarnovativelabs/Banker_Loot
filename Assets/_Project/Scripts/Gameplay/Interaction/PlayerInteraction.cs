@@ -38,13 +38,35 @@ public class PlayerInteraction : MonoBehaviour
         InteractWithEnv();
     }
 
+    /// <summary>A single carried item (not a pile of notes).</summary>
+    static bool IsHoldingItem()
+    {
+        return GameController.instance != null && GameController.instance.currentPicketItem != null;
+    }
+
+    static bool IsCarryingNotes()
+    {
+        return NotePickupManager.instance != null && NotePickupManager.instance.HeldCount > 0;
+    }
+
+    /// <summary>
+    /// While the hands are busy only notes stay targetable: carrying notes blocks every other interaction, and
+    /// carrying another item still lets the player aim at a note so the currency button can explain why it fails.
+    /// </summary>
+    static bool CanTarget(InteractableObjects _obj)
+    {
+        if (IsHoldingItem() || IsCarryingNotes())
+            return _obj is PickableNote;
+        return true;
+    }
+
     void InteractWithEnv()
     {
         Ray _ray = new Ray(transform.position, transform.forward);
         if (Physics.Raycast(_ray, out RaycastHit _hit, envInteractionDistance + toolDistance, interactingLayer, QueryTriggerInteraction.Ignore))
         {
             InteractableObjects _curObj = _hit.collider.GetComponentInParent<InteractableObjects>();
-            if (_curObj != null)
+            if (_curObj != null && CanTarget(_curObj))
             {
                 if (currentInteractingObj != null && _curObj != currentInteractingObj)
                 {
@@ -67,7 +89,8 @@ public class PlayerInteraction : MonoBehaviour
             if (UIController.instance != null)
             {
                 UIController.instance.DisplayHoverObjectName("", false);
-                UIController.instance.OnChangeInteraction(0, false);
+                // a carried item keeps its throw button, everything else hides the generic button
+                UIController.instance.OnChangeInteraction(IsHoldingItem() ? 1 : 0, IsHoldingItem());
             }
         }
         currentInteractingObj = null;
@@ -82,6 +105,11 @@ public class PlayerInteraction : MonoBehaviour
     /// <summary>Called by the interact button / screen tap.</summary>
     public void OnInteract()
     {
+        if (IsHoldingItem())
+        {
+            GameController.instance.currentPicketItem.ThrowPickedObjects();
+            return;
+        }
         if (currentInteractingObj != null)
         {
             currentInteractingObj.OnInteract();
