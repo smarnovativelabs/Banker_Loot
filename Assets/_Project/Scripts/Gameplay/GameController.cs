@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
 
     public Camera gameMainCamera;
     public float autoSaveTimeInterval = 180f;
+    [Tooltip("Real minutes one in-game day lasts (the HUD calendar shows 24h of game time per day)")]
+    public float dayCycleMinutes = 4f;
     public GameData gameData;
     public bool gameStarted = false;
 
@@ -25,6 +27,8 @@ public class GameController : MonoBehaviour
     public event Action<int> AdsTimerUpdated;
     /// <summary>Raised when a save starts (true) and when it finishes (false).</summary>
     public event Action<bool> SavingStateChanged;
+    /// <summary>Raised with the new day number when the in-game calendar moves to the next day.</summary>
+    public event Action<int> DayChanged;
 
     List<UnityAction> savingActions;
     float adsTimer;
@@ -70,6 +74,10 @@ public class GameController : MonoBehaviour
     IEnumerator InitializeGame()
     {
         changeGameStatus += UpdateGameStatus;
+        if (PlayerInteraction.instance != null)
+        {
+            changeGameStatus += PlayerInteraction.instance.StartGame;
+        }
         savingActions = new List<UnityAction>();
         AddSavingAction(SaveGameData);
         AddSavingAction(PlayerDataManager.instance.SavePlayerData);
@@ -93,6 +101,11 @@ public class GameController : MonoBehaviour
         // register new gameplay systems here (each one: load its data, then yield)
 
         GameManager.instance.EnableLoadingScreen(true, "Setting Up Game");
+        if (UIController.instance != null)
+        {
+            yield return UIController.instance.InitializeUIController();
+            UIController.instance.UpdateGameTime(gameData.currentTime, gameData.currentDay);
+        }
         UpdateGameQualitySettings(PlayerDataManager.instance.playerData.selectedQualitySettings);
         UpdatePlayerSensitivity(PlayerPrefs.GetFloat("Sensitivity", 8));
         yield return StoreManager.Instance.CheckForPendingPurchases();
@@ -146,11 +159,34 @@ public class GameController : MonoBehaviour
     {
         if (gameStarted)
         {
+            UpdateGameTime();
             UpdateAdsTimer();
             UpdateFirebaseQuarter();
             UpdateAutoSavingTimer();
         }
     }
+
+    #region Calendar
+    /// <summary>
+    /// gameData.currentTime counts game minutes of the current day (0 - 1440) and is saved with the game.
+    /// One day (1440 game minutes) lasts dayCycleMinutes real minutes.
+    /// </summary>
+    void UpdateGameTime()
+    {
+        const float minutesPerDay = 24f * 60f;
+        gameData.currentTime += Time.deltaTime * (minutesPerDay / (dayCycleMinutes * 60f));
+        if (gameData.currentTime >= minutesPerDay)
+        {
+            gameData.currentTime -= minutesPerDay;
+            gameData.currentDay++;
+            DayChanged?.Invoke(gameData.currentDay);
+        }
+        if (UIController.instance != null)
+        {
+            UIController.instance.UpdateGameTime(gameData.currentTime, gameData.currentDay);
+        }
+    }
+    #endregion
 
     #region Ads Timer
     void UpdateAdsTimer()
@@ -287,8 +323,12 @@ public class GameData
 {
     public int currentLevel;
     public int tutorialBuild;
+    public int currentDay;
+    public float currentTime = 9f * 60f;
     public GameData()
     {
         currentLevel = 1;
+        currentDay = 0;
+        currentTime = 9f * 60f; // new games start at 9:00 AM
     }
 }
