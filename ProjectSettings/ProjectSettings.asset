@@ -144,7 +144,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.1.0
+  bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -167,7 +167,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.4
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.UnityTechnologies.com.unity.template.urpblank
+    Android: com.peri.food.processing.simulator.game.factory
     Standalone: com.Unity-Technologies.com.unity.template.urp-blank
     iPhone: com.Unity-Technologies.com.unity.template.urp-blank
   buildNumber:
@@ -178,7 +178,7 @@ PlayerSettings:
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 25
-  AndroidTargetSdkVersion: 0
+  AndroidTargetSdkVersion: 36
   AndroidPreferredInstallLocation: 1
   AndroidPreferredDataLocation: 1
   aotOptions: 
@@ -262,11 +262,11 @@ PlayerSettings:
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   useCustomMainManifest: 0
   useCustomLauncherManifest: 0
-  useCustomMainGradleTemplate: 0
+  useCustomMainGradleTemplate: 1
   useCustomLauncherGradleManifest: 0
   useCustomBaseGradleTemplate: 0
-  useCustomGradlePropertiesTemplate: 0
-  useCustomGradleSettingsTemplate: 0
+  useCustomGradlePropertiesTemplate: 1
+  useCustomGradleSettingsTemplate: 1
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 2
   AndroidAllowedArchitectures: -13
@@ -923,7 +923,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 1
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: a4b526ca-3edf-4c5a-b8b4-cc39f482e2dd
   framebufferDepthMemorylessMode: 0

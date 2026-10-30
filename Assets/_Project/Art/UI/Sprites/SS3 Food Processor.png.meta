@@ -1,0 +1,1088 @@
+fileFormatVersion: 2
+guid: f56a12808656b4d4a8d5edee28e1c59a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SS3 Food Processor_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1284
+        width: 813
+        height: 276
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29f0bdfe1bbe1ed43b2bf24e5464dfe5
+      internalID: -557759111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 834
+        width: 334
+        height: 431
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d6138ec8ffb27147aa5004473ec20d5
+      internalID: -297969250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_2
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 835
+        width: 334
+        height: 430
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a64a64b3478e19b4daa6723b58fc77c0
+      internalID: -1076035054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_3
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 835
+        width: 339
+        height: 430
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e956119d72e1f745849eeab73bd1868
+      internalID: -1670489800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_4
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 13
+        width: 928
+        height: 656
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 529c8ff0c8e200b4eaac4d12d93cb0cd
+      internalID: -2061590810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_5
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 717
+        width: 201
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d53c89061a94710458696bf14759f5c6
+      internalID: 1147841773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_6
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 12
+        width: 1050
+        height: 811
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa9e09a6d8f6da6449a60175f02166d4
+      internalID: 1087551893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_7
+      rect:
+        serializedVersion: 2
+        x: 1867
+        y: 896
+        width: 141
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 754871c477e1e4d4e97399ef0b2c1621
+      internalID: 368785530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_8
+      rect:
+        serializedVersion: 2
+        x: 1448
+        y: 1040
+        width: 425
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b41277973ad703442939b7d287d53680
+      internalID: 1249407470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_9
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 703
+        width: 379
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f7929f0173422b46a0acce5e7a41f71
+      internalID: 1384687098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_10
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 688
+        width: 373
+        height: 473
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6082ffabefc357428b1e035089c71ff
+      internalID: -1064508904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_11
+      rect:
+        serializedVersion: 2
+        x: 1968
+        y: 1074
+        width: 72
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b77fa4306682ac5418f820bc01380bc0
+      internalID: 1208455972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_12
+      rect:
+        serializedVersion: 2
+        x: 1884
+        y: 1070
+        width: 72
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54d7b270a42d3bf4e8049d7f9789a78e
+      internalID: 698928436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_13
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 1189
+        width: 366
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3020145c360a3a94ca384ef1bc484432
+      internalID: -1139580237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_14
+      rect:
+        serializedVersion: 2
+        x: 1291
+        y: 1181
+        width: 366
+        height: 273
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2c10967626e6f0428e45b5155a1de8a
+      internalID: 400658418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_15
+      rect:
+        serializedVersion: 2
+        x: 1653
+        y: 1478
+        width: 366
+        height: 271
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d5def3f4fd3bc40aac5aa4219be0e3
+      internalID: -1083628824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_16
+      rect:
+        serializedVersion: 2
+        x: 1252
+        y: 1478
+        width: 366
+        height: 271
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2701606cae9318f4a8210b74bb7438f6
+      internalID: -61066599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_17
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 1472
+        width: 376
+        height: 284
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd7d79edbf0de7d4ca977d9d18a2c498
+      internalID: -2140579883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_18
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 1764
+        width: 366
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8346a34d67953647908ae5fdfc5f76a
+      internalID: 1495041072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_19
+      rect:
+        serializedVersion: 2
+        x: 1252
+        y: 1762
+        width: 366
+        height: 273
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77f16a6359bcaf54f94de2e31902239e
+      internalID: 1531443284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_20
+      rect:
+        serializedVersion: 2
+        x: 1654
+        y: 1764
+        width: 365
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07467314865a904499c73e5d889b8c7e
+      internalID: -560749083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_21
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1764
+        width: 369
+        height: 274
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 011f3417edead6c41b9435fecc0b4ae4
+      internalID: -81841385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_22
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1675
+        width: 113
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad24bc8c1fcaab54f8472f75c972cd8e
+      internalID: 706670964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_23
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 1679
+        width: 250
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d3a92cc1d233074d80a8050bef777c4
+      internalID: -187126026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_24
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1563
+        width: 528
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4f1eed92de953546ab81fb1679b3422
+      internalID: -1533027981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_25
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 1977
+        width: 417
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c5608977b26e824498b5832fae3c664
+      internalID: 1573190553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_26
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 1568
+        width: 175
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 857e24bdb37887540abcdf990b0f40f3
+      internalID: -383660373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_27
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 1835
+        width: 198
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a04b5dd6e053469419617a45397ed03b
+      internalID: -405524422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_28
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 1853
+        width: 114
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 989b1900ba0db554d83c07473a5ae764
+      internalID: -43256468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_29
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 1900
+        width: 63
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c860bb8b9e08cb4baeb9a43cfc7135d
+      internalID: -1080096492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_30
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 1904
+        width: 62
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b58e88f96c8ee7d4bbcb02cc4e9b21e1
+      internalID: -471594814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_31
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 1174
+        width: 217
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97771de520aa26c47b49b68a1de77484
+      internalID: 1888397581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_32
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 1251
+        width: 216
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d18e2cc6b6fe0914c9876975043c8f78
+      internalID: 1590010174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_33
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 1330
+        width: 216
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2f9c41f05abe3647adba3143ead2a49
+      internalID: -2134889831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_34
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 1398
+        width: 88
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fabdf986eb8e9994aade8def8dd30835
+      internalID: -1751306321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_35
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 1448
+        width: 252
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 456abcfaece01d545a332799f94f31db
+      internalID: -1586744988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_36
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 1680
+        width: 122
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a6718190c15cb7429132a4ba17ef3d2
+      internalID: 1273488360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_37
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 1774
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a83c77410114fc489bbee8beec8f107
+      internalID: -453904326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_38
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 1848
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 015bd04937e346d49b892e9afb81ac2d
+      internalID: 575950553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_39
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 1857
+        width: 35
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e5c8aa82f8956e4c8308e761e83ae87
+      internalID: -89837512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS3 Food Processor_40
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 1283
+        width: 39
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66b07ece28774d044bf2deec42239929
+      internalID: -1419505332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3e0ab582f873e7946ada764a238ce4fc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      SS3 Food Processor_0: -557759111
+      SS3 Food Processor_1: -297969250
+      SS3 Food Processor_10: -1064508904
+      SS3 Food Processor_11: 1208455972
+      SS3 Food Processor_12: 698928436
+      SS3 Food Processor_13: -1139580237
+      SS3 Food Processor_14: 400658418
+      SS3 Food Processor_15: -1083628824
+      SS3 Food Processor_16: -61066599
+      SS3 Food Processor_17: -2140579883
+      SS3 Food Processor_18: 1495041072
+      SS3 Food Processor_19: 1531443284
+      SS3 Food Processor_2: -1076035054
+      SS3 Food Processor_20: -560749083
+      SS3 Food Processor_21: -81841385
+      SS3 Food Processor_22: 706670964
+      SS3 Food Processor_23: -187126026
+      SS3 Food Processor_24: -1533027981
+      SS3 Food Processor_25: 1573190553
+      SS3 Food Processor_26: -383660373
+      SS3 Food Processor_27: -405524422
+      SS3 Food Processor_28: -43256468
+      SS3 Food Processor_29: -1080096492
+      SS3 Food Processor_3: -1670489800
+      SS3 Food Processor_30: -471594814
+      SS3 Food Processor_31: 1888397581
+      SS3 Food Processor_32: 1590010174
+      SS3 Food Processor_33: -2134889831
+      SS3 Food Processor_34: -1751306321
+      SS3 Food Processor_35: -1586744988
+      SS3 Food Processor_36: 1273488360
+      SS3 Food Processor_37: -453904326
+      SS3 Food Processor_38: 575950553
+      SS3 Food Processor_39: -89837512
+      SS3 Food Processor_4: -2061590810
+      SS3 Food Processor_40: -1419505332
+      SS3 Food Processor_5: 1147841773
+      SS3 Food Processor_6: 1087551893
+      SS3 Food Processor_7: 368785530
+      SS3 Food Processor_8: 1249407470
+      SS3 Food Processor_9: 1384687098
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

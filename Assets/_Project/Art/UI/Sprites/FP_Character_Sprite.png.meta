@@ -1,0 +1,1592 @@
+fileFormatVersion: 2
+guid: cef0ac0a38924c44f973f797c7ad4d49
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FP_Character_Sprite_0
+      rect:
+        serializedVersion: 2
+        x: 1291
+        y: 1800
+        width: 240
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d32de297daceaa40af9c8709015ad21
+      internalID: -783776552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_1
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 1799
+        width: 241
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 951323ce04e54bb48aeab54f6748d3fe
+      internalID: -623753117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_2
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 1798
+        width: 240
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 806fb20b3453bcc41a8221e8b5acfce0
+      internalID: 1644332269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_3
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 1799
+        width: 240
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0921a4304b3526c4e9ab1df0088becf9
+      internalID: 550714370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_4
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 1799
+        width: 238
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23100da88209e974cb9003f9ba3a602a
+      internalID: 1608732773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_5
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1798
+        width: 240
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 121cadc0325842f48afb02324fd1775e
+      internalID: -353886606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_6
+      rect:
+        serializedVersion: 2
+        x: 1549
+        y: 1546
+        width: 234
+        height: 218
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19d2c558828a1ed41ae363019171f571
+      internalID: 1718562057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_7
+      rect:
+        serializedVersion: 2
+        x: 1297
+        y: 1546
+        width: 234
+        height: 220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b6aca383ee4db046b9282d498e3356e
+      internalID: -1630060092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_8
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 1546
+        width: 235
+        height: 218
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26c566482d2d17e4cac68595ce5635ce
+      internalID: 554298552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_9
+      rect:
+        serializedVersion: 2
+        x: 1547
+        y: 1799
+        width: 241
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42627a99330cc484385163a7242fb933
+      internalID: -560433894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_10
+      rect:
+        serializedVersion: 2
+        x: 1799
+        y: 1801
+        width: 237
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 625d5f43c6d88ae4a8c5c7f128d3a344
+      internalID: -1099474350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_11
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1547
+        width: 232
+        height: 218
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5097a21fa85a1644487f371d8aa1a1d1
+      internalID: -1018078617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_12
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 1333
+        width: 506
+        height: 439
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9933e61b5fe32d04c8e725ee954dbfe5
+      internalID: 1894897685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_13
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 880
+        width: 527
+        height: 449
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bd6484d4fe916446907dabb1243ecd3
+      internalID: -1826989679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_14
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 419
+        width: 438
+        height: 421
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efc2eec3487b5e142a20072dd34a7187
+      internalID: 1375906629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 3
+        width: 394
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1422c42cd8e7a0d4bb00891bffc7e71d
+      internalID: 152768704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_16
+      rect:
+        serializedVersion: 2
+        x: 1842
+        y: 5
+        width: 163
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60984ba566ffc5c41bbfb556fa233a2a
+      internalID: -762430390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_17
+      rect:
+        serializedVersion: 2
+        x: 1531
+        y: 19
+        width: 285
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 865c17e405086044eb42c51acdd1aed5
+      internalID: 942773010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_18
+      rect:
+        serializedVersion: 2
+        x: 1534
+        y: 128
+        width: 265
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07724c272c9dbc34ba0a84b1d33e609c
+      internalID: 437820496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_19
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 22
+        width: 138
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf483cd179290ce4e8080faf4d1b6e89
+      internalID: -2100084727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_20
+      rect:
+        serializedVersion: 2
+        x: 1291
+        y: 35
+        width: 55
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 011ceed0c14bd334cbc246aed251e1b5
+      internalID: 1757010253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_21
+      rect:
+        serializedVersion: 2
+        x: 1213
+        y: 35
+        width: 55
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f74a0ae5df3ad842a1338d0315b5dcc
+      internalID: 2096200839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_22
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 35
+        width: 55
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ed4a9523048a2944a420db3eb2bd287
+      internalID: 490632248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_23
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 114
+        width: 758
+        height: 600
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a078fb3aaba2b464dabaa99c94ce29a2
+      internalID: -684088776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_24
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 29
+        width: 653
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dc4d567699cd7646a5c9ce526abb70a
+      internalID: -1642533359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_25
+      rect:
+        serializedVersion: 2
+        x: 1227
+        y: 116
+        width: 75
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e31140ed419d3a8439eee99e00c97a53
+      internalID: -1075284539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_26
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 111
+        width: 70
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e483c136bc057049b62abde692d61ca
+      internalID: 1271420720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_27
+      rect:
+        serializedVersion: 2
+        x: 1402
+        y: 111
+        width: 56
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ffaaaaaeff00d142b7d75b7d914b9ef
+      internalID: 1271455610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_28
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 115
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4635217afeaa0f54eb85e67f4a10b58d
+      internalID: 41273513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_29
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 1686
+        width: 332
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44077830ab5b6c0419b6630b4f91e07a
+      internalID: -1514754097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_30
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 1589
+        width: 337
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a967df9c8eb9dd340b3a4259c03ebabc
+      internalID: -1559993770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_31
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 1535
+        width: 401
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be3cb97b49027cc4491776df853f7590
+      internalID: -2143739529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_32
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 1476
+        width: 567
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29cc64b6ab0ba104ba3d32a2588049f3
+      internalID: 471499514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_33
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 1364
+        width: 330
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef2995d23ba73e84d80dabfa2951762f
+      internalID: 790922046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_34
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 1415
+        width: 125
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c66fed8ce771e3543933075f1c81ef3e
+      internalID: -1693162828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_35
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 1418
+        width: 161
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c49e05b7cad26e41bb659ee45f9f7c0
+      internalID: -892198978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_36
+      rect:
+        serializedVersion: 2
+        x: 1838
+        y: 1431
+        width: 83
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 436cee2118ba8cf41a673e95a4cab56f
+      internalID: -1616217718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_37
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 1432
+        width: 87
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 959718a00671e2f4398e4dff0c2fa0a3
+      internalID: 1602931530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_38
+      rect:
+        serializedVersion: 2
+        x: 1302
+        y: 934
+        width: 353
+        height: 418
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2d295bedd9211246a578e550f8bce0c
+      internalID: -916533825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_39
+      rect:
+        serializedVersion: 2
+        x: 1668
+        y: 936
+        width: 353
+        height: 416
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5237b5551a035f34cb2513ab92694f05
+      internalID: 1157761381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_40
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 1692
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 062531ad02295d242a3ea390a9f50026
+      internalID: -1156695456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_41
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 714
+        width: 683
+        height: 600
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6fac238177634541999452c951cad6f
+      internalID: 1304331564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_42
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 781
+        width: 277
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c2d76436adcbbe468e04111e2d6adc7
+      internalID: 2097112699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_43
+      rect:
+        serializedVersion: 2
+        x: 1459
+        y: 680
+        width: 261
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcad5cfba835bfa4b9db1e64665936f4
+      internalID: -1689250294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_44
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 612
+        width: 453
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc27569dd54fe7343887d593a57a8b62
+      internalID: -1869606821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_45
+      rect:
+        serializedVersion: 2
+        x: 1754
+        y: 598
+        width: 279
+        height: 323
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ebcf356bb252b04d9aa18a90e77c47a
+      internalID: -1439317342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_46
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 317
+        width: 320
+        height: 272
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d66d0adf03bc4e498679365f509071d
+      internalID: -31443930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_47
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 318
+        width: 398
+        height: 280
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 148484c1f1e5c4740b61e483f54ac950
+      internalID: 1579247885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_48
+      rect:
+        serializedVersion: 2
+        x: 1226
+        y: 210
+        width: 95
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dfb56443dd4d7348a065164325c34db
+      internalID: -1200449623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_49
+      rect:
+        serializedVersion: 2
+        x: 1340
+        y: 211
+        width: 94
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b4b328ce9f837a40be4c0d1e5032670
+      internalID: -2147132387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_50
+      rect:
+        serializedVersion: 2
+        x: 1459
+        y: 209
+        width: 59
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 604fbfd67dfb1b04989a68dd5aeb08c0
+      internalID: 736746745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_51
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 216
+        width: 37
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e448f61700d666141b5907455031db5e
+      internalID: -209582330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_52
+      rect:
+        serializedVersion: 2
+        x: 1583
+        y: 219
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bff0aa47365d5d4a9e9c69c4229b805
+      internalID: -139038039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_53
+      rect:
+        serializedVersion: 2
+        x: 1636
+        y: 218
+        width: 93
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6de851ff7c8c0b742a30ac14eb2d8ef3
+      internalID: 126534917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_54
+      rect:
+        serializedVersion: 2
+        x: 1746
+        y: 252
+        width: 279
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be6a0e5c8b353a84da507a2d538500d8
+      internalID: -9005509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_55
+      rect:
+        serializedVersion: 2
+        x: 1325
+        y: 680
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e68b629e1400eb4e9eb87783379e7a0
+      internalID: 1320471973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_56
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 613
+        width: 188
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bea28e386ea32b4099963f0f6c831fe
+      internalID: -659742449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_57
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 825
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b4497bfc88e0874caaa433d541126b2
+      internalID: 1927261453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_58
+      rect:
+        serializedVersion: 2
+        x: 1252
+        y: 829
+        width: 78
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6b619726916a0049b0ff383d85c0d06
+      internalID: -1976877260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_59
+      rect:
+        serializedVersion: 2
+        x: 1551
+        y: 1441
+        width: 263
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58a62d4660fe6d349a6ea3199dc79f49
+      internalID: 773616595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_60
+      rect:
+        serializedVersion: 2
+        x: 1771
+        y: 1370
+        width: 34
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 759e0539380d9034f8d03c37c5c06937
+      internalID: -522829369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_61
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 1366
+        width: 106
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba312cf40aa6d7d4f847156ae5fd2150
+      internalID: 696687490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FP_Character_Sprite_62
+      rect:
+        serializedVersion: 2
+        x: 1933
+        y: 1366
+        width: 106
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f31d12ed9955a634da5e53959276bf3b
+      internalID: 1323174378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1a4fd6d1e9f561a4baebd58aecbf8c86
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FP_Character_Sprite_0: -783776552
+      FP_Character_Sprite_1: -623753117
+      FP_Character_Sprite_10: -1099474350
+      FP_Character_Sprite_11: -1018078617
+      FP_Character_Sprite_12: 1894897685
+      FP_Character_Sprite_13: -1826989679
+      FP_Character_Sprite_14: 1375906629
+      FP_Character_Sprite_15: 152768704
+      FP_Character_Sprite_16: -762430390
+      FP_Character_Sprite_17: 942773010
+      FP_Character_Sprite_18: 437820496
+      FP_Character_Sprite_19: -2100084727
+      FP_Character_Sprite_2: 1644332269
+      FP_Character_Sprite_20: 1757010253
+      FP_Character_Sprite_21: 2096200839
+      FP_Character_Sprite_22: 490632248
+      FP_Character_Sprite_23: -684088776
+      FP_Character_Sprite_24: -1642533359
+      FP_Character_Sprite_25: -1075284539
+      FP_Character_Sprite_26: 1271420720
+      FP_Character_Sprite_27: 1271455610
+      FP_Character_Sprite_28: 41273513
+      FP_Character_Sprite_29: -1514754097
+      FP_Character_Sprite_3: 550714370
+      FP_Character_Sprite_30: -1559993770
+      FP_Character_Sprite_31: -2143739529
+      FP_Character_Sprite_32: 471499514
+      FP_Character_Sprite_33: 790922046
+      FP_Character_Sprite_34: -1693162828
+      FP_Character_Sprite_35: -892198978
+      FP_Character_Sprite_36: -1616217718
+      FP_Character_Sprite_37: 1602931530
+      FP_Character_Sprite_38: -916533825
+      FP_Character_Sprite_39: 1157761381
+      FP_Character_Sprite_4: 1608732773
+      FP_Character_Sprite_40: -1156695456
+      FP_Character_Sprite_41: 1304331564
+      FP_Character_Sprite_42: 2097112699
+      FP_Character_Sprite_43: -1689250294
+      FP_Character_Sprite_44: -1869606821
+      FP_Character_Sprite_45: -1439317342
+      FP_Character_Sprite_46: -31443930
+      FP_Character_Sprite_47: 1579247885
+      FP_Character_Sprite_48: -1200449623
+      FP_Character_Sprite_49: -2147132387
+      FP_Character_Sprite_5: -353886606
+      FP_Character_Sprite_50: 736746745
+      FP_Character_Sprite_51: -209582330
+      FP_Character_Sprite_52: -139038039
+      FP_Character_Sprite_53: 126534917
+      FP_Character_Sprite_54: -9005509
+      FP_Character_Sprite_55: 1320471973
+      FP_Character_Sprite_56: -659742449
+      FP_Character_Sprite_57: 1927261453
+      FP_Character_Sprite_58: -1976877260
+      FP_Character_Sprite_59: 773616595
+      FP_Character_Sprite_6: 1718562057
+      FP_Character_Sprite_60: -522829369
+      FP_Character_Sprite_61: 696687490
+      FP_Character_Sprite_62: 1323174378
+      FP_Character_Sprite_7: -1630060092
+      FP_Character_Sprite_8: 554298552
+      FP_Character_Sprite_9: -560433894
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

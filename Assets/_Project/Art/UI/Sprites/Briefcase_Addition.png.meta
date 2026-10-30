@@ -1,0 +1,810 @@
+fileFormatVersion: 2
+guid: 920abfc3fa1fcb54a9149fdd5cda6bbe
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Briefcase_Addition_0
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 672
+        width: 1228
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ee93e7a89fa7e24d96586af50a5171b
+      internalID: 970685892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_1
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 16
+        width: 494
+        height: 612
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa47b05202aa97a4197b65ca4318ea70
+      internalID: 1264112842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_2
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 16
+        width: 495
+        height: 615
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e96d34336e41e84bad432824bdda32d
+      internalID: -1619142764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 228
+        width: 495
+        height: 614
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b8474ef67b1a4a48b38bffa5200efba
+      internalID: -1584205233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_4
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 853
+        width: 493
+        height: 609
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 024ea3c5b73a90849841694f181d7292
+      internalID: 1808130719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_5
+      rect:
+        serializedVersion: 2
+        x: 1715
+        y: 1545
+        width: 89
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5b7616ac2577984bb976440fdaee5c2
+      internalID: -2090411267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_6
+      rect:
+        serializedVersion: 2
+        x: 1839
+        y: 1545
+        width: 58
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e5c9aaaa06eebc45a40dc4cb42337d4
+      internalID: 1955610808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_7
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 1898
+        width: 97
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a118a509961adba4ea63f9964d5f55e6
+      internalID: -876057399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_8
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 1537
+        width: 95
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 049dea73b90195c419a47e4ac6c78dc2
+      internalID: 136888026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_9
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 1696
+        width: 356
+        height: 340
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7df136cd38a19664a92141956eef1173
+      internalID: -53808948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_10
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 1675
+        width: 259
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7dc35e16db211f4888e1a84c597e288
+      internalID: 516921189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_11
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 1794
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fe8da6be7f25cf4e96558a5882b3bfb
+      internalID: -1775289045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_12
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 1835
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24120eb8e0fb22b4ea106de588936324
+      internalID: 1407362154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_13
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 1871
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 470ae412fbd4d9449aeb0a360871c14e
+      internalID: -2141260610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_14
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 893
+        width: 422
+        height: 565
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b35ef077de678db43b3a453915a6aed3
+      internalID: 1342538196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_15
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 1597
+        width: 54
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 126a193fe5971404b822e0aaae6486e9
+      internalID: 1371044806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_16
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 1349
+        width: 165
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d280f9d8a83064f947dd944d80a9fb
+      internalID: 795645037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_17
+      rect:
+        serializedVersion: 2
+        x: 1474
+        y: 1227
+        width: 51
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b03c422fe707751428f501f1e31d402f
+      internalID: 1809973517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_18
+      rect:
+        serializedVersion: 2
+        x: 1743
+        y: 1964
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b86d66ef5b5dab5408341b37a35e173e
+      internalID: 1142949872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_19
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 1964
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb52f061218cd6f498bcdc63f2dd118a
+      internalID: 413790956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_20
+      rect:
+        serializedVersion: 2
+        x: 1781
+        y: 1964
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40db3d19fa98cd7459dc96e902f1a8ff
+      internalID: -1394393246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_21
+      rect:
+        serializedVersion: 2
+        x: 1817
+        y: 1964
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80218edf72d4adc45994c0a1a56bfdc1
+      internalID: -435805116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_22
+      rect:
+        serializedVersion: 2
+        x: 1998
+        y: 1912
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19b8b0af3345cb444b08717aacdbc949
+      internalID: -1078585616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_23
+      rect:
+        serializedVersion: 2
+        x: 1692
+        y: 1653
+        width: 295
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8862813c16ff24e9d8539134e7ffe2
+      internalID: -1908600063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_24
+      rect:
+        serializedVersion: 2
+        x: 1692
+        y: 1735
+        width: 295
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a980551f93d973a47ab70a9d4d049753
+      internalID: 1209546492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_25
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 1817
+        width: 294
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42da3214f5e08b54280ec52c79a32231
+      internalID: -1591892034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_26
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 1892
+        width: 289
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7456800594dd79343bca81ec32eca436
+      internalID: -1558323098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_27
+      rect:
+        serializedVersion: 2
+        x: 1483
+        y: 934
+        width: 427
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62c6b1ba51d113843bb4efc5522edde2
+      internalID: -1947816391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Briefcase_Addition_28
+      rect:
+        serializedVersion: 2
+        x: 1412
+        y: 893
+        width: 565
+        height: 318
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d04e651298d1b5e49a7958891cc07d98
+      internalID: 213907124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 87821c2485ecf404ab14b53dddb444b9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Briefcase_Addition_0: 970685892
+      Briefcase_Addition_1: 1264112842
+      Briefcase_Addition_10: 516921189
+      Briefcase_Addition_11: -1775289045
+      Briefcase_Addition_12: 1407362154
+      Briefcase_Addition_13: -2141260610
+      Briefcase_Addition_14: 1342538196
+      Briefcase_Addition_15: 1371044806
+      Briefcase_Addition_16: 795645037
+      Briefcase_Addition_17: 1809973517
+      Briefcase_Addition_18: 1142949872
+      Briefcase_Addition_19: 413790956
+      Briefcase_Addition_2: -1619142764
+      Briefcase_Addition_20: -1394393246
+      Briefcase_Addition_21: -435805116
+      Briefcase_Addition_22: -1078585616
+      Briefcase_Addition_23: -1908600063
+      Briefcase_Addition_24: 1209546492
+      Briefcase_Addition_25: -1591892034
+      Briefcase_Addition_26: -1558323098
+      Briefcase_Addition_27: -1947816391
+      Briefcase_Addition_28: 213907124
+      Briefcase_Addition_3: -1584205233
+      Briefcase_Addition_4: 1808130719
+      Briefcase_Addition_5: -2090411267
+      Briefcase_Addition_6: 1955610808
+      Briefcase_Addition_7: -876057399
+      Briefcase_Addition_8: 136888026
+      Briefcase_Addition_9: -53808948
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

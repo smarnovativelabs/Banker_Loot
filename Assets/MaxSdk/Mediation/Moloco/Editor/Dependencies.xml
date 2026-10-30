@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dependencies>
+    <androidPackages>
+        <androidPackage spec="com.applovin.mediation:moloco-adapter:4.12.0.0" />
+    </androidPackages>
+    <iosPods>
+        <iosPod name="AppLovinMediationMolocoAdapter" version="4.10.0.1" />
+    </iosPods>
+    <remoteSwiftPackage url="https://github.com/AppLovin/AppLovin-MAX-Swift-Package-Moloco.git" version="4100001.0.0">
+        <swiftPackage name="AppLovinMediationMolocoAdapter" replacesPod="AppLovinMediationMolocoAdapter" target="All"/>
+    </remoteSwiftPackage>
+</dependencies>

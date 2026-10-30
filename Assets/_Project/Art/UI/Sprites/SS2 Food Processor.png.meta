@@ -1,0 +1,904 @@
+fileFormatVersion: 2
+guid: 2b1816bda2ccfd149935a22528d25997
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SS2 Food Processor_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1181
+        width: 1543
+        height: 857
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 412e53cec3af03144853789e7b263edb
+      internalID: 2102670363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_1
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 1499
+        width: 302
+        height: 541
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 953b1f8fdbc9ae344b6f2b8bac57cc42
+      internalID: -1352902602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_2
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 1833
+        width: 174
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab353099e62003548aac64fc42a68f98
+      internalID: 385288144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_7
+      rect:
+        serializedVersion: 2
+        x: 1898
+        y: 1698
+        width: 120
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba566d7182b8c8a498a20070e015e307
+      internalID: -2089998044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_8
+      rect:
+        serializedVersion: 2
+        x: 1881
+        y: 1573
+        width: 151
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d44f0cab7e80d44799b12edfcb608ea
+      internalID: -1897896293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_9
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 1422
+        width: 255
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cdcbe62abe8f6f43895bfd91d96a36f
+      internalID: -1940706388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_10
+      rect:
+        serializedVersion: 2
+        x: 1881
+        y: 1455
+        width: 152
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a3fb0e2c65ad93449f16c04055af83f
+      internalID: -361885239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_11
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 1341
+        width: 253
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6479cec1aefe144ea7023a80adac950
+      internalID: 1974881102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_12
+      rect:
+        serializedVersion: 2
+        x: 1847
+        y: 1258
+        width: 87
+        height: 178
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1ef26c8eaf171d4bbf0cc40f9ca5bb4
+      internalID: 103166095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_13
+      rect:
+        serializedVersion: 2
+        x: 1950
+        y: 1319
+        width: 90
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c44e30318d51894393494c55b6e453b
+      internalID: -1468878641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_14
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 1274
+        width: 251
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f08105c5080c5c4cb79fdf67e437db8
+      internalID: 2020539386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_15
+      rect:
+        serializedVersion: 2
+        x: 1954
+        y: 1156
+        width: 82
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8653c19657774b64c9faa792f5e1ffa1
+      internalID: 1451772318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_16
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 1192
+        width: 254
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad34950969fcc3247b3ca43c8da359a0
+      internalID: -1797569665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_17
+      rect:
+        serializedVersion: 2
+        x: 1847
+        y: 1151
+        width: 73
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f70dc6e376ad00418b47951a2cd13fd
+      internalID: -170868487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_18
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 1090
+        width: 1459
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78ec810800f10844abcc42d35468059f
+      internalID: -274124124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_19
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 527
+        width: 324
+        height: 641
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 50, y: 50, z: 50, w: 50}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c39535312ac6ea49af2efe6065846ae
+      internalID: 846582008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_20
+      rect:
+        serializedVersion: 2
+        x: 1916
+        y: 1005
+        width: 116
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe31d7bef6d0cb14eaa67eab3952a159
+      internalID: 2070269145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_21
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 526
+        width: 1410
+        height: 554
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8165a5a024e0a84469b0d1473bd8ea8c
+      internalID: -2089710873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_22
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 8
+        width: 417
+        height: 499
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2843ab67036b374b9a6506889f52a70
+      internalID: 43220778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_23
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 448
+        width: 334
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aa10777f81eebc46b00bd1b07855ecd
+      internalID: -1909024795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_3
+      rect:
+        serializedVersion: 2
+        x: 1831
+        y: 1076
+        width: 68
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c30de2a0e5d260a4d8c98a426d0f4eac
+      internalID: -934260118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_4
+      rect:
+        serializedVersion: 2
+        x: 1859
+        y: 930
+        width: 169
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ef9221c68559cb4383ee2167eff8632
+      internalID: -19640376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_5
+      rect:
+        serializedVersion: 2
+        x: 1936
+        y: 846
+        width: 94
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a7ad910263d01842be054febfa8e290
+      internalID: -1323571481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_6
+      rect:
+        serializedVersion: 2
+        x: 1832
+        y: 841
+        width: 88
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64152a526536a4c49b43604cd0e8c7bc
+      internalID: -560355788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_24
+      rect:
+        serializedVersion: 2
+        x: 1835
+        y: 741
+        width: 83
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75efd79bb3f6d65499642b7f92036a0a
+      internalID: 1151484124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_25
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 749
+        width: 71
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaeefb21bfd74c649939934fbb2f9907
+      internalID: 1516488363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_26
+      rect:
+        serializedVersion: 2
+        x: 1952
+        y: 600
+        width: 85
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3e9105f7e259444ca6a2997eea49280
+      internalID: -963757590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_27
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 609
+        width: 71
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30c39d8cca961ec4a839f3436aa0b01e
+      internalID: -394779161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_28
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 368
+        width: 347
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89355d72a487770499bc0738fefcb7f7
+      internalID: -912232744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_29
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 359
+        width: 326
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8451dd5bd9d49647963a674fbbdb396
+      internalID: 677556870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_30
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 482
+        width: 479
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b40ad839d97f794aa762ac585adb546
+      internalID: -2117527645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_31
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 13
+        width: 1438
+        height: 337
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 865d16568be876348b340c294194dc8f
+      internalID: -916082436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SS2 Food Processor_32
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 446
+        width: 337
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3489b747ee9ad494cae468653847d188
+      internalID: 1575174022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 28037b1b32eb16c44b96d8321f8c55db
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      SS2 Food Processor_0: 2102670363
+      SS2 Food Processor_1: -1352902602
+      SS2 Food Processor_10: -361885239
+      SS2 Food Processor_11: 1974881102
+      SS2 Food Processor_12: 103166095
+      SS2 Food Processor_13: -1468878641
+      SS2 Food Processor_14: 2020539386
+      SS2 Food Processor_15: 1451772318
+      SS2 Food Processor_16: -1797569665
+      SS2 Food Processor_17: -170868487
+      SS2 Food Processor_18: -274124124
+      SS2 Food Processor_19: 846582008
+      SS2 Food Processor_2: 385288144
+      SS2 Food Processor_20: 2070269145
+      SS2 Food Processor_21: -2089710873
+      SS2 Food Processor_22: 43220778
+      SS2 Food Processor_23: -1909024795
+      SS2 Food Processor_24: 1151484124
+      SS2 Food Processor_25: 1516488363
+      SS2 Food Processor_26: -963757590
+      SS2 Food Processor_27: -394779161
+      SS2 Food Processor_28: -912232744
+      SS2 Food Processor_29: 677556870
+      SS2 Food Processor_3: -934260118
+      SS2 Food Processor_30: -2117527645
+      SS2 Food Processor_31: -916082436
+      SS2 Food Processor_32: 1575174022
+      SS2 Food Processor_4: -19640376
+      SS2 Food Processor_5: -1323571481
+      SS2 Food Processor_6: -560355788
+      SS2 Food Processor_7: -2089998044
+      SS2 Food Processor_8: -1897896293
+      SS2 Food Processor_9: -1940706388
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
