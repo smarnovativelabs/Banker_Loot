@@ -275,9 +275,21 @@ public class GameController : MonoBehaviour
         StartCoroutine(SavePeriodicData());
     }
 
+    enum SavingMsgType
+    {
+        InProgress = 0,
+        NotSaved = 1,
+        Completed = 2
+    }
+
     IEnumerator SavePeriodicData()
     {
         SavingStateChanged?.Invoke(true);
+        if (UIController.instance != null)
+        {
+            UIController.instance.EnableSavingProgressNotification(true);
+            UIController.instance.UpdateSavingProgressText("Saving Progress!", (int)SavingMsgType.InProgress);
+        }
         for (int i = 0; i < savingActions.Count; i++)
         {
             savingActions[i].Invoke();
@@ -287,6 +299,17 @@ public class GameController : MonoBehaviour
             }
         }
         yield return new WaitForSecondsRealtime(0.5f);
+
+        if (UIController.instance != null)
+        {
+            UIController.instance.UpdateSavingProgressText("Progress Saved!", (int)SavingMsgType.Completed);
+        }
+        // realtime waits so the popup also shows while the pause menu has stopped game time
+        yield return new WaitForSecondsRealtime(2f);
+        if (UIController.instance != null)
+        {
+            UIController.instance.EnableSavingProgressNotification(false);
+        }
         SavingStateChanged?.Invoke(false);
 
         autoSaveTimer = 0f;

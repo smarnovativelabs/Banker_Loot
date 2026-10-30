@@ -38,6 +38,12 @@ public class UIController : MonoBehaviour
     public GameObject pausePanel;
     public AudioClip uiButtonSound;
 
+    [Header("-----------------------> Saving Notification")]
+    public GameObject savingNotification;
+    public Text savingNotificationText;
+    public Image savingNotificationImg;
+    public Sprite[] savingNotificationImgs;
+
     [Header("-----------------------> Notification / Quest")]
     public GameObject notificationPopupPanel;
     public Text notificationText;
@@ -106,6 +112,29 @@ public class UIController : MonoBehaviour
             _text.text = _value;
         }
     }
+
+    #region Saving Notification
+    /// <summary>Slides the "Saving Progress" popup in / out.</summary>
+    public void EnableSavingProgressNotification(bool _enable)
+    {
+        if (savingNotification == null)
+            return;
+        savingNotification.GetComponent<Animator>().SetBool("Display", _enable);
+    }
+
+    /// <param name="_typeIndex">0 = in progress (spinner), 1 = not saved, 2 = completed</param>
+    public void UpdateSavingProgressText(string _msg, int _typeIndex)
+    {
+        if (savingNotificationText == null)
+            return;
+        SetText(savingNotificationText, _msg);
+        if (savingNotificationImg != null && _typeIndex < savingNotificationImgs.Length)
+        {
+            savingNotificationImg.sprite = savingNotificationImgs[_typeIndex];
+            savingNotificationImg.transform.GetChild(0).gameObject.SetActive(_typeIndex == 0);
+        }
+    }
+    #endregion
 
     #region Pause
     public bool IsPaused
