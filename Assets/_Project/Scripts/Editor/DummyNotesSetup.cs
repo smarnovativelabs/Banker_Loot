@@ -16,6 +16,8 @@ public static class DummyNotesSetup
     const string MaterialPath = DummyRoot + "/Materials/Currency Note.mat";
     const string PrefabFolder = DummyRoot + "/Prefabs";
     const string HeapName = "Note Heap";
+    const string PickSoundPath = "Assets/_Project/Audio/SFX/Notes/NotePickup.wav";
+    const string ThrowSoundPath = "Assets/_Project/Audio/SFX/Notes/NoteThrow.wav";
 
     // prefab name, mesh name inside the fbx, display name. The fbx mesh names are shifted by one denomination:
     // the atlas texture only holds $1, $5, $10, $20 and $50 and the mesh UVs point at them in that order.
@@ -68,6 +70,8 @@ public static class DummyNotesSetup
 
             var pickable = go.AddComponent<PickableNote>();
             pickable.itemName = note[2];
+            pickable.itemPickSound = AssetDatabase.LoadAssetAtPath<AudioClip>(PickSoundPath);
+            pickable.itemThrowSound = AssetDatabase.LoadAssetAtPath<AudioClip>(ThrowSoundPath);
             pickable.normalScale = 4f;
             pickable.camChildScale = 2f;
             pickable.throwForceMul = 1f;

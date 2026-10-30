@@ -178,8 +178,8 @@ MonoBehaviour:
   camChildScale: 2
   throwForceMul: 1
   normalScale: 4
-  itemPickSound: {fileID: 0}
-  itemThrowSound: {fileID: 0}
+  itemPickSound: {fileID: 8300000, guid: f015f618d6087164ab50f1737e6481ff, type: 3}
+  itemThrowSound: {fileID: 8300000, guid: e4900cd7c036f5d488a23aa074748826, type: 3}
   isPlayerPicked: 0
   itemCondition: 3
   pickText: Pick Up
