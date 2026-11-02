@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -7,10 +8,54 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class NotePlaceSurface : MonoBehaviour
 {
+    /// <summary>Every surface in the scene, used to find the surface of a saved note.</summary>
+    public static readonly List<NotePlaceSurface> All = new List<NotePlaceSurface>();
+
     [Tooltip("Notes stay at least this far (meters) from the edge of the surface")]
     public float edgeMargin = 0.02f;
+    [Tooltip("Unique name used by the note saving. Leave empty to use the hierarchy path (breaks when the object is renamed or moved)")]
+    public string surfaceId;
 
     BoxCollider box;
+
+    /// <summary>Stable key of this surface in the save file.</summary>
+    public string Id
+    {
+        get
+        {
+            if (!string.IsNullOrEmpty(surfaceId))
+                return surfaceId;
+            string _path = name;
+            for (var _parent = transform.parent; _parent != null; _parent = _parent.parent)
+            {
+                _path = _parent.name + "/" + _path;
+            }
+            return _path;
+        }
+    }
+
+    void OnEnable()
+    {
+        if (!All.Contains(this))
+        {
+            All.Add(this);
+        }
+    }
+
+    void OnDisable()
+    {
+        All.Remove(this);
+    }
+
+    public static NotePlaceSurface Find(string _id)
+    {
+        for (int i = 0; i < All.Count; i++)
+        {
+            if (All[i].Id == _id)
+                return All[i];
+        }
+        return null;
+    }
 
     BoxCollider Box
     {

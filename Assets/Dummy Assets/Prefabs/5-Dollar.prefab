@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5407261795819744549}
   - component: {fileID: 8605364019127508160}
   - component: {fileID: 7437359670565850773}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 5-Dollar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,6 +178,7 @@ MonoBehaviour:
   camChildScale: 2
   throwForceMul: 1
   normalScale: 4
+  releaseScaleTime: 0.15
   itemPickSound: {fileID: 8300000, guid: f015f618d6087164ab50f1737e6481ff, type: 3}
   itemThrowSound: {fileID: 8300000, guid: e4900cd7c036f5d488a23aa074748826, type: 3}
   isPlayerPicked: 0
@@ -186,4 +187,5 @@ MonoBehaviour:
   hoverType: 0
   outlineColor: {r: 1, g: 0.85, b: 0.1, a: 1}
   outlineWidth: 4
+  noteId: 5-Dollar
   wakeNeighboursRadius: 0.05

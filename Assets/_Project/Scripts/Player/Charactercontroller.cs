@@ -487,6 +487,11 @@ namespace KinematicCharacterController.Examples
             {
                 return false;
             }
+            // currency notes never block the player
+            if (coll.gameObject.layer == NoteHeapManager.NotesLayer)
+            {
+                return false;
+            }
             return true;
         }
 

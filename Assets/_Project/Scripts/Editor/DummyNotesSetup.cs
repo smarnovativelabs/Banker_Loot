@@ -70,6 +70,7 @@ public static class DummyNotesSetup
 
             var pickable = go.AddComponent<PickableNote>();
             pickable.itemName = note[2];
+            pickable.noteId = note[0];
             pickable.itemPickSound = AssetDatabase.LoadAssetAtPath<AudioClip>(PickSoundPath);
             pickable.itemThrowSound = AssetDatabase.LoadAssetAtPath<AudioClip>(ThrowSoundPath);
             pickable.normalScale = 4f;

@@ -7,10 +7,21 @@ public class PlacedNote : MonoBehaviour
     /// <summary>Every note currently lying on a surface.</summary>
     public static readonly List<PlacedNote> All = new List<PlacedNote>();
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetRegistry()
+    {
+        All.Clear();
+    }
+
     public NotePlaceSurface surface;
     public float surfaceY;
     /// <summary>The tower this note is part of, null while it lies on its own.</summary>
     public NotePile pile;
+    /// <summary>The pose the note settles at (it lerps there after being placed), this is what gets saved.</summary>
+    public Vector3 placedPosition;
+    public Quaternion placedRotation = Quaternion.identity;
+    /// <summary>True once the note was taken off the surface (the component is destroyed at the end of the frame).</summary>
+    public bool pickedUp;
 
     /// <summary>Only the top note of a tower can be picked up.</summary>
     public bool IsPickable => pile == null || pile.Top == this;
@@ -31,6 +42,7 @@ public class PlacedNote : MonoBehaviour
     /// <summary>Called when the note leaves the surface.</summary>
     public void OnPickedUp()
     {
+        pickedUp = true;
         if (pile != null)
         {
             pile.Remove(this);

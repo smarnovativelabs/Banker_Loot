@@ -280,6 +280,9 @@ public class NotePlacementManager : MonoBehaviour
         _placed.surface = previewSurface;
         _placed.surfaceY = previewSurface.TopY;
         _placed.pile = null;
+        _placed.pickedUp = false;
+        _placed.placedPosition = previewPosition;
+        _placed.placedRotation = Quaternion.Euler(0f, previewYaw, 0f);
         if (previewAnchor != null)
         {
             var _pile = previewAnchor.pile;

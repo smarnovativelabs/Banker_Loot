@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 835be92212e1068459afe79562245256, type: 3}
+  m_Name: Level_1
+  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  level: 1
+  noteTypes:
+  - noteId: 1-Dollar
+    prefab: {fileID: 3480552441685789255, guid: 1d6afab501ff6a94286518d4ee0f47fe, type: 3}
+    spawnCount: 28
+    maxCount: 100
+  - noteId: 5-Dollar
+    prefab: {fileID: 7437359670565850773, guid: 7207fbb5e81468541bc31fe75d005290, type: 3}
+    spawnCount: 28
+    maxCount: 100
+  - noteId: 10-Dollar
+    prefab: {fileID: 458694984045807385, guid: ee7f138797e25584e9f41c67a3d72571, type: 3}
+    spawnCount: 28
+    maxCount: 100
+  - noteId: 20-Dollar
+    prefab: {fileID: 1939325549209444860, guid: b6449a36752d2cd43bb239da09f4af30, type: 3}
+    spawnCount: 28
+    maxCount: 100
+  - noteId: 50-Dollar
+    prefab: {fileID: 3622432818500812254, guid: e888bfa7d896a61498a1ef51d88d4968, type: 3}
+    spawnCount: 28
+    maxCount: 100

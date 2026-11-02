@@ -144,6 +144,7 @@ public class NotePickupManager : MonoBehaviour
         var _note = held[_top];
         held.RemoveAt(_top);
         slots.RemoveAt(_top);
+        RetargetPile(-1);
         NotesChanged?.Invoke(held.Count, maxNotes);
         return _note;
     }
@@ -292,6 +293,8 @@ public class NotePickupManager : MonoBehaviour
         slots.Add(_slot);
         GetPileTarget(held.Count - 1, out Vector3 _position, out Vector3 _angle);
         _note.BeginCarry(_position, _angle, noteScale);
+        // the new note is the front one, every older note moves one step back
+        RetargetPile(held.Count - 1);
 
         NotePicked?.Invoke(_note);
         NotesChanged?.Invoke(held.Count, maxNotes);
@@ -308,6 +311,7 @@ public class NotePickupManager : MonoBehaviour
         var _note = held[_top];
         held.RemoveAt(_top);
         slots.RemoveAt(_top);
+        RetargetPile(-1);
 
         // a quick series of throws fans out more and more
         seriesCount = Time.time - lastThrowTime < fanResetTime ? seriesCount + 1 : 0;
@@ -340,15 +344,29 @@ public class NotePickupManager : MonoBehaviour
         return true;
     }
 
-    /// <summary>Local pose of the note at the given position in the pile (0 = bottom).</summary>
+    /// <summary>Moves every carried note (except the one at _skipIndex) to its place after the pile changed.</summary>
+    void RetargetPile(int _skipIndex)
+    {
+        for (int i = 0; i < held.Count; i++)
+        {
+            if (i == _skipIndex)
+                continue;
+            GetPileTarget(i, out Vector3 _position, out Vector3 _angle);
+            held[i].RetargetCarry(_position, _angle);
+        }
+    }
+
+    /// <summary>Local pose of the note at the given position in the pile (0 = oldest, the last one is the newest).</summary>
     void GetPileTarget(int _index, out Vector3 _position, out Vector3 _angle)
     {
         var _slot = slots[_index];
         Quaternion _base = Quaternion.Euler(pileAngle);
         float _step = Mathf.Min(stackStep, maxStackHeight / Mathf.Max(1, maxNotes - 1));
 
-        // stack along the note normal (towards the camera), newest on top
-        Vector3 _stack = _base * Vector3.up * (_step * _index);
+        // the newest note is always in front at the pile position, the older ones lie behind it going away from
+        // the camera, so a tall pile never reaches or passes the camera
+        int _depth = held.Count - 1 - _index;
+        Vector3 _stack = _base * Vector3.up * (-_step * _depth);
         _position = pilePosition + _stack + _base * new Vector3(_slot.offset.x, 0f, _slot.offset.y);
         _angle = (_base * Quaternion.Euler(0f, _slot.yaw, 0f)).eulerAngles;
     }

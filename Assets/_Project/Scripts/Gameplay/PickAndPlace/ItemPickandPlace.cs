@@ -169,6 +169,15 @@ public class ItemPickandPlace : MonoBehaviour
         }
     }
 
+    /// <summary>Eases an item that is already carried to a new local pose (no pick sound, same parent and scale).</summary>
+    public void RetargetCarry(Vector3 _localPosition, Vector3 _localAngle)
+    {
+        targetPosition = _localPosition;
+        targetRotation = Quaternion.Euler(_localAngle);
+        lerpTransition = 0;
+        itemCondition = ItemState.picking;
+    }
+
     /// <summary>Releases the carried item with a forward force from the camera.</summary>
     public virtual void ThrowPickedObjects()
     {

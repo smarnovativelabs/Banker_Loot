@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -6,10 +7,34 @@ using UnityEngine;
 /// </summary>
 public class PickableNote : PickableItem
 {
+    /// <summary>Every note alive in the scene (heap, carried, thrown or placed), used by NoteHeapManager for saving.</summary>
+    public static readonly List<PickableNote> All = new List<PickableNote>();
+
+    // editor play mode may skip the domain reload, so the registry must not carry notes over from the last session
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetRegistry()
+    {
+        All.Clear();
+    }
+
+    [Tooltip("Note type, must match a NoteHeapManager entry so the note is saved and respawned (e.g. 1-Dollar)")]
+    public string noteId;
     [Tooltip("Extra space around the note in which resting neighbours are woken up when it is picked")]
     public float wakeNeighboursRadius = 0.05f;
 
     PickableNote highlighted;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        All.Add(this);
+    }
+
+    /// <summary>A destroyed note simply disappears from the registry, so the next save drops it from the heap and the placed notes.</summary>
+    protected virtual void OnDestroy()
+    {
+        All.Remove(this);
+    }
 
     public override bool CanPickItem()
     {

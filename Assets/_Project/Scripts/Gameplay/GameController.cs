@@ -124,6 +124,11 @@ public class GameController : MonoBehaviour
         }
 
         // register new gameplay systems here (each one: load its data, then yield)
+        if (NoteHeapManager.instance != null)
+        {
+            yield return NoteHeapManager.instance.InitializeHeap();
+            GameManager.instance.EnableLoadingScreen(true, "Loading Game Data");
+        }
 
         GameManager.instance.EnableLoadingScreen(true, "Setting Up Game");
         if (UIController.instance != null)
