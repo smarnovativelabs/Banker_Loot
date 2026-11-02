@@ -37,14 +37,30 @@ public class NotePickupManager : MonoBehaviour
     public float positionJitter = 0.01f;
     public float angleJitter = 8f;
 
-    [Header("Throw")]
-    public float throwForceMul = 1f;
-    [Tooltip("Random cone (degrees) around the camera direction")]
+    [Header("Throw (floaty glide)")]
+    [Tooltip("Speed in m/s the note leaves the hand with")]
+    public float throwSpeed = 5.5f;
+    [Tooltip("Extra upward lift of the throw direction, gives a soft arc instead of a straight line")]
+    public float throwUpward = 0.45f;
+    [Tooltip("Degrees the nose of the note is tilted up while it levels out, makes it glide")]
+    public float angleOfAttack = 12f;
+    [Tooltip("Spin in rad/s about the face of the note")]
+    public float launchSpin = 5f;
+    [Tooltip("Random sideways roll in degrees at launch")]
+    public float rollJitter = 10f;
+    [Tooltip("Random cone (degrees) around the throw direction")]
     public float throwSpread = 3f;
-    public float throwSpin = 0.02f;
+    [Tooltip("Extra spread per note when throwing in a quick series, so the notes fan out")]
+    public float fanGrowth = 1.5f;
+    public float maxFanSpread = 12f;
+    [Tooltip("A new series starts when this many seconds passed since the last throw")]
+    public float fanResetTime = 0.5f;
+    public PaperFlightSettings flight = new PaperFlightSettings();
 
     [Header("Messages")]
     public string handsBusyMessage = "Throw the item in your hand first!";
+    [Tooltip("Shown when the player tries to pick a note while carrying the maximum amount")]
+    public string handFullMessage = "Your hand is full of note stack!";
 
     /// <summary>Raised with (held notes, max notes) whenever one of them changes.</summary>
     public event Action<int, int> NotesChanged;
@@ -70,6 +86,9 @@ public class NotePickupManager : MonoBehaviour
     bool isDown;
     float downTime;
     float nextRepeatTime;
+    bool fullMessageShown;
+    float lastThrowTime = -10f;
+    int seriesCount;
 
     public int HeldCount => held.Count;
     public int MaxNotes => maxNotes;
@@ -140,10 +159,17 @@ public class NotePickupManager : MonoBehaviour
             }
             return;
         }
+        fullMessageShown = false;
         if (CanPick(_hovered))
         {
             holdMode = HoldMode.Pick;
             TryPick(_hovered);
+        }
+        else if (_hovered != null && IsFull)
+        {
+            // trying to pick more than the hands can carry: tell the player instead of throwing a note
+            ShowHandFullMessage();
+            return;
         }
         else if (held.Count > 0)
         {
@@ -163,6 +189,16 @@ public class NotePickupManager : MonoBehaviour
     {
         isDown = false;
         holdMode = HoldMode.None;
+        fullMessageShown = false;
+    }
+
+    void ShowHandFullMessage()
+    {
+        fullMessageShown = true;
+        if (UIController.instance != null)
+        {
+            UIController.instance.DisplayInstructions(handFullMessage);
+        }
     }
 
     void Update()
@@ -181,6 +217,11 @@ public class NotePickupManager : MonoBehaviour
             if (CanPick(_hovered) && TryPick(_hovered))
             {
                 nextRepeatTime = downTime + pickInterval;
+            }
+            else if (_hovered != null && IsFull && !fullMessageShown)
+            {
+                // the pile became full during the hold, say so once
+                ShowHandFullMessage();
             }
         }
         else if (holdMode == HoldMode.Throw)
@@ -232,15 +273,31 @@ public class NotePickupManager : MonoBehaviour
         held.RemoveAt(_top);
         slots.RemoveAt(_top);
 
+        // a quick series of throws fans out more and more
+        seriesCount = Time.time - lastThrowTime < fanResetTime ? seriesCount + 1 : 0;
+        lastThrowTime = Time.time;
+        float _spread = Mathf.Min(maxFanSpread, throwSpread + seriesCount * fanGrowth);
+
         var _camera = GameController.instance != null ? GameController.instance.gameMainCamera : null;
-        Vector3 _direction = _camera != null ? _camera.transform.forward : _note.transform.forward;
-        if (_camera != null && throwSpread > 0f)
+        Vector3 _forward = _camera != null ? _camera.transform.forward : _note.transform.forward;
+        Vector3 _direction = (_forward + Vector3.up * throwUpward).normalized;
+        if (_spread > 0f)
         {
-            var _cone = Quaternion.AngleAxis(Random.Range(-throwSpread, throwSpread), _camera.transform.up)
-                        * Quaternion.AngleAxis(Random.Range(-throwSpread, throwSpread), _camera.transform.right);
+            var _cone = Quaternion.AngleAxis(Random.Range(-_spread, _spread), Vector3.up)
+                        * Quaternion.AngleAxis(Random.Range(-_spread, _spread), Vector3.Cross(Vector3.up, _direction));
             _direction = _cone * _direction;
         }
-        _note.ThrowFromHand(_direction * 100f * throwForceMul, throwSpin);
+
+        // the note levels out flat along the flight direction, nose slightly up
+        Vector3 _flat = Vector3.ProjectOnPlane(_direction, Vector3.up);
+        if (_flat.sqrMagnitude < 0.0001f)
+        {
+            _flat = Vector3.ProjectOnPlane(_forward, Vector3.up);
+        }
+        Quaternion _level = Quaternion.LookRotation(_flat.normalized, Vector3.up)
+                            * Quaternion.Euler(-angleOfAttack, 0f, Random.Range(-rollJitter, rollJitter));
+        float _spin = (Random.value < 0.5f ? -1f : 1f) * Random.Range(0.5f, 1f) * launchSpin;
+        _note.ThrowFromHand(_direction * throwSpeed, _level, _spin, flight);
 
         NoteThrown?.Invoke(_note);
         NotesChanged?.Invoke(held.Count, maxNotes);

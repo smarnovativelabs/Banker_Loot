@@ -76,14 +76,23 @@ public class PickableNote : PickableItem
         }
     }
 
-    /// <summary>Throws the note out of the hand and gives it a little spin.</summary>
-    public void ThrowFromHand(Vector3 _force, float _spin)
+    /// <summary>
+    /// Throws the note out of the hand: it leaves with the given velocity, levels out to the given rotation
+    /// and then flies like a sheet of paper (PaperFlight) until it lands.
+    /// </summary>
+    public void ThrowFromHand(Vector3 _velocity, Quaternion _levelRotation, float _spin, PaperFlightSettings _flight)
     {
-        Release(_force);
-        if (body != null && _spin > 0f)
+        Release(Vector3.zero);
+        if (body == null)
+            return;
+
+        body.linearVelocity = _velocity;
+        var _paper = GetComponent<PaperFlight>();
+        if (_paper == null)
         {
-            body.AddTorque(Random.insideUnitSphere * _spin, ForceMode.Impulse);
+            _paper = gameObject.AddComponent<PaperFlight>();
         }
+        _paper.Begin(_flight, _levelRotation, _spin);
     }
 
     /// <summary>Hides the hover feedback after the note was taken.</summary>

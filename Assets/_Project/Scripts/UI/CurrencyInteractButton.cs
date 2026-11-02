@@ -48,7 +48,8 @@ public class CurrencyInteractButton : MonoBehaviour, IPointerDownHandler, IPoint
 
         if (icon != null)
         {
-            Sprite _sprite = !_canPick && _manager.HeldCount > 0 ? throwSprite : pickSprite;
+            // a press throws only when no note is aimed at (aiming at a note while full shows a message instead)
+            Sprite _sprite = _hovered == null && _manager.HeldCount > 0 ? throwSprite : pickSprite;
             if (_sprite != null && icon.sprite != _sprite)
             {
                 icon.sprite = _sprite;

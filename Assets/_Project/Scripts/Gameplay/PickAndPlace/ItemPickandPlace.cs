@@ -20,6 +20,8 @@ public class ItemPickandPlace : MonoBehaviour
     public float throwForceMul = 1f;
     [Tooltip("Scale restored when the item is thrown or placed")]
     public float normalScale = 1f;
+    [Tooltip("Seconds the item takes to grow back to its normal scale after it is thrown")]
+    public float releaseScaleTime = 0.15f;
     public AudioClip itemPickSound;
     public AudioClip itemThrowSound;
 
@@ -89,7 +91,7 @@ public class ItemPickandPlace : MonoBehaviour
         else if (itemCondition == ItemState.throwing)
         {
             transform.localScale = Vector3.Lerp(transform.localScale, targetScale, lerpTransition);
-            lerpTransition += Time.deltaTime * 50;
+            lerpTransition += Time.deltaTime / Mathf.Max(0.01f, releaseScaleTime);
             if (lerpTransition > 1)
             {
                 itemCondition = ItemState.ready;
