@@ -9,6 +9,8 @@ public class PickableNote : PickableItem
     [Tooltip("Extra space around the note in which resting neighbours are woken up when it is picked")]
     public float wakeNeighboursRadius = 0.05f;
 
+    PickableNote highlighted;
+
     public override bool CanPickItem()
     {
         var _manager = NotePickupManager.instance;
@@ -28,12 +30,19 @@ public class PickableNote : PickableItem
         }
         if (_manager.CanPick(this))
         {
-            SetOutline(true);
-            ShowHover(pickText + " " + itemName + " (" + _manager.HeldCount + "/" + _manager.MaxNotes + ")", hoverType);
+            // aiming at any note of a tower highlights (and takes) the top note of that tower
+            var _target = NotePickupManager.ResolvePickTarget(this);
+            if (highlighted != null && highlighted != _target)
+            {
+                highlighted.SetOutline(false);
+            }
+            highlighted = _target;
+            _target.SetOutline(true);
+            ShowHover(pickText + " " + _target.itemName + " (" + _manager.HeldCount + "/" + _manager.MaxNotes + ")", hoverType);
         }
         else
         {
-            SetOutline(false);
+            TurnOffOutline();
             if (GameController.instance != null && GameController.instance.currentPicketItem != null)
             {
                 ShowHover("Hands Busy", HoverInstructionType.Warning);
@@ -42,6 +51,17 @@ public class PickableNote : PickableItem
             {
                 ShowHover("Hands Full (" + _manager.HeldCount + "/" + _manager.MaxNotes + ")", HoverInstructionType.Warning);
             }
+        }
+    }
+
+    /// <summary>Turns off the outline of this note and of the tower top it was highlighting.</summary>
+    public override void TurnOffOutline()
+    {
+        base.TurnOffOutline();
+        if (highlighted != null)
+        {
+            highlighted.SetOutline(false);
+            highlighted = null;
         }
     }
 
@@ -98,7 +118,13 @@ public class PickableNote : PickableItem
     /// <summary>Hides the hover feedback after the note was taken.</summary>
     public void OnPickedUp()
     {
-        SetOutline(false);
+        // a note taken from a surface (or from the top of a tower) is not placed anymore
+        var _placed = GetComponent<PlacedNote>();
+        if (_placed != null)
+        {
+            _placed.OnPickedUp();
+        }
+        TurnOffOutline();
         if (UIController.instance != null)
         {
             UIController.instance.DisplayHoverObjectName("", false);

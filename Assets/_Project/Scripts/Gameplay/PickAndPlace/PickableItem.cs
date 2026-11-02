@@ -50,7 +50,7 @@ public class PickableItem : ItemPickandPlace, InteractableObjects
         SetObjectToCam();
     }
 
-    public void TurnOffOutline()
+    public virtual void TurnOffOutline()
     {
         SetOutline(false);
     }

@@ -132,11 +132,46 @@ public class NotePickupManager : MonoBehaviour
         NotesChanged?.Invoke(held.Count, maxNotes);
     }
 
+    /// <summary>The note on top of the carried pile, the next one to be thrown or placed.</summary>
+    public PickableNote TopNote => held.Count > 0 ? held[held.Count - 1] : null;
+
+    /// <summary>Takes the top note out of the pile without throwing it (the caller puts it somewhere).</summary>
+    public PickableNote RemoveTop()
+    {
+        if (held.Count == 0)
+            return null;
+        int _top = held.Count - 1;
+        var _note = held[_top];
+        held.RemoveAt(_top);
+        slots.RemoveAt(_top);
+        NotesChanged?.Invoke(held.Count, maxNotes);
+        return _note;
+    }
+
+    /// <summary>
+    /// The note a press really takes: aiming at any note of a placed tower takes the top note of that tower,
+    /// every other note is taken as it is.
+    /// </summary>
+    public static PickableNote ResolvePickTarget(PickableNote _note)
+    {
+        if (_note == null)
+            return null;
+        var _placed = _note.GetComponent<PlacedNote>();
+        if (_placed != null && _placed.pile != null && _placed.pile.Top != null)
+        {
+            var _top = _placed.pile.Top.GetComponent<PickableNote>();
+            if (_top != null)
+                return _top;
+        }
+        return _note;
+    }
+
     public bool CanPick(PickableNote _note)
     {
+        _note = ResolvePickTarget(_note);
         if (_note == null || held.Count >= maxNotes || held.Contains(_note))
             return false;
-        if (_note.itemCondition == ItemPickandPlace.ItemState.picking)
+        if (_note.itemCondition == ItemPickandPlace.ItemState.picking || _note.itemCondition == ItemPickandPlace.ItemState.placing)
             return false;
         var _controller = GameController.instance;
         return _controller != null && _controller.parentOFPickedObj != null && _controller.currentPicketItem == null;
@@ -241,6 +276,7 @@ public class NotePickupManager : MonoBehaviour
     #region Pick / Throw
     public bool TryPick(PickableNote _note)
     {
+        _note = ResolvePickTarget(_note);
         if (!CanPick(_note))
             return false;
 

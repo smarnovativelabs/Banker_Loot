@@ -229,6 +229,26 @@ public class ItemPickandPlace : MonoBehaviour
         OnItemRightPlaced(_indicator);
     }
 
+    /// <summary>
+    /// Puts the item down at a world pose: it leaves the hands (or wherever it is), stays where it lands
+    /// (kinematic) and is ready to be picked up again.
+    /// </summary>
+    public void PlaceAt(Vector3 _position, Quaternion _rotation, float _scale)
+    {
+        transform.SetParent(defaultParent, true);
+        SetColliders(true);
+        if (body != null)
+        {
+            body.isKinematic = true;
+        }
+        isPlayerPicked = false;
+        targetPosition = _position;
+        targetRotation = _rotation;
+        targetScale = Vector3.one * _scale;
+        lerpTransition = 0;
+        itemCondition = ItemState.placing;
+    }
+
     public void OnItemRightPlaced(Transform _placingIndicaterRef)
     {
         targetPosition = _placingIndicaterRef.position;
