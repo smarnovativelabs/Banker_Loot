@@ -5490,6 +5490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -5577,6 +5578,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &737961424
 GameObject:
   m_ObjectHideFlags: 0
@@ -11172,124 +11202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30c60ccd8c429fe41a30230fb229ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  categoriesUIData:
-  - catName: VEGETABLES
-    catSprite: {fileID: 0}
-    subCategoriesUIData:
-    - subName: Vegetables
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Packing Pouch
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Packing Box
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Stickers
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Empty Jar
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Coffee Beans
-      reqLevel: 1
-      subSprite: {fileID: 0}
-  - catName: MACHINES
-    catSprite: {fileID: 0}
-    subCategoriesUIData:
-    - subName: Starter
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Slicing
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Pouch Packing
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Washer
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Dryer
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Box Packaging
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Labelling
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Juicer
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Can Packaging
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Dehydrate
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Grinder
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Boiling
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Pickle
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Fryer
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Pulp
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Pulp Filling
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: UnPacking
-      reqLevel: 1
-      subSprite: {fileID: 0}
-    - subName: Coffee Roaster
-      reqLevel: 1
-      subSprite: {fileID: 0}
-  - catName: FRUITS
-    catSprite: {fileID: 0}
-    subCategoriesUIData:
-    - subName: Fruits
-      reqLevel: 0
-      subSprite: {fileID: 0}
-    - subName: Empty Can
-      reqLevel: 0
-      subSprite: {fileID: 0}
-    - subName: Empty Pet
-      reqLevel: 0
-      subSprite: {fileID: 0}
-    - subName: Empty Pulp Jar
-      reqLevel: 0
-      subSprite: {fileID: 0}
-  - catName: Racks
-    catSprite: {fileID: 0}
-    subCategoriesUIData:
-    - subName: Storage Rack
-      reqLevel: 0
-      subSprite: {fileID: 0}
-    - subName: Shop Rack
-      reqLevel: 0
-      subSprite: {fileID: 0}
-    - subName: Fridge
-      reqLevel: 0
-      subSprite: {fileID: 0}
-    - subName: Fruit&Veg Racks
-      reqLevel: 0
-      subSprite: {fileID: 0}
-  - catName: Farm
-    catSprite: {fileID: 0}
-    subCategoriesUIData:
-    - subName: Seed & Plants
-      reqLevel: 0
-      subSprite: {fileID: 0}
-    - subName: Coffee Plants
-      reqLevel: 0
-      subSprite: {fileID: 0}
   isDataLoaded: 0
   SettingPanel: {fileID: 1342966998}
   languageLoadingTxt: {fileID: 1547010582}
