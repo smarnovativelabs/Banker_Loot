@@ -353,6 +353,7 @@ MonoBehaviour:
   placeCooldown: 0.35
   surfaceOffset: 0.002
   holdDelay: 0.5
+  tapTime: 0.15
   holdPlaceInterval: 0.12
   autoPileRadius: 0.4
   pileStep: 0.008
@@ -1064,7 +1065,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NotePickupManager
   maxNotes: 30
-  holdDelay: 0.3
+  holdDelay: 0.5
+  tapTime: 0.15
   pickInterval: 0.12
   throwInterval: 0.1
   pilePosition: {x: 0.034, y: -0.033, z: 0.121}

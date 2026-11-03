@@ -110,14 +110,27 @@ public class NotePlacementHud : MonoBehaviour
     {
         if (holdFillContainer == null)
             return;
-        bool _charging = _manager != null && _manager.IsHoldCharging;
+        // the same circle serves the Place button and the pick / throw button
+        var _pickup = NotePickupManager.instance;
+        float _progress = 0f;
+        bool _charging = false;
+        if (_manager != null && _manager.IsHoldCharging)
+        {
+            _charging = true;
+            _progress = _manager.HoldProgress;
+        }
+        else if (_pickup != null && _pickup.IsHoldCharging)
+        {
+            _charging = true;
+            _progress = _pickup.HoldProgress;
+        }
         if (holdFillContainer.activeSelf != _charging)
         {
             holdFillContainer.SetActive(_charging);
         }
         if (_charging && holdFillImage != null)
         {
-            holdFillImage.fillAmount = _manager.HoldProgress;
+            holdFillImage.fillAmount = _progress;
         }
     }
 

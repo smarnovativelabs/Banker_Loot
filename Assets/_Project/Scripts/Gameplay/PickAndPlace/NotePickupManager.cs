@@ -19,7 +19,9 @@ public class NotePickupManager : MonoBehaviour
 
     [Header("Hold To Repeat")]
     [Tooltip("Seconds the button must stay down before it starts repeating")]
-    public float holdDelay = 0.3f;
+    public float holdDelay = 0.5f;
+    [Tooltip("A press released within this time is a tap: it does the action once and the circle never shows")]
+    public float tapTime = 0.15f;
     [Tooltip("Seconds between two notes while holding to pick")]
     public float pickInterval = 0.12f;
     [Tooltip("Seconds between two notes while holding to throw")]
@@ -84,6 +86,7 @@ public class NotePickupManager : MonoBehaviour
     readonly List<PileSlot> slots = new List<PileSlot>();
     HoldMode holdMode = HoldMode.None;
     bool isDown;
+    bool repeating;
     float downTime;
     float nextRepeatTime;
     bool fullMessageShown;
@@ -94,6 +97,10 @@ public class NotePickupManager : MonoBehaviour
     public int MaxNotes => maxNotes;
     public bool IsFull => held.Count >= maxNotes;
     public bool IsInteractHeld => isDown;
+    /// <summary>True from the moment the press is no longer a tap until the repeat starts, this is when the circle shows.</summary>
+    public bool IsHoldCharging => isDown && !repeating && downTime >= tapTime;
+    /// <summary>0..1 fill of the hold circle.</summary>
+    public float HoldProgress => IsHoldCharging ? Mathf.Clamp01((downTime - tapTime) / Mathf.Max(0.01f, holdDelay - tapTime)) : 0f;
 
     /// <summary>The note under the crosshair, if any.</summary>
     public PickableNote HoveredNote
@@ -196,10 +203,10 @@ public class NotePickupManager : MonoBehaviour
             return;
         }
         fullMessageShown = false;
+        // the action is only chosen here: a tap does it on release, a hold shows the circle and then repeats it
         if (CanPick(_hovered))
         {
             holdMode = HoldMode.Pick;
-            TryPick(_hovered);
         }
         else if (_hovered != null && IsFull)
         {
@@ -210,20 +217,37 @@ public class NotePickupManager : MonoBehaviour
         else if (held.Count > 0)
         {
             holdMode = HoldMode.Throw;
-            TryThrow();
         }
         else
         {
             return;
         }
         isDown = true;
+        repeating = false;
         downTime = 0f;
         nextRepeatTime = holdDelay;
     }
 
     public void OnInteractUp()
     {
+        // a quick tap (released before the circle shows) does the action once
+        if (isDown && !repeating && downTime < tapTime)
+        {
+            if (holdMode == HoldMode.Pick)
+            {
+                var _hovered = HoveredNote;
+                if (CanPick(_hovered))
+                {
+                    TryPick(_hovered);
+                }
+            }
+            else if (holdMode == HoldMode.Throw)
+            {
+                TryThrow();
+            }
+        }
         isDown = false;
+        repeating = false;
         holdMode = HoldMode.None;
         fullMessageShown = false;
     }
@@ -245,6 +269,8 @@ public class NotePickupManager : MonoBehaviour
         downTime += Time.deltaTime;
         if (downTime < nextRepeatTime)
             return;
+        // the circle is complete, from here on the action repeats
+        repeating = true;
 
         if (holdMode == HoldMode.Pick)
         {
