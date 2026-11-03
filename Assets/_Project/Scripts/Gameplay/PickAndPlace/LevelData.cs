@@ -24,5 +24,25 @@ public class LevelData : ScriptableObject
 
     [Tooltip("The level number this data is used for (GameData.currentLevel)")]
     [Min(1)] public int level = 1;
+#if UNITY_EDITOR
+    [Tooltip("The scene that is loaded for this level. It must be in the Build Settings.")]
+    [SerializeField] UnityEditor.SceneAsset scene;
+#endif
+    // the editor-only SceneAsset above is stored by path so the built game can load the scene
+    [SerializeField, HideInInspector] string scenePath;
+
+    /// <summary>Name of the scene to load for this level, empty when no scene is assigned.</summary>
+    public string SceneName => string.IsNullOrEmpty(scenePath) ? "" : System.IO.Path.GetFileNameWithoutExtension(scenePath);
+
+#if UNITY_EDITOR
+    void OnValidate()
+    {
+        scenePath = scene != null ? UnityEditor.AssetDatabase.GetAssetPath(scene) : "";
+    }
+#endif
+    [Tooltip("The point the heap is built at. It is spawned at runtime at the position and rotation it has in the prefab, so each level can put its heap somewhere else.")]
+    public GameObject heapPointPrefab;
+    [Tooltip("Where the player starts the level. It is spawned at runtime and the player is moved to its position and rotation in the prefab.")]
+    public GameObject playerSpawnPointPrefab;
     public List<NoteTypeEntry> noteTypes = new List<NoteTypeEntry>();
 }

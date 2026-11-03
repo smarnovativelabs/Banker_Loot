@@ -29,7 +29,7 @@ public class NoteHeapManager : MonoBehaviour
     public List<LevelData> levels = new List<LevelData>();
 
     [Header("Heap")]
-    [Tooltip("The heap is built around this point on the floor below it. Heap notes are parented to it (also the thrown ones).")]
+    [Tooltip("Fallback only: the heap point normally comes from the LevelData's Heap Point Prefab, which is spawned at runtime. Heap notes are parented to the point (also the thrown ones).")]
     public Transform heapRoot;
     [Tooltip("The floor is searched for from this far above the heap root")]
     public float liftHeight = 0.5f;
@@ -137,6 +137,8 @@ public class NoteHeapManager : MonoBehaviour
             saveData = null;
         }
 
+        SpawnPlayerPoint();
+        SpawnHeapPoint();
         if (heapRoot == null)
         {
             heapRoot = transform;
@@ -154,6 +156,26 @@ public class NoteHeapManager : MonoBehaviour
         {
             GameController.instance.AddSavingAction(SaveHeap);
         }
+    }
+
+    /// <summary>Spawns the level's player spawn point prefab and puts the player there.</summary>
+    void SpawnPlayerPoint()
+    {
+        if (CurrentLevel == null || CurrentLevel.playerSpawnPointPrefab == null || Controlsmanager.instance == null)
+            return;
+        var _point = Instantiate(CurrentLevel.playerSpawnPointPrefab);
+        _point.name = CurrentLevel.playerSpawnPointPrefab.name;
+        Controlsmanager.instance.ChangePlayerPosition(_point.transform);
+    }
+
+    /// <summary>Spawns the level's heap point prefab and uses it as the heap root (the scene's own heapRoot is only a fallback).</summary>
+    void SpawnHeapPoint()
+    {
+        if (CurrentLevel == null || CurrentLevel.heapPointPrefab == null)
+            return;
+        var _point = Instantiate(CurrentLevel.heapPointPrefab);
+        _point.name = CurrentLevel.heapPointPrefab.name;
+        heapRoot = _point.transform;
     }
 
     void ClearExistingNotes()

@@ -20,6 +20,9 @@ public class MainMenu : MonoBehaviour
     public GameObject playButton;
     public GameObject rvButton;
     public GameObject cashContainer;
+    [Header("Levels")]
+    [Tooltip("One LevelData per level, the scene of the one matching the saved current level is loaded by Play (build index 1 when empty)")]
+    public List<LevelData> levels = new List<LevelData>();
     public static MainMenu instance;
     private void Awake()
     {
@@ -120,7 +123,38 @@ public class MainMenu : MonoBehaviour
     private void LoadGameScene()
     {
         GameManager.instance?.EnableLoadingScreen(true, "Please Wait...");
-        SceneManager.LoadScene(1);
+        string _scene = GetCurrentLevelScene();
+        if (string.IsNullOrEmpty(_scene))
+        {
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(_scene);
+        }
+    }
+
+    /// <summary>The scene of the player's current level (GameData.currentLevel, the first level when none matches), empty when no level has a scene.</summary>
+    string GetCurrentLevelScene()
+    {
+        if (levels == null || levels.Count == 0)
+            return "";
+        var _saved = SerializationManager.LoadFile("_gameData") as GameData;
+        int _current = _saved != null ? _saved.currentLevel : 1;
+        LevelData _chosen = null;
+        for (int i = 0; i < levels.Count; i++)
+        {
+            if (levels[i] != null && levels[i].level == _current)
+            {
+                _chosen = levels[i];
+                break;
+            }
+        }
+        if (_chosen == null)
+        {
+            _chosen = levels.Find(_level => _level != null);
+        }
+        return _chosen != null ? _chosen.SceneName : "";
     }
     public void OnPressSettingBtn()
     {

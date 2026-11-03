@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Level_1
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   level: 1
+  scene: {fileID: 102900000, guid: 6a84a7a6201ffbe428d9688790dbcac9, type: 3}
+  scenePath: Assets/_Project/Scenes/Level_1.unity
+  heapPointPrefab: {fileID: 6908454016476151955, guid: 1070a88422c104a4d879a578cabc259a, type: 3}
+  playerSpawnPointPrefab: {fileID: 3303966015885098150, guid: 9855ed85661ec36478471d1085a81690, type: 3}
   noteTypes:
   - noteId: 1-Dollar
     prefab: {fileID: 3480552441685789255, guid: 1d6afab501ff6a94286518d4ee0f47fe, type: 3}

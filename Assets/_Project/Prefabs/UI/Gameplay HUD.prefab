@@ -5042,6 +5042,8 @@ MonoBehaviour:
   placeButton: {fileID: 6858032656554094255}
   rotateClockButton: {fileID: 5106354110816847170}
   blockedColor: {r: 1, g: 0.6, b: 0.6, a: 1}
+  holdFillContainer: {fileID: 0}
+  holdFillImage: {fileID: 0}
 --- !u!1 &2055901070
 GameObject:
   m_ObjectHideFlags: 0
