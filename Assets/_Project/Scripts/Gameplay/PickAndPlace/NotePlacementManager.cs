@@ -24,6 +24,13 @@ public class NotePlacementManager : MonoBehaviour
     [Tooltip("Small gap between the note and the surface it lies on")]
     public float surfaceOffset = 0.002f;
 
+    [Tooltip("Seconds the Place button must stay down before it starts repeating")]
+    public float holdDelay = 0.5f;
+    [Tooltip("A press released within this time is a tap: it places one note and the circle never shows")]
+    public float tapTime = 0.15f;
+    [Tooltip("Seconds between two notes while the Place button is held")]
+    public float holdPlaceInterval = 0.12f;
+
     [Header("Tower")]
     [Tooltip("A note placed within this distance (meters) of a placed note or tower is added on top of it")]
     public float autoPileRadius = 0.4f;
@@ -46,7 +53,16 @@ public class NotePlacementManager : MonoBehaviour
     bool previewing;
     bool previewValid;
     float cooldownUntil;
+    bool placeHeld;
+    bool holdRepeating;
+    float placeDownTime;
+    float nextHoldPlaceTime;
 
+    public bool IsPlaceHeld => placeHeld;
+    /// <summary>0..1 while the Place button is held and the repeat has not started yet, otherwise 0.</summary>
+    public float HoldProgress => IsHoldCharging ? Mathf.Clamp01((Time.time - placeDownTime - tapTime) / Mathf.Max(0.01f, holdDelay - tapTime)) : 0f;
+    /// <summary>True from the moment the press is no longer a tap until the repeat starts, this is when the circle shows.</summary>
+    public bool IsHoldCharging => placeHeld && !holdRepeating && Time.time - placeDownTime >= tapTime;
     public bool IsPreviewing => previewing;
     public bool PreviewValid => previewValid;
 
@@ -77,7 +93,53 @@ public class NotePlacementManager : MonoBehaviour
     void Update()
     {
         UpdatePreview();
+        UpdateHold();
     }
+
+    #region Hold to place
+    /// <summary>Button pressed: a tap places one note (on release), a hold shows the circle and then keeps placing.</summary>
+    public void OnPlaceDown()
+    {
+        placeHeld = true;
+        holdRepeating = false;
+        placeDownTime = Time.time;
+        nextHoldPlaceTime = Time.time + holdDelay;
+    }
+
+    public void OnPlaceUp()
+    {
+        // a quick tap (released before the circle shows) places a single note
+        if (placeHeld && !holdRepeating && Time.time - placeDownTime < tapTime)
+        {
+            ConfirmPlacement();
+        }
+        placeHeld = false;
+        holdRepeating = false;
+    }
+
+    void UpdateHold()
+    {
+        if (!placeHeld)
+            return;
+        if (NotePickupManager.instance == null || NotePickupManager.instance.HeldCount == 0)
+        {
+            placeHeld = false;
+            holdRepeating = false;
+            return;
+        }
+        if (Time.time < nextHoldPlaceTime)
+            return;
+        // the circle is complete, from here on the notes keep coming
+        bool _first = !holdRepeating;
+        holdRepeating = true;
+        if (previewing && (previewValid || _first))
+        {
+            // the first note also shows the "no space" message when the spot is blocked
+            ConfirmPlacement();
+            nextHoldPlaceTime = Time.time + holdPlaceInterval;
+        }
+    }
+    #endregion
 
     #region Preview
     void UpdatePreview()
@@ -301,7 +363,8 @@ public class NotePlacementManager : MonoBehaviour
             _sound.OnPlayInteractionSound(_sound.itemPlaceSound);
         }
         userYaw = 0f;
-        cooldownUntil = Time.time + placeCooldown;
+        // while the button is held the next note follows right away
+        cooldownUntil = placeHeld ? 0f : Time.time + placeCooldown;
         HidePreview();
     }
     #endregion

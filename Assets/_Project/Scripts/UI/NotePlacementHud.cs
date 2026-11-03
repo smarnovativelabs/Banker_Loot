@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
@@ -14,6 +16,12 @@ public class NotePlacementHud : MonoBehaviour
     public Button rotateClockButton;
     [Tooltip("Tint of the place button while the note cannot be put down at the previewed spot")]
     public Color blockedColor = new Color(1f, 0.6f, 0.6f, 1f);
+
+    [Header("Hold circle")]
+    [Tooltip("Ring shown at the crosshair while the Place button is held, before the repeat starts (the same as the motel pick-up circle)")]
+    public GameObject holdFillContainer;
+    [Tooltip("Radial filled image inside the container")]
+    public Image holdFillImage;
 
     CanvasGroup group;
 
@@ -39,11 +47,39 @@ public class NotePlacementHud : MonoBehaviour
         }
         if (placeButton != null)
         {
-            placeButton.onClick.AddListener(() =>
+            // press places a note, holding keeps placing (the button's onClick is not used)
+            var _trigger = placeButton.GetComponent<EventTrigger>();
+            if (_trigger == null)
             {
-                if (NotePlacementManager.instance != null) NotePlacementManager.instance.ConfirmPlacement();
+                _trigger = placeButton.gameObject.AddComponent<EventTrigger>();
+            }
+            AddTrigger(_trigger, EventTriggerType.PointerDown, () =>
+            {
+                if (NotePlacementManager.instance != null) NotePlacementManager.instance.OnPlaceDown();
             });
+            AddTrigger(_trigger, EventTriggerType.PointerUp, ReleasePlace);
+            AddTrigger(_trigger, EventTriggerType.PointerExit, ReleasePlace);
         }
+    }
+
+    static void AddTrigger(EventTrigger _trigger, EventTriggerType _type, UnityAction _action)
+    {
+        var _entry = new EventTrigger.Entry { eventID = _type };
+        _entry.callback.AddListener(_ => _action());
+        _trigger.triggers.Add(_entry);
+    }
+
+    static void ReleasePlace()
+    {
+        if (NotePlacementManager.instance != null)
+        {
+            NotePlacementManager.instance.OnPlaceUp();
+        }
+    }
+
+    void OnDisable()
+    {
+        ReleasePlace();
     }
 
     static void Rotate(float _direction)
@@ -60,11 +96,28 @@ public class NotePlacementHud : MonoBehaviour
             return;
 
         var _manager = NotePlacementManager.instance;
-        bool _show = _manager != null && _manager.IsPreviewing;
+        UpdateHoldCircle(_manager);
+        // the preview is hidden for a frame after each placement, the panel must keep receiving the held press
+        bool _show = _manager != null && (_manager.IsPreviewing || _manager.IsPlaceHeld);
         SetVisible(_show);
         if (_show && placeButton != null && placeButton.targetGraphic != null)
         {
             placeButton.targetGraphic.color = _manager.PreviewValid ? Color.white : blockedColor;
+        }
+    }
+
+    void UpdateHoldCircle(NotePlacementManager _manager)
+    {
+        if (holdFillContainer == null)
+            return;
+        bool _charging = _manager != null && _manager.IsHoldCharging;
+        if (holdFillContainer.activeSelf != _charging)
+        {
+            holdFillContainer.SetActive(_charging);
+        }
+        if (_charging && holdFillImage != null)
+        {
+            holdFillImage.fillAmount = _manager.HoldProgress;
         }
     }
 
