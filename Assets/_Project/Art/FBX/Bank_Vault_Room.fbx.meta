@@ -17,8 +17,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Cash_Machines
+    second: {fileID: 2100000, guid: 5ad6c9a618bd266449b14bb623d20e75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: 0a18f1966ba772d4f905029c48746bf5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Light_Emission
     second: {fileID: 2100000, guid: 8fd941cf757b4eb48b45bb9ba536d2df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: e0339ba6e709b8d449fc56b41e27d0e6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
