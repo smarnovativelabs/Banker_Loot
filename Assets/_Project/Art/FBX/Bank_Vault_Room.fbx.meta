@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Bank Cash Machines Atlas
+    second: {fileID: 2100000, guid: 76c89e628101242408f9beb6006422be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Bank_Vault_Atlas_1
     second: {fileID: 2100000, guid: 132a6c11a90686049a4bba04449b3de1, type: 2}
   - first:
@@ -14,6 +19,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Bank_Vault_Atlas_Png
     second: {fileID: 2100000, guid: fb9f9fca9be61334392dfd2e344a2a9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cash Counting Machine
+    second: {fileID: 2100000, guid: 636b89e2e757e3740858e978de3a651e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

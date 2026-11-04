@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -4339,6 +4339,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.3332
       objectReference: {fileID: 0}
+    - target: {fileID: 598905787946414173, guid: db320a0a12dc27f4a87cac2496d2f652, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.481
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: db320a0a12dc27f4a87cac2496d2f652, type: 3}
       propertyPath: m_Name
       value: Bank_Vault_Room
@@ -4543,6 +4547,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4794651444773611285, guid: db320a0a12dc27f4a87cac2496d2f652, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.779
+      objectReference: {fileID: 0}
     - target: {fileID: 4795189866537021681, guid: db320a0a12dc27f4a87cac2496d2f652, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -4646,6 +4654,10 @@ PrefabInstance:
     - target: {fileID: 6313895763768262570, guid: db320a0a12dc27f4a87cac2496d2f652, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772894774443636128, guid: db320a0a12dc27f4a87cac2496d2f652, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14128166
       objectReference: {fileID: 0}
     - target: {fileID: 6820173839160438204, guid: db320a0a12dc27f4a87cac2496d2f652, type: 3}
       propertyPath: m_LocalScale.x
@@ -6019,7 +6031,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1551128947
 MonoBehaviour:
   m_ObjectHideFlags: 0
