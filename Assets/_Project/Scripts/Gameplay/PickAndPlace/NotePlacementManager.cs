@@ -57,6 +57,14 @@ public class NotePlacementManager : MonoBehaviour
     bool holdRepeating;
     float placeDownTime;
     float nextHoldPlaceTime;
+    // spot of a new stack, frozen when the Place button goes down so the first note can't drift with the crosshair
+    bool spotLocked;
+    NotePlaceSurface lockedSurface;
+    Vector3 lockedPosition;
+    float lockedBaseYaw;
+    bool lockedValid;
+    // tower that receives every note of the current hold
+    PlacedNote holdAnchor;
 
     public bool IsPlaceHeld => placeHeld;
     /// <summary>0..1 while the Place button is held and the repeat has not started yet, otherwise 0.</summary>
@@ -104,6 +112,16 @@ public class NotePlacementManager : MonoBehaviour
         holdRepeating = false;
         placeDownTime = Time.time;
         nextHoldPlaceTime = Time.time + holdDelay;
+        // starting a new stack: freeze the spot until the first note is down
+        holdAnchor = previewing ? previewAnchor : null;
+        spotLocked = previewing && previewAnchor == null && previewSurface != null;
+        if (spotLocked)
+        {
+            lockedSurface = previewSurface;
+            lockedPosition = previewPosition;
+            lockedBaseYaw = previewYaw - userYaw;
+            lockedValid = previewValid;
+        }
     }
 
     public void OnPlaceUp()
@@ -115,6 +133,8 @@ public class NotePlacementManager : MonoBehaviour
         }
         placeHeld = false;
         holdRepeating = false;
+        spotLocked = false;
+        holdAnchor = null;
     }
 
     void UpdateHold()
@@ -125,6 +145,8 @@ public class NotePlacementManager : MonoBehaviour
         {
             placeHeld = false;
             holdRepeating = false;
+            spotLocked = false;
+            holdAnchor = null;
             return;
         }
         if (Time.time < nextHoldPlaceTime)
@@ -155,9 +177,35 @@ public class NotePlacementManager : MonoBehaviour
             return;
         }
 
+        if (spotLocked)
+        {
+            var _lockedFilter = _note.GetComponent<MeshFilter>();
+            if (_lockedFilter == null || _lockedFilter.sharedMesh == null)
+            {
+                HidePreview();
+                return;
+            }
+            previewSurface = lockedSurface;
+            previewAnchor = null;
+            previewPosition = lockedPosition;
+            previewYaw = lockedBaseYaw + userYaw;
+            previewValid = lockedValid;
+            previewing = true;
+            ShowGhost(_lockedFilter.sharedMesh, _note.normalScale);
+            return;
+        }
+
         float _distance = PlayerInteraction.instance != null ? PlayerInteraction.instance.envInteractionDistance : 4f;
         Transform _eye = _camera.transform;
-        if (!Physics.Raycast(_eye.position, _eye.forward, out RaycastHit _hit, _distance, ~0, QueryTriggerInteraction.Ignore))
+        // while the Place button is held, every note goes onto the tower the hold started / began, wherever the crosshair is
+        if (holdAnchor != null && holdAnchor.surface == null)
+        {
+            holdAnchor = null;
+        }
+        PlacedNote _held = holdAnchor != null ? BaseOf(holdAnchor) : null;
+
+        RaycastHit _hit = default;
+        if (_held == null && !Physics.Raycast(_eye.position, _eye.forward, out _hit, _distance, ~0, QueryTriggerInteraction.Ignore))
         {
             HidePreview();
             return;
@@ -166,8 +214,13 @@ public class NotePlacementManager : MonoBehaviour
         // what is aimed at: a placed note (add to its tower) or an empty spot of a surface
         NotePlaceSurface _surface;
         PlacedNote _anchor;
-        var _hitNote = _hit.collider.GetComponentInParent<PlacedNote>();
-        if (_hitNote != null && _hitNote.surface != null)
+        var _hitNote = _held == null ? _hit.collider.GetComponentInParent<PlacedNote>() : null;
+        if (_held != null)
+        {
+            _surface = _held.surface;
+            _anchor = _held;
+        }
+        else if (_hitNote != null && _hitNote.surface != null)
         {
             _surface = _hitNote.surface;
             _anchor = BaseOf(_hitNote);
@@ -197,8 +250,9 @@ public class NotePlacementManager : MonoBehaviour
         {
             // on top of the tower, lined up with it
             int _count = _anchor.pile != null ? _anchor.pile.notes.Count : 1;
-            Vector3 _basePosition = _anchor.transform.position;
-            previewYaw = _anchor.transform.eulerAngles.y + userYaw;
+            // the settled pose, not the transform: a note placed a moment ago is still gliding to its spot
+            Vector3 _basePosition = _anchor.placedPosition;
+            previewYaw = _anchor.placedRotation.eulerAngles.y + userYaw;
             previewPosition = new Vector3(
                 _basePosition.x,
                 _surface.TopY + _halfThickness + surfaceOffset + _count * pileStep,
@@ -210,7 +264,9 @@ public class NotePlacementManager : MonoBehaviour
             // free spot: long edge across the view, like holding a bill in front of you
             Vector3 _extents = _filter.sharedMesh.bounds.extents;
             var _half = new Vector3(_extents.x * _scale, 0f, _extents.z * _scale);
-            previewYaw = _eye.eulerAngles.y + 90f + userYaw;
+            // the long edge of the note mesh (X or Z depending on the model) goes across the view
+            float _alongX = _extents.x >= _extents.z ? 0f : 90f;
+            previewYaw = _eye.eulerAngles.y + _alongX + userYaw;
             Vector3 _point = _hit.point;
             previewValid = _surface.ClampToFootprint(ref _point, _half, previewYaw);
             _point.y = _surface.TopY + _halfThickness + surfaceOffset;
@@ -239,7 +295,7 @@ public class NotePlacementManager : MonoBehaviour
             if (_other.surface != _surface)
                 continue;
             var _base = BaseOf(_other);
-            Vector3 _position = _base.transform.position;
+            Vector3 _position = _base.placedPosition;
             float _flat = new Vector2(_position.x - _point.x, _position.z - _point.z).magnitude;
             if (_flat <= _bestDistance)
             {
@@ -363,6 +419,12 @@ public class NotePlacementManager : MonoBehaviour
             _sound.OnPlayInteractionSound(_sound.itemPlaceSound);
         }
         userYaw = 0f;
+        spotLocked = false;
+        if (placeHeld)
+        {
+            // the first note of a new stack becomes the anchor for the rest of the hold
+            holdAnchor = previewAnchor != null ? previewAnchor : _placed;
+        }
         // while the button is held the next note follows right away
         cooldownUntil = placeHeld ? 0f : Time.time + placeCooldown;
         HidePreview();

@@ -11,7 +11,7 @@ using UnityEngine;
 /// </summary>
 public static class NoteHeapSetup
 {
-    const string PrefabFolder = "Assets/Dummy Assets/Prefabs";
+    const string PrefabFolder = NotePrefabSetup.PrefabFolder;
     const string LevelFolder = "Assets/_Project/Data/Levels";
     const string Level1Path = LevelFolder + "/Level_1.asset";
     const string ManagerName = "Note Heap Manager";
@@ -41,7 +41,7 @@ public static class NoteHeapSetup
             var note = prefab != null ? prefab.GetComponent<PickableNote>() : null;
             if (note == null)
             {
-                Debug.LogWarning("[BankerLoot] Note prefab missing at " + path + ", run 'Build Dummy Note Prefabs' first.");
+                Debug.LogWarning("[BankerLoot] Note prefab missing at " + path + ", run 'Build Note Prefabs' first.");
                 continue;
             }
 

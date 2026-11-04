@@ -12,8 +12,8 @@ using UnityEngine.UI;
 public static class NotePlacementSetup
 {
     const string HudPrefabPath = "Assets/_Project/Prefabs/UI/Gameplay HUD.prefab";
-    const string GhostMaterialPath = "Assets/Dummy Assets/Materials/Note Ghost.mat";
-    const string TexturePath = "Assets/Dummy Assets/Textures/New_Currency.png";
+    const string GhostMaterialPath = "Assets/_Project/Art/Materials/Note Ghost.mat";
+    const string TexturePath = "Assets/_Project/Art/Textures/Notes_Atlas.png";
     const string ManagerName = "Note Placement Manager";
     const string SurfaceObjectName = "Cube";
 
