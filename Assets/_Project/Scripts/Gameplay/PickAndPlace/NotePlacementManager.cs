@@ -312,10 +312,21 @@ public class NotePlacementManager : MonoBehaviour
             previewPosition = _point;
         }
 
+        // a surface can refuse a note (a locker that only takes its amount)
+        if (previewValid && !string.IsNullOrEmpty(RejectReason(_surface, _note)))
+        {
+            previewValid = false;
+        }
+
         previewSurface = _surface;
         previewAnchor = _anchor;
         previewing = true;
         ShowGhost(_filter.sharedMesh, _scale);
+    }
+
+    static string RejectReason(NotePlaceSurface _surface, PickableNote _note)
+    {
+        return _surface != null && _surface.rejectReason != null ? _surface.rejectReason(_note) : null;
     }
 
     /// <summary>The bottom note of the tower the note belongs to (the note itself when it lies alone).</summary>
@@ -444,7 +455,9 @@ public class NotePlacementManager : MonoBehaviour
         {
             if (UIController.instance != null)
             {
-                UIController.instance.DisplayInstructions(cannotPlaceMessage);
+                // the surface may say why (e.g. a locker that needs less money), otherwise there is no space
+                string _reason = NotePickupManager.instance != null ? RejectReason(previewSurface, NotePickupManager.instance.TopNote) : null;
+                UIController.instance.DisplayInstructions(string.IsNullOrEmpty(_reason) ? cannotPlaceMessage : _reason);
             }
             return;
         }

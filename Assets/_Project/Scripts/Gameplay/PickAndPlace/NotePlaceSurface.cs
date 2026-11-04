@@ -22,6 +22,12 @@ public class NotePlaceSurface : MonoBehaviour
     [Tooltip("Free space (meters) between two neighbouring cells")]
     public float gridGap = 0.04f;
 
+    /// <summary>
+    /// Optional rule set by the owner of the surface (a locker): returns why the note cannot be put here, or an
+    /// empty string / null when it is fine.
+    /// </summary>
+    public System.Func<PickableNote, string> rejectReason;
+
     BoxCollider box;
 
     /// <summary>Stable key of this surface in the save file.</summary>
