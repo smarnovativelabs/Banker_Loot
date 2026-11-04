@@ -192,6 +192,14 @@ public class NotePickupManager : MonoBehaviour
         if (_controller == null || !_controller.gameStarted)
             return;
 
+        // aiming at the washing machine: the button is its interact button, a press never throws a note here
+        var _player = PlayerInteraction.instance;
+        if (_player != null && _player.currentInteractingObj is WashingMachine _machine)
+        {
+            _machine.OnInteract();
+            return;
+        }
+
         var _hovered = HoveredNote;
         if (_controller.currentPicketItem != null)
         {
@@ -309,7 +317,24 @@ public class NotePickupManager : MonoBehaviour
 
         _note.WakeNeighbours();
         _note.OnPickedUp();
+        AddToPile(_note);
+        return true;
+    }
 
+    /// <summary>
+    /// Puts a note that is not on a surface into the hand pile (the washing machine hands its notes back this way).
+    /// The note starts moving from wherever it is. Returns false when the hands are full.
+    /// </summary>
+    public bool TryAddToPile(PickableNote _note)
+    {
+        if (_note == null || held.Count >= maxNotes || held.Contains(_note))
+            return false;
+        AddToPile(_note);
+        return true;
+    }
+
+    void AddToPile(PickableNote _note)
+    {
         var _slot = new PileSlot
         {
             offset = new Vector3(Random.Range(-positionJitter, positionJitter), Random.Range(-positionJitter, positionJitter), 0f),
@@ -324,7 +349,6 @@ public class NotePickupManager : MonoBehaviour
 
         NotePicked?.Invoke(_note);
         NotesChanged?.Invoke(held.Count, maxNotes);
-        return true;
     }
 
     /// <summary>Throws the top note of the pile.</summary>

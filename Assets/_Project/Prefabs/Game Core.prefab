@@ -413,8 +413,8 @@ MonoBehaviour:
   pickInterval: 0.12
   throwInterval: 0.1
   pilePosition: {x: 0.034, y: -0.033, z: 0.121}
-  pileAngle: {x: 5.259, y: 91.92, z: -69.912}
-  noteScale: 0.5
+  pileAngle: {x: 290.73746, y: 15.990211, z: 344.99768}
+  noteScale: 0.3
   stackStep: 0.008
   maxStackHeight: 0.12
   positionJitter: 0.01

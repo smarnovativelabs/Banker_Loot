@@ -16,6 +16,8 @@ public class NotePlacementHud : MonoBehaviour
     public Button rotateClockButton;
     [Tooltip("Tint of the place button while the note cannot be put down at the previewed spot")]
     public Color blockedColor = new Color(1f, 0.6f, 0.6f, 1f);
+    [Tooltip("The rotate buttons are not needed while the table snaps notes to a grid. Turn on to bring them back.")]
+    public bool showRotateButtons = false;
 
     [Header("Hold circle")]
     [Tooltip("Ring shown at the crosshair while the Place button is held, before the repeat starts (the same as the motel pick-up circle)")]
@@ -39,10 +41,12 @@ public class NotePlacementHud : MonoBehaviour
 
         if (rotateAntiClockButton != null)
         {
+            rotateAntiClockButton.gameObject.SetActive(showRotateButtons);
             rotateAntiClockButton.onClick.AddListener(() => Rotate(-1f));
         }
         if (rotateClockButton != null)
         {
+            rotateClockButton.gameObject.SetActive(showRotateButtons);
             rotateClockButton.onClick.AddListener(() => Rotate(1f));
         }
         if (placeButton != null)

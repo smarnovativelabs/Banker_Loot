@@ -12,6 +12,8 @@ public static class NotePrefabSetup
     const string ModelPath = "Assets/_Project/Art/FBX/Dollars.fbx";
     public const string PrefabFolder = "Assets/_Project/Prefabs/Notes";
     const string MaterialFolder = "Assets/_Project/Art/Materials";
+    const string DirtyMaterialPath = MaterialFolder + "/Note Dirty.mat";
+    const string DirtyTexturePath = "Assets/_Project/Art/Textures/Dirty_Notes_Atlas.png";
     const string PhysicsMaterialPath = MaterialFolder + "/Currency Note Physics.asset";
     const string PickSoundPath = "Assets/_Project/Audio/SFX/Notes/NotePickup.wav";
     const string ThrowSoundPath = "Assets/_Project/Audio/SFX/Notes/NoteThrow.wav";
@@ -35,12 +37,14 @@ public static class NotePrefabSetup
     public static void BuildNotePrefabs()
     {
         Directory.CreateDirectory(PrefabFolder);
-        var material = FindMaterial();
-        if (material == null)
+        var cleanMaterial = FindMaterial();
+        if (cleanMaterial == null)
         {
             Debug.LogWarning("[BankerLoot] No material found in " + ModelPath);
             return;
         }
+        // notes start dirty and turn clean in the washing machine
+        var material = GetOrCreateDirtyMaterial(cleanMaterial);
 
         foreach (var note in Notes)
         {
@@ -76,6 +80,8 @@ public static class NotePrefabSetup
             outline.enabled = false;
 
             var pickable = go.AddComponent<PickableNote>();
+            pickable.dirtyMaterial = material;
+            pickable.cleanMaterial = cleanMaterial;
             pickable.itemName = note[2];
             pickable.noteId = note[0];
             pickable.itemPickSound = AssetDatabase.LoadAssetAtPath<AudioClip>(PickSoundPath);
@@ -138,6 +144,25 @@ public static class NotePrefabSetup
                 return material;
         }
         return null;
+    }
+
+    /// <summary>The note material with the dirty atlas instead of the clean one (same shader, same layout).</summary>
+    static Material GetOrCreateDirtyMaterial(Material _clean)
+    {
+        var material = AssetDatabase.LoadAssetAtPath<Material>(DirtyMaterialPath);
+        if (material == null)
+        {
+            material = new Material(_clean) { name = "Note Dirty" };
+            AssetDatabase.CreateAsset(material, DirtyMaterialPath);
+        }
+        var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(DirtyTexturePath);
+        if (texture != null)
+        {
+            material.SetTexture("_BaseMap", texture);
+            material.SetTexture("_MainTex", texture);
+            EditorUtility.SetDirty(material);
+        }
+        return material;
     }
 
     /// <summary>Grippy, non bouncy surface so the flat notes stay piled up instead of sliding apart.</summary>

@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7355278152745759242, guid: 88805b9f172ab6b4fb07f56555fac3ee, type: 3}
+  - {fileID: 2100000, guid: 04338bcd764cb7549b7261c941f06b46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -189,3 +189,5 @@ MonoBehaviour:
   outlineWidth: 4
   noteId: 20-Dollar
   wakeNeighboursRadius: 0.05
+  dirtyMaterial: {fileID: 2100000, guid: 04338bcd764cb7549b7261c941f06b46, type: 2}
+  cleanMaterial: {fileID: 7355278152745759242, guid: 88805b9f172ab6b4fb07f56555fac3ee, type: 3}

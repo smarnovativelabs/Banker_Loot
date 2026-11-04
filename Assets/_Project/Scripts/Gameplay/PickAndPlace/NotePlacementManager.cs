@@ -211,9 +211,24 @@ public class NotePlacementManager : MonoBehaviour
             return;
         }
 
+        var _filter = _note.GetComponent<MeshFilter>();
+        var _box = _note.GetComponent<BoxCollider>();
+        if (_filter == null || _filter.sharedMesh == null)
+        {
+            HidePreview();
+            return;
+        }
+        float _scale = _note.normalScale;
+        float _halfThickness = _box != null ? _box.size.y * _scale * 0.5f : 0.008f;
+        Vector3 _extents = _filter.sharedMesh.bounds.extents;
+        bool _meshLongX = _extents.x >= _extents.z;
+
         // what is aimed at: a placed note (add to its tower) or an empty spot of a surface
         NotePlaceSurface _surface;
         PlacedNote _anchor;
+        bool _gridCell = false;
+        Vector3 _cellCenter = Vector3.zero;
+        float _cellYaw = 0f;
         var _hitNote = _held == null ? _hit.collider.GetComponentInParent<PlacedNote>() : null;
         if (_held != null)
         {
@@ -233,18 +248,33 @@ public class NotePlacementManager : MonoBehaviour
                 HidePreview();
                 return;
             }
-            _anchor = FindNearbyBase(_surface, _hit.point);
+            if (_surface.snapToGrid)
+            {
+                // the table is divided into cells the size of a note: aim at a cell, the note snaps to its centre
+                float _long = Mathf.Max(_extents.x, _extents.z) * 2f * _scale;
+                float _short = Mathf.Min(_extents.x, _extents.z) * 2f * _scale;
+                _gridCell = _surface.TryGetGridCell(_hit.point, _long, _short, out _cellCenter, out float _axisYaw, out Vector2 _cellSize);
+                if (_gridCell)
+                {
+                    _cellYaw = _axisYaw + (_meshLongX ? 0f : -90f);
+                    // the note can lie either way round, take the side that reads the right way up from the player
+                    float _faceYaw = _eye.eulerAngles.y + (_meshLongX ? 0f : 90f);
+                    if (Mathf.Abs(Mathf.DeltaAngle(_cellYaw, _faceYaw)) > 90f)
+                    {
+                        _cellYaw += 180f;
+                    }
+                    _anchor = FindBaseAtCell(_surface, _cellCenter, Mathf.Min(_cellSize.x, _cellSize.y) * 0.5f);
+                }
+                else
+                {
+                    _anchor = null;
+                }
+            }
+            else
+            {
+                _anchor = FindNearbyBase(_surface, _hit.point);
+            }
         }
-
-        var _filter = _note.GetComponent<MeshFilter>();
-        var _box = _note.GetComponent<BoxCollider>();
-        if (_filter == null || _filter.sharedMesh == null)
-        {
-            HidePreview();
-            return;
-        }
-        float _scale = _note.normalScale;
-        float _halfThickness = _box != null ? _box.size.y * _scale * 0.5f : 0.008f;
 
         if (_anchor != null)
         {
@@ -259,10 +289,19 @@ public class NotePlacementManager : MonoBehaviour
                 _basePosition.z);
             previewValid = true;
         }
+        else if (_surface.snapToGrid)
+        {
+            // empty grid cell, the note lies in the middle of it (no free cell left under the crosshair = not valid)
+            previewYaw = _cellYaw;
+            previewValid = _gridCell;
+            previewPosition = new Vector3(
+                _gridCell ? _cellCenter.x : _hit.point.x,
+                _surface.TopY + _halfThickness + surfaceOffset,
+                _gridCell ? _cellCenter.z : _hit.point.z);
+        }
         else
         {
             // free spot: long edge across the view, like holding a bill in front of you
-            Vector3 _extents = _filter.sharedMesh.bounds.extents;
             var _half = new Vector3(_extents.x * _scale, 0f, _extents.z * _scale);
             // the long edge of the note mesh (X or Z depending on the model) goes across the view
             float _alongX = _extents.x >= _extents.z ? 0f : 90f;
@@ -283,6 +322,27 @@ public class NotePlacementManager : MonoBehaviour
     static PlacedNote BaseOf(PlacedNote _note)
     {
         return _note.pile != null && _note.pile.notes.Count > 0 ? _note.pile.notes[0] : _note;
+    }
+
+    /// <summary>The tower (or single note) lying in the grid cell around the point, null when the cell is empty.</summary>
+    PlacedNote FindBaseAtCell(NotePlaceSurface _surface, Vector3 _cellCenter, float _tolerance)
+    {
+        PlacedNote _best = null;
+        float _bestDistance = _tolerance;
+        foreach (var _other in PlacedNote.All)
+        {
+            if (_other.surface != _surface)
+                continue;
+            var _base = BaseOf(_other);
+            Vector3 _position = _base.placedPosition;
+            float _flat = new Vector2(_position.x - _cellCenter.x, _position.z - _cellCenter.z).magnitude;
+            if (_flat <= _bestDistance)
+            {
+                _bestDistance = _flat;
+                _best = _base;
+            }
+        }
+        return _best;
     }
 
     /// <summary>The nearest placed note / tower on the surface within autoPileRadius, null when the spot is free.</summary>
@@ -369,6 +429,9 @@ public class NotePlacementManager : MonoBehaviour
     /// <summary>Turns the preview: +1 clockwise, -1 anti clockwise (like the food game's rotate buttons).</summary>
     public void RotatePreview(float _direction)
     {
+        // on a grid table the notes always lie the same way, turning them would break the cells
+        if (previewSurface != null && previewSurface.snapToGrid)
+            return;
         userYaw = Mathf.Repeat(userYaw + Mathf.Sign(_direction) * rotateStep, 360f);
     }
 

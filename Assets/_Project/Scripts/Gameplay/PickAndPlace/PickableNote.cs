@@ -22,12 +22,40 @@ public class PickableNote : PickableItem
     [Tooltip("Extra space around the note in which resting neighbours are woken up when it is picked")]
     public float wakeNeighboursRadius = 0.05f;
 
+    [Header("Washing")]
+    [Tooltip("Look of a note that was not washed yet (every note starts like this)")]
+    public Material dirtyMaterial;
+    [Tooltip("Look of a note that went through the washing machine")]
+    public Material cleanMaterial;
+
     PickableNote highlighted;
+    bool isWashed;
+
+    /// <summary>True once the note went through the washing machine. Saved with the note.</summary>
+    public bool IsWashed => isWashed;
 
     protected override void Awake()
     {
         base.Awake();
         All.Add(this);
+        ApplyLook();
+    }
+
+    /// <summary>Washes the note (clean texture) or makes it dirty again.</summary>
+    public void SetWashed(bool _washed)
+    {
+        isWashed = _washed;
+        ApplyLook();
+    }
+
+    void ApplyLook()
+    {
+        var _material = isWashed ? cleanMaterial : dirtyMaterial;
+        var _renderer = GetComponent<MeshRenderer>();
+        if (_renderer != null && _material != null && _renderer.sharedMaterial != _material)
+        {
+            _renderer.sharedMaterial = _material;
+        }
     }
 
     /// <summary>A destroyed note simply disappears from the registry, so the next save drops it from the heap and the placed notes.</summary>

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -191,7 +192,7 @@ public class NoteHeapManager : MonoBehaviour
 
     IEnumerator SpawnHeap()
     {
-        var _queue = new List<LevelData.NoteTypeEntry>();
+        var _queue = new List<(LevelData.NoteTypeEntry entry, bool washed)>();
         for (int i = 0; i < noteTypes.Count; i++)
         {
             var _entry = noteTypes[i];
@@ -199,6 +200,7 @@ public class NoteHeapManager : MonoBehaviour
                 continue;
 
             int _count = _entry.spawnCount;
+            int _washed = 0;
             if (saveData != null)
             {
                 _count = 0;
@@ -207,6 +209,7 @@ public class NoteHeapManager : MonoBehaviour
                     if (saveData.heapCounts[j].noteId == _entry.noteId)
                     {
                         _count = saveData.heapCounts[j].count;
+                        _washed = saveData.heapCounts[j].washedCount;
                         break;
                     }
                 }
@@ -214,7 +217,8 @@ public class NoteHeapManager : MonoBehaviour
             _count = Mathf.Clamp(_count, 0, _entry.maxCount);
             for (int j = 0; j < _count; j++)
             {
-                _queue.Add(_entry);
+                // the first notes of the type are the washed ones, the order is shuffled right after
+                _queue.Add((_entry, j < _washed));
             }
         }
         Shuffle(_queue);
@@ -225,7 +229,7 @@ public class NoteHeapManager : MonoBehaviour
         var _placedNotes = new List<Vector3>(); // x, z, top height of each placed note
         for (int i = 0; i < _queue.Count; i++)
         {
-            var _prefab = _queue[i].prefab;
+            var _prefab = _queue[i].entry.prefab;
             GetFootprint(_prefab, out float _radius, out float _thickness);
 
             // the pile widens with the amount of notes, so it grows in layers instead of one tall column
@@ -248,7 +252,8 @@ public class NoteHeapManager : MonoBehaviour
             _placedNotes.Add(new Vector3(_x, _z, _y + _thickness * 0.5f));
 
             var _note = Instantiate(_prefab, heapRoot);
-            _note.noteId = _queue[i].noteId;
+            _note.noteId = _queue[i].entry.noteId;
+            _note.SetWashed(_queue[i].washed);
             _note.transform.SetPositionAndRotation(new Vector3(_x, _y, _z), Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
             var _body = _note.GetComponent<Rigidbody>();
             if (_body != null)
@@ -346,6 +351,7 @@ public class NoteHeapManager : MonoBehaviour
 
             var _note = Instantiate(_entry.prefab, heapRoot);
             _note.noteId = _entry.noteId;
+            _note.SetWashed(_saved.washed);
             _note.transform.SetPositionAndRotation(_saved.position, _saved.rotation);
             var _body = _note.GetComponent<Rigidbody>();
             if (_body != null)
@@ -389,6 +395,7 @@ public class NoteHeapManager : MonoBehaviour
 
         var _data = new NoteHeapSaveData { version = SaveVersion };
         var _counts = new Dictionary<string, int>();
+        var _washedCounts = new Dictionary<string, int>();
         var _pileIds = new Dictionary<NotePile, int>();
 
         // placed notes in tower order (bottom first) so the towers are rebuilt the same way
@@ -426,10 +433,16 @@ public class NoteHeapManager : MonoBehaviour
                 continue;
             _counts.TryGetValue(_note.noteId, out int _count);
             _counts[_note.noteId] = _count + 1;
+            if (_note.IsWashed)
+            {
+                _washedCounts.TryGetValue(_note.noteId, out int _washed);
+                _washedCounts[_note.noteId] = _washed + 1;
+            }
         }
         foreach (var _pair in _counts)
         {
-            _data.heapCounts.Add(new NoteCountSave { noteId = _pair.Key, count = _pair.Value });
+            _washedCounts.TryGetValue(_pair.Key, out int _washed);
+            _data.heapCounts.Add(new NoteCountSave { noteId = _pair.Key, count = _pair.Value, washedCount = _washed });
         }
 
         saveData = _data;
@@ -447,7 +460,8 @@ public class NoteHeapManager : MonoBehaviour
             surfaceId = _placed.surface.Id,
             position = _placed.placedPosition,
             rotation = _placed.placedRotation,
-            pileId = _pileId
+            pileId = _pileId,
+            washed = _note.IsWashed
         });
     }
 
@@ -475,6 +489,9 @@ public class NoteCountSave
 {
     public string noteId;
     public int count;
+    /// <summary>How many of them were washed. Optional so saves from before the washing machine still load.</summary>
+    [OptionalField]
+    public int washedCount;
 }
 
 [Serializable]
@@ -486,4 +503,7 @@ public class PlacedNoteSave
     public Quaternion rotation;
     /// <summary>Notes with the same id (>= 0) form one tower, -1 for a note lying alone.</summary>
     public int pileId = -1;
+    /// <summary>Optional so saves from before the washing machine still load.</summary>
+    [OptionalField]
+    public bool washed;
 }
