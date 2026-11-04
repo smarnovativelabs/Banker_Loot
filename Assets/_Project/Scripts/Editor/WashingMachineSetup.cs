@@ -96,6 +96,15 @@ public static class WashingMachineSetup
         drum.position = new Vector3(doorBounds.center.x + 0.2f, doorBounds.center.y, doorBounds.center.z);
         machine.drumPoint = drum;
 
+        machine.body = body.transform;
+        // the old drop particles are replaced by the water surfaces
+        var oldDrops = drum.Find("Water Effect");
+        if (oldDrops != null)
+        {
+            Object.DestroyImmediate(oldDrops.gameObject);
+        }
+        machine.waterEffect = null;
+        machine.waterSurfaces = CreateWaterSurfaces(drum);
         machine.outlines = new[] { GetOutline(body), GetOutline(door) };
         machine.doorOpenSound = AssetDatabase.LoadAssetAtPath<AudioClip>(OpenSoundPath);
         machine.doorCloseSound = AssetDatabase.LoadAssetAtPath<AudioClip>(CloseSoundPath);
@@ -106,8 +115,9 @@ public static class WashingMachineSetup
         {
             var go = new GameObject("Timer Text");
             go.transform.SetParent(root.transform, false);
-            timer = go.transform;
             var text = go.AddComponent<TextMeshPro>();
+            // adding the text swaps the Transform for a RectTransform, so the transform is read after it
+            timer = go.transform;
             text.alignment = TextAlignmentOptions.Center;
             text.fontSize = 4f;
             text.fontStyle = FontStyles.Bold;
@@ -135,6 +145,166 @@ public static class WashingMachineSetup
         EditorUtility.SetDirty(machine);
         EditorSceneManager.MarkSceneDirty(root.scene);
         Debug.Log("[BankerLoot] Washing machine set up.");
+    }
+
+    const string WaterMaterialPath = "Assets/_Project/Art/Materials/Water Drop.mat";
+    const string WaterBackMaterialPath = "Assets/_Project/Art/Materials/Washing Water.mat";
+    const string WaterFrontMaterialPath = "Assets/_Project/Art/Materials/Washing Water Front.mat";
+
+    /// <summary>
+    /// Two round water sheets facing the door: one behind the circling notes (the main water) and a faint one in
+    /// front of them, so the notes tumble inside the water. They are shown and filled by the WashingMachine.
+    /// </summary>
+    static Renderer[] CreateWaterSurfaces(Transform _drum)
+    {
+        var back = GetOrCreateSheet(_drum, "Water Back", 0.14f, GetWaterMaterial(WaterBackMaterialPath, 0.85f));
+        var front = GetOrCreateSheet(_drum, "Water Front", -0.1f, GetWaterMaterial(WaterFrontMaterialPath, 0.3f));
+        return new[] { back, front };
+    }
+
+    static Renderer GetOrCreateSheet(Transform _drum, string _name, float _depth, Material _material)
+    {
+        var existing = _drum.Find(_name);
+        GameObject go;
+        if (existing != null)
+        {
+            go = existing.gameObject;
+        }
+        else
+        {
+            go = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            go.name = _name;
+            Object.DestroyImmediate(go.GetComponent<Collider>());
+            go.transform.SetParent(_drum, false);
+        }
+        // the quad's face looks out of the door (towards -X), its right side is the player's right
+        go.transform.localPosition = new Vector3(_depth, 0f, 0f);
+        go.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
+        go.transform.localScale = Vector3.one * 0.52f;
+        var renderer = go.GetComponent<MeshRenderer>();
+        renderer.sharedMaterial = _material;
+        renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        renderer.receiveShadows = false;
+        renderer.enabled = false;
+        return renderer;
+    }
+
+    static Material GetWaterMaterial(string _path, float _alpha)
+    {
+        var material = AssetDatabase.LoadAssetAtPath<Material>(_path);
+        if (material == null)
+        {
+            var shader = Shader.Find("BankerLoot/Washing Water");
+            if (shader == null)
+            {
+                Debug.LogWarning("[BankerLoot] Shader 'BankerLoot/Washing Water' not found.");
+                return null;
+            }
+            material = new Material(shader) { name = System.IO.Path.GetFileNameWithoutExtension(_path) };
+            AssetDatabase.CreateAsset(material, _path);
+        }
+        material.SetFloat("_Alpha", _alpha);
+        EditorUtility.SetDirty(material);
+        return material;
+    }
+
+    /// <summary>Soft light blue drops that spray around inside the drum while the machine washes.</summary>
+    static ParticleSystem GetOrCreateWaterEffect(Transform _drum)
+    {
+        var existing = _drum.Find("Water Effect");
+        GameObject go;
+        if (existing != null)
+        {
+            go = existing.gameObject;
+        }
+        else
+        {
+            go = new GameObject("Water Effect");
+            go.transform.SetParent(_drum, false);
+        }
+        var particles = go.GetComponent<ParticleSystem>();
+        if (particles == null)
+        {
+            particles = go.AddComponent<ParticleSystem>();
+        }
+        particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+        var main = particles.main;
+        main.loop = true;
+        main.playOnAwake = false;
+        // the water stays in the drum: it moves with the machine, has no gravity and swirls around the drum axis
+        main.simulationSpace = ParticleSystemSimulationSpace.Local;
+        main.startLifetime = new ParticleSystem.MinMaxCurve(0.8f, 1.4f);
+        main.startSpeed = 0f;
+        main.startSize = new ParticleSystem.MinMaxCurve(0.04f, 0.09f);
+        main.startColor = new Color(0.55f, 0.85f, 1f, 0.8f);
+        main.gravityModifier = 0f;
+        main.maxParticles = 400;
+
+        var emission = particles.emission;
+        emission.rateOverTime = 140f;
+
+        // a ring just inside the drum wall (the drum axis points out of the door, along X)
+        var shape = particles.shape;
+        shape.shapeType = ParticleSystemShapeType.Donut;
+        shape.radius = 0.1f;
+        shape.donutRadius = 0.1f;
+        shape.rotation = new Vector3(0f, 90f, 0f);
+
+        var velocity = particles.velocityOverLifetime;
+        velocity.enabled = true;
+        velocity.space = ParticleSystemSimulationSpace.Local;
+        // the same speed as the notes (WashingMachine.orbitSpeed 220 degrees per second), set again by the machine at start
+        velocity.orbitalX = 220f * Mathf.Deg2Rad;
+
+        // a little turbulence so the water looks like a flowing mass and not a ring of dots
+        var noise = particles.noise;
+        noise.enabled = true;
+        noise.strength = 0.12f;
+        noise.frequency = 0.8f;
+        noise.scrollSpeed = 0.6f;
+
+        var size = particles.sizeOverLifetime;
+        size.enabled = true;
+        size.size = new ParticleSystem.MinMaxCurve(1f, new AnimationCurve(new Keyframe(0f, 0.5f), new Keyframe(0.25f, 1f), new Keyframe(1f, 0.6f)));
+
+        // the drops fade out
+        var color = particles.colorOverLifetime;
+        color.enabled = true;
+        var gradient = new Gradient();
+        gradient.SetKeys(
+            new[] { new GradientColorKey(Color.white, 0f), new GradientColorKey(Color.white, 1f) },
+            new[] { new GradientAlphaKey(0f, 0f), new GradientAlphaKey(1f, 0.1f), new GradientAlphaKey(1f, 0.7f), new GradientAlphaKey(0f, 1f) });
+        color.color = gradient;
+
+        var renderer = go.GetComponent<ParticleSystemRenderer>();
+        renderer.renderMode = ParticleSystemRenderMode.Billboard;
+        renderer.sharedMaterial = GetOrCreateWaterMaterial();
+        return particles;
+    }
+
+    static Material GetOrCreateWaterMaterial()
+    {
+        var material = AssetDatabase.LoadAssetAtPath<Material>(WaterMaterialPath);
+        if (material != null)
+            return material;
+
+        var shader = Shader.Find("Universal Render Pipeline/Particles/Unlit");
+        if (shader == null)
+        {
+            shader = Shader.Find("Universal Render Pipeline/Unlit");
+        }
+        material = new Material(shader) { name = "Water Drop" };
+        // the soft round particle texture that comes with Unity
+        var texture = AssetDatabase.GetBuiltinExtraResource<Texture2D>("Default-Particle.psd");
+        if (texture != null)
+        {
+            material.SetTexture("_BaseMap", texture);
+        }
+        material.SetColor("_BaseColor", Color.white);
+        NotePlacementManager.ConfigureTransparent(material);
+        AssetDatabase.CreateAsset(material, WaterMaterialPath);
+        return material;
     }
 
     static GameObject FindInScene(string _name)

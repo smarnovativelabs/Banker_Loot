@@ -11,7 +11,7 @@ using UnityEngine;
 /// - Interact again with empty hands: the door opens and the washed notes fly back into the hand pile.
 /// The notes stay normal PickableNotes (hidden while inside), so the note saving keeps their washed state.
 /// </summary>
-public class WashingMachine : MonoBehaviour, InteractableObjects
+public class WashingMachine : MonoBehaviour, ICarryInteractable
 {
     public enum State
     {
@@ -30,6 +30,14 @@ public class WashingMachine : MonoBehaviour, InteractableObjects
     public float doorMoveTime = 0.45f;
     [Tooltip("Where the notes disappear into / come out of the drum")]
     public Transform drumPoint;
+    [Tooltip("The machine body, it shakes together with the door while washing")]
+    public Transform body;
+    [Tooltip("Optional particle effect that plays while the machine washes")]
+    public ParticleSystem waterEffect;
+    [Tooltip("The water inside the drum (quads with the Washing Water shader). It fills up when the wash starts and drains when it ends.")]
+    public Renderer[] waterSurfaces;
+    [Tooltip("Seconds the water takes to fill the drum / drain")]
+    public float waterRamp = 1.5f;
     [Tooltip("World text on top of the machine that shows the timer")]
     public TMP_Text timerText;
     [Tooltip("Outlines shown while the machine is aimed at (QuickOutline on the body and the door)")]
@@ -48,6 +56,16 @@ public class WashingMachine : MonoBehaviour, InteractableObjects
     [Tooltip("Degrees per second the notes turn around the drum while washing")]
     public float orbitSpeed = 220f;
     public int beepCount = 3;
+
+    [Header("Vibration")]
+    [Tooltip("How far (meters) the machine shakes while washing")]
+    public float shakeAmplitude = 0.004f;
+    [Tooltip("Shakes per second")]
+    public float shakeFrequency = 35f;
+    [Tooltip("Seconds the shaking takes to build up and to calm down")]
+    public float shakeRamp = 0.4f;
+    [Tooltip("Extra strong shake when the wash starts and when it ends")]
+    public float kickStrength = 2.5f;
 
     [Header("Sounds")]
     public AudioClip doorOpenSound;
@@ -72,6 +90,13 @@ public class WashingMachine : MonoBehaviour, InteractableObjects
 
     readonly List<InsideNote> inside = new List<InsideNote>();
     float orbitAngle;
+    float waterFill;
+    MaterialPropertyBlock waterBlock;
+    float shakeLevel;
+    float kick;
+    bool shaking;
+    Vector3 bodyBasePosition;
+    Vector3 doorBasePosition;
     State state = State.Idle;
     float remaining;
     float doorAngle;
@@ -83,8 +108,62 @@ public class WashingMachine : MonoBehaviour, InteractableObjects
 
     void Start()
     {
+        if (body != null)
+        {
+            bodyBasePosition = body.localPosition;
+        }
+        if (door != null)
+        {
+            doorBasePosition = door.localPosition;
+        }
+        // the water turns at the same speed as the notes (radians per second), so it flows with them
+        if (waterEffect != null)
+        {
+            var _velocity = waterEffect.velocityOverLifetime;
+            _velocity.orbitalX = orbitSpeed * Mathf.Deg2Rad;
+        }
         SetDoorAngle(0f);
         UpdateTimerText();
+    }
+
+    /// <summary>The whole machine trembles while it washes, with a stronger kick when it starts and stops.</summary>
+    void UpdateShake()
+    {
+        float _target = state == State.Washing ? 1f : 0f;
+        shakeLevel = Mathf.MoveTowards(shakeLevel, _target, Time.deltaTime / Mathf.Max(0.01f, shakeRamp));
+        kick = Mathf.MoveTowards(kick, 0f, Time.deltaTime / 0.5f);
+        float _level = shakeLevel + kick * kickStrength;
+
+        if (_level <= 0.001f)
+        {
+            if (shaking)
+            {
+                shaking = false;
+                ApplyShake(Vector3.zero);
+            }
+            return;
+        }
+
+        shaking = true;
+        float _time = Time.time * shakeFrequency;
+        var _offset = new Vector3(
+            Mathf.PerlinNoise(_time, 0.17f) - 0.5f,
+            Mathf.PerlinNoise(_time, 3.71f) - 0.5f,
+            Mathf.PerlinNoise(_time, 7.43f) - 0.5f) * (2f * shakeAmplitude * _level);
+        ApplyShake(_offset);
+    }
+
+    void ApplyShake(Vector3 _offset)
+    {
+        // the body and the door get the same offset, so they move as one
+        if (body != null)
+        {
+            body.localPosition = bodyBasePosition + _offset;
+        }
+        if (door != null)
+        {
+            door.localPosition = doorBasePosition + _offset;
+        }
     }
 
     void Update()
@@ -102,8 +181,41 @@ public class WashingMachine : MonoBehaviour, InteractableObjects
         }
     }
 
+    /// <summary>The water rises while the machine washes and drains afterwards; it swirls at the speed of the notes.</summary>
+    void UpdateWater()
+    {
+        if (waterSurfaces == null || waterSurfaces.Length == 0)
+            return;
+        waterFill = Mathf.MoveTowards(waterFill, state == State.Washing ? 1f : 0f, Time.deltaTime / Mathf.Max(0.01f, waterRamp));
+        bool _visible = waterFill > 0.001f;
+        if (waterBlock == null)
+        {
+            waterBlock = new MaterialPropertyBlock();
+        }
+        for (int i = 0; i < waterSurfaces.Length; i++)
+        {
+            var _renderer = waterSurfaces[i];
+            if (_renderer == null)
+                continue;
+            if (_renderer.enabled != _visible)
+            {
+                _renderer.enabled = _visible;
+            }
+            if (_visible)
+            {
+                _renderer.GetPropertyBlock(waterBlock);
+                waterBlock.SetFloat("_Fill", waterFill);
+                waterBlock.SetFloat("_Speed", orbitSpeed * Mathf.Deg2Rad);
+                _renderer.SetPropertyBlock(waterBlock);
+            }
+        }
+    }
+
     void LateUpdate()
     {
+        UpdateShake();
+        UpdateWater();
+
         // the timer always faces the player
         if (timerText != null && timerText.gameObject.activeSelf)
         {
@@ -244,6 +356,11 @@ public class WashingMachine : MonoBehaviour, InteractableObjects
         }
         remaining = washDuration;
         state = State.Washing;
+        kick = 1f;
+        if (waterEffect != null)
+        {
+            waterEffect.Play();
+        }
         UpdateTimerText();
     }
 
@@ -309,6 +426,11 @@ public class WashingMachine : MonoBehaviour, InteractableObjects
             }
         }
         state = State.Done;
+        kick = 0.6f;
+        if (waterEffect != null)
+        {
+            waterEffect.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
         StartCoroutine(BeepRoutine());
     }
 

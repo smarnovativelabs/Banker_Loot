@@ -139,6 +139,22 @@ public class NotePickupManager : MonoBehaviour
         NotesChanged?.Invoke(held.Count, maxNotes);
     }
 
+    /// <summary>The carried notes, the oldest first and the newest (top) last.</summary>
+    public IReadOnlyList<PickableNote> HeldNotes => held;
+
+    /// <summary>Takes one specific note out of the pile (the counting machine only takes washed notes).</summary>
+    public bool RemoveNote(PickableNote _note)
+    {
+        int _index = held.IndexOf(_note);
+        if (_index < 0)
+            return false;
+        held.RemoveAt(_index);
+        slots.RemoveAt(_index);
+        RetargetPile(-1);
+        NotesChanged?.Invoke(held.Count, maxNotes);
+        return true;
+    }
+
     /// <summary>The note on top of the carried pile, the next one to be thrown or placed.</summary>
     public PickableNote TopNote => held.Count > 0 ? held[held.Count - 1] : null;
 
@@ -192,9 +208,9 @@ public class NotePickupManager : MonoBehaviour
         if (_controller == null || !_controller.gameStarted)
             return;
 
-        // aiming at the washing machine: the button is its interact button, a press never throws a note here
+        // aiming at a machine (washing, counting): the button is its interact button, a press never throws a note here
         var _player = PlayerInteraction.instance;
-        if (_player != null && _player.currentInteractingObj is WashingMachine _machine)
+        if (_player != null && _player.currentInteractingObj is ICarryInteractable _machine)
         {
             _machine.OnInteract();
             return;

@@ -34,6 +34,22 @@ public class PickableNote : PickableItem
     /// <summary>True once the note went through the washing machine. Saved with the note.</summary>
     public bool IsWashed => isWashed;
 
+    /// <summary>Worth of the note in dollars, read from the start of the note id ("50-Dollar" is 50).</summary>
+    public int Value
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(noteId))
+                return 0;
+            int _end = 0;
+            while (_end < noteId.Length && char.IsDigit(noteId[_end]))
+            {
+                _end++;
+            }
+            return _end > 0 && int.TryParse(noteId.Substring(0, _end), out int _value) ? _value : 0;
+        }
+    }
+
     protected override void Awake()
     {
         base.Awake();

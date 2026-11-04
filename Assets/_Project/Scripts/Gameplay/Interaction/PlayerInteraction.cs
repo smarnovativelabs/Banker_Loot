@@ -56,7 +56,7 @@ public class PlayerInteraction : MonoBehaviour
     static bool CanTarget(InteractableObjects _obj)
     {
         if (IsHoldingItem() || IsCarryingNotes())
-            return _obj is PickableNote || _obj is WashingMachine;
+            return _obj is PickableNote || _obj is ICarryInteractable;
         return true;
     }
 
