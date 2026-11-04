@@ -205,10 +205,26 @@ public class NotePlacementManager : MonoBehaviour
         PlacedNote _held = holdAnchor != null ? BaseOf(holdAnchor) : null;
 
         RaycastHit _hit = default;
-        if (_held == null && !Physics.Raycast(_eye.position, _eye.forward, out _hit, _distance, ~0, QueryTriggerInteraction.Ignore))
+        bool _hasHit = false;
+        NotePlaceSurface _zoneSurface = null;
+        float _zoneDistance = 0f;
+        Vector3 _aimPoint = Vector3.zero;
+        if (_held == null)
         {
-            HidePreview();
-            return;
+            _hasHit = Physics.Raycast(_eye.position, _eye.forward, out _hit, _distance, AimLayers.WithoutLockerColliders(~0), QueryTriggerInteraction.Ignore);
+            // inside a locker the note can be put down wherever the player aims, not only on its floor
+            if (AimLayers.PlaceZoneLayer >= 0
+                && Physics.Raycast(_eye.position, _eye.forward, out RaycastHit _zoneHit, _distance, AimLayers.PlaceZoneMask, QueryTriggerInteraction.Collide))
+            {
+                _zoneSurface = _zoneHit.collider.GetComponentInParent<NotePlaceSurface>();
+                _zoneDistance = _zoneHit.distance;
+                _aimPoint = _zoneHit.point;
+            }
+            if (!_hasHit && _zoneSurface == null)
+            {
+                HidePreview();
+                return;
+            }
         }
 
         var _filter = _note.GetComponent<MeshFilter>();
@@ -229,7 +245,8 @@ public class NotePlacementManager : MonoBehaviour
         bool _gridCell = false;
         Vector3 _cellCenter = Vector3.zero;
         float _cellYaw = 0f;
-        var _hitNote = _held == null ? _hit.collider.GetComponentInParent<PlacedNote>() : null;
+        Vector3 _gridPoint = _hasHit ? _hit.point : _aimPoint;
+        var _hitNote = _held == null && _hasHit ? _hit.collider.GetComponentInParent<PlacedNote>() : null;
         if (_held != null)
         {
             _surface = _held.surface;
@@ -242,18 +259,36 @@ public class NotePlacementManager : MonoBehaviour
         }
         else
         {
-            _surface = _hit.collider.GetComponentInParent<NotePlaceSurface>();
-            if (_surface == null || _hit.normal.y < 0.9f)
+            if (_zoneSurface != null && (!_hasHit || _hit.distance >= _zoneDistance - 0.01f))
             {
-                HidePreview();
-                return;
+                // aiming inside a locker: the note goes where the aim meets the floor of the locker (or where it
+                // enters the locker when the player looks level or up)
+                _surface = _zoneSurface;
+                if (_eye.forward.y < -0.01f)
+                {
+                    float _t = (_surface.TopY - _eye.position.y) / _eye.forward.y;
+                    if (_t > 0f)
+                    {
+                        _aimPoint = _eye.position + _eye.forward * _t;
+                    }
+                }
+                _gridPoint = _aimPoint;
+            }
+            else
+            {
+                _surface = _hit.collider.GetComponentInParent<NotePlaceSurface>();
+                if (_surface == null || _hit.normal.y < 0.9f)
+                {
+                    HidePreview();
+                    return;
+                }
             }
             if (_surface.snapToGrid)
             {
                 // the table is divided into cells the size of a note: aim at a cell, the note snaps to its centre
                 float _long = Mathf.Max(_extents.x, _extents.z) * 2f * _scale;
                 float _short = Mathf.Min(_extents.x, _extents.z) * 2f * _scale;
-                _gridCell = _surface.TryGetGridCell(_hit.point, _long, _short, out _cellCenter, out float _axisYaw, out Vector2 _cellSize);
+                _gridCell = _surface.TryGetGridCell(_gridPoint, _long, _short, out _cellCenter, out float _axisYaw, out Vector2 _cellSize);
                 if (_gridCell)
                 {
                     _cellYaw = _axisYaw + (_meshLongX ? 0f : -90f);
@@ -272,7 +307,7 @@ public class NotePlacementManager : MonoBehaviour
             }
             else
             {
-                _anchor = FindNearbyBase(_surface, _hit.point);
+                _anchor = FindNearbyBase(_surface, _gridPoint);
             }
         }
 
@@ -295,9 +330,9 @@ public class NotePlacementManager : MonoBehaviour
             previewYaw = _cellYaw;
             previewValid = _gridCell;
             previewPosition = new Vector3(
-                _gridCell ? _cellCenter.x : _hit.point.x,
+                _gridCell ? _cellCenter.x : _gridPoint.x,
                 _surface.TopY + _halfThickness + surfaceOffset,
-                _gridCell ? _cellCenter.z : _hit.point.z);
+                _gridCell ? _cellCenter.z : _gridPoint.z);
         }
         else
         {
@@ -306,7 +341,7 @@ public class NotePlacementManager : MonoBehaviour
             // the long edge of the note mesh (X or Z depending on the model) goes across the view
             float _alongX = _extents.x >= _extents.z ? 0f : 90f;
             previewYaw = _eye.eulerAngles.y + _alongX + userYaw;
-            Vector3 _point = _hit.point;
+            Vector3 _point = _gridPoint;
             previewValid = _surface.ClampToFootprint(ref _point, _half, previewYaw);
             _point.y = _surface.TopY + _halfThickness + surfaceOffset;
             previewPosition = _point;
@@ -458,6 +493,19 @@ public class NotePlacementManager : MonoBehaviour
                 // the surface may say why (e.g. a locker that needs less money), otherwise there is no space
                 string _reason = NotePickupManager.instance != null ? RejectReason(previewSurface, NotePickupManager.instance.TopNote) : null;
                 UIController.instance.DisplayInstructions(string.IsNullOrEmpty(_reason) ? cannotPlaceMessage : _reason);
+            }
+            return;
+        }
+
+        // checked again at the moment of placing: a surface (a locker) that takes only so much money must never get
+        // even one dollar more than its limit, whatever the preview said a frame ago
+        var _topNote = NotePickupManager.instance != null ? NotePickupManager.instance.TopNote : null;
+        string _refusal = RejectReason(previewSurface, _topNote);
+        if (!string.IsNullOrEmpty(_refusal))
+        {
+            if (UIController.instance != null)
+            {
+                UIController.instance.DisplayInstructions(_refusal);
             }
             return;
         }

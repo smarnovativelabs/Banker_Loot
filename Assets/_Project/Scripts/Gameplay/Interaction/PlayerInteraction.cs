@@ -63,7 +63,9 @@ public class PlayerInteraction : MonoBehaviour
     void InteractWithEnv()
     {
         Ray _ray = new Ray(transform.position, transform.forward);
-        if (Physics.Raycast(_ray, out RaycastHit _hit, envInteractionDistance + toolDistance, interactingLayer, QueryTriggerInteraction.Ignore))
+        // the locker colliders only stop thrown notes, the aim goes through them into the lockers
+        int _mask = AimLayers.WithoutLockerColliders(interactingLayer);
+        if (Physics.Raycast(_ray, out RaycastHit _hit, envInteractionDistance + toolDistance, _mask, QueryTriggerInteraction.Ignore))
         {
             InteractableObjects _curObj = _hit.collider.GetComponentInParent<InteractableObjects>();
             if (_curObj != null && CanTarget(_curObj))

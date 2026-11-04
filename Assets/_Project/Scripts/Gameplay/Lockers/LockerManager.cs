@@ -33,7 +33,12 @@ public class LockerManager : MonoBehaviour
         [NonSerialized] public bool completed;
         [NonSerialized] public Quaternion closedRotation;
         [NonSerialized] public float doorAngle;
-        [NonSerialized] public int lastShownRemaining = -1;
+        [NonSerialized] public int lastShownRemaining = -2;
+        [NonSerialized] public Light glowLight;
+        [NonSerialized] public Vector3 outward = Vector3.zero;
+        [NonSerialized] public Color labelColor = Color.white;
+        [NonSerialized] public Color nameColor = Color.white;
+        [NonSerialized] public Color iconColor = Color.white;
     }
 
     const string SaveFileName = "LockerData";
@@ -50,8 +55,15 @@ public class LockerManager : MonoBehaviour
     [Tooltip("Turn the label texts to the player (for floating labels). The texts of the locker board stay flat on the board.")]
     public bool billboardLabels = false;
 
+    [Header("Glow")]
+    [Tooltip("Light of the lockers that are not complete while the notes are being changed")]
+    public Color glowColor = new Color(1f, 0.85f, 0.45f);
+    public float glowIntensity = 2.5f;
+    public float glowRange = 1.3f;
+
     [Header("Messages")]
     public string alreadyCompleteMessage = "This locker is already full!";
+    public string dirtyNoteMessage = "First wash the notes, then place them in the locker!";
     public string tooMuchMessage = "Too much money! This locker needs only ${0} more.";
 
     [Header("Timing")]
@@ -74,7 +86,14 @@ public class LockerManager : MonoBehaviour
             _locker.completed = _save != null && _save.completedIds != null && _save.completedIds.Contains(_locker.id);
             SetDoorAngle(_locker, _locker.completed ? 0f : doorOpenAngle);
             SetSurfaceEnabled(_locker, !_locker.completed);
+            // never shown yet: the first update always writes the text (a locker that was completed in an earlier
+            // session must show DONE and not the text of the scene)
+            _locker.lastShownRemaining = -2;
             UpdateLabel(_locker, _locker.amount);
+            if (_locker.label != null) _locker.labelColor = _locker.label.color;
+            if (_locker.nameText != null) _locker.nameColor = _locker.nameText.color;
+            if (_locker.icon != null) _locker.iconColor = _locker.icon.color;
+            CreateGlowLight(_locker);
 
             var _captured = _locker;
             if (_locker.surface != null)
@@ -83,7 +102,77 @@ public class LockerManager : MonoBehaviour
             }
         }
         registerRoutine = StartCoroutine(RegisterSaving());
+
+        // when the notes left cannot complete the lockers anymore, the balancer changes them
+        if (GetComponent<LockerNoteBalancer>() == null)
+        {
+            gameObject.AddComponent<LockerNoteBalancer>();
+        }
     }
+
+    #region Glow
+    /// <summary>A soft light in front of every locker, off until the notes are changed.</summary>
+    void CreateGlowLight(LockerEntry _locker)
+    {
+        if (_locker.surface == null)
+            return;
+        var _box = _locker.surface.GetComponent<BoxCollider>();
+        var _body = _locker.door.parent != null ? _locker.door.parent.GetComponent<MeshRenderer>() : null;
+        var _doorRenderer = _locker.door.GetComponent<MeshRenderer>();
+        Vector3 _outward = Vector3.zero;
+        if (_body != null && _doorRenderer != null)
+        {
+            _outward = _doorRenderer.bounds.center - _body.bounds.center;
+            _outward.y = 0f;
+            _outward = _outward.normalized;
+        }
+        _locker.outward = _outward;
+
+        var _go = new GameObject(_locker.id + " Glow");
+        _go.transform.SetParent(transform, false);
+        _go.transform.position = (_box != null ? _box.bounds.center : _locker.surface.transform.position) + Vector3.up * 0.25f + _outward * 0.3f;
+        var _light = _go.AddComponent<Light>();
+        _light.type = LightType.Point;
+        _light.color = glowColor;
+        _light.range = glowRange;
+        _light.intensity = 0f;
+        _light.shadows = LightShadows.None;
+        _light.enabled = false;
+        _locker.glowLight = _light;
+    }
+
+    /// <summary>
+    /// Makes the lockers that are not complete glow: 0 is off, 1 is the full glow. The light in front of the locker
+    /// and the texts of the locker on the board light up together.
+    /// </summary>
+    public void SetGlowLevel(float _level)
+    {
+        _level = Mathf.Clamp01(_level);
+        for (int i = 0; i < lockers.Count; i++)
+        {
+            var _locker = lockers[i];
+            bool _glows = !_locker.completed && _level > 0.001f;
+            if (_locker.glowLight != null)
+            {
+                _locker.glowLight.enabled = _glows;
+                _locker.glowLight.intensity = _glows ? _level * glowIntensity : 0f;
+            }
+            if (_locker.completed)
+                continue;
+            if (_locker.label != null) _locker.label.color = Color.Lerp(_locker.labelColor, glowColor, _level);
+            if (_locker.nameText != null) _locker.nameText.color = Color.Lerp(_locker.nameColor, Color.white, _level);
+            if (_locker.icon != null) _locker.icon.color = Color.Lerp(_locker.iconColor, glowColor, _level);
+        }
+    }
+
+    /// <summary>What the locker still needs: its amount minus the notes in it.</summary>
+    public int GetRemainingNeed(LockerEntry _locker)
+    {
+        if (_locker.completed || _locker.surface == null)
+            return 0;
+        return Mathf.Max(0, _locker.amount - GetStoredWorth(_locker, out _));
+    }
+    #endregion
 
     /// <summary>The GameController is spawned at runtime, wait for it and then add the locker saving to its saving actions.</summary>
     IEnumerator RegisterSaving()
@@ -146,6 +235,9 @@ public class LockerManager : MonoBehaviour
     {
         if (_locker.completed)
             return alreadyCompleteMessage;
+        // only washed notes go into a locker
+        if (_note != null && !_note.IsWashed)
+            return dirtyNoteMessage;
         int _stored = GetStoredWorth(_locker, out _);
         int _left = _locker.amount - _stored;
         if (_note != null && _note.Value > _left)
@@ -171,11 +263,36 @@ public class LockerManager : MonoBehaviour
             }
 
             int _stored = GetStoredWorth(_locker, out bool _settled);
+            if (_stored > _locker.amount)
+            {
+                // a locker never holds even one dollar over its limit (this only happens when the amount was lowered
+                // or an old save holds more): the notes on top are taken out again
+                EjectExcess(_locker);
+                continue;
+            }
             UpdateLabel(_locker, Mathf.Max(0, _locker.amount - _stored));
             if (_stored >= _locker.amount && _settled)
             {
                 Complete(_locker);
             }
+        }
+    }
+
+    /// <summary>Takes the top notes out of a locker that holds more than its amount and lets them drop in front of it.</summary>
+    void EjectExcess(LockerEntry _locker)
+    {
+        var _placedNotes = new List<PlacedNote>();
+        int _stored = GetStoredWorth(_locker, out _, _placedNotes);
+        // the highest notes first
+        _placedNotes.Sort((a, b) => b.transform.position.y.CompareTo(a.transform.position.y));
+        for (int i = 0; i < _placedNotes.Count && _stored > _locker.amount; i++)
+        {
+            var _note = _placedNotes[i].GetComponent<PickableNote>();
+            if (_note == null)
+                continue;
+            _stored -= _note.Value;
+            _note.OnPickedUp(); // leaves the locker (and its stack)
+            _note.Release(_locker.outward * 3f + Vector3.up * 2f);
         }
     }
 
@@ -243,10 +360,11 @@ public class LockerManager : MonoBehaviour
     {
         if (_locker.surface == null)
             return;
-        var _collider = _locker.surface.GetComponent<Collider>();
-        if (_collider != null)
+        // the floor and the place zone of the locker
+        var _colliders = _locker.surface.GetComponentsInChildren<Collider>(true);
+        for (int i = 0; i < _colliders.Length; i++)
         {
-            _collider.enabled = _enabled;
+            _colliders[i].enabled = _enabled;
         }
     }
 

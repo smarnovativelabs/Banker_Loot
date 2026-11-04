@@ -57,6 +57,24 @@ public class PickableNote : PickableItem
         ApplyLook();
     }
 
+    /// <summary>
+    /// Turns this note into another denomination (note id, name and look of the given note prefab). Used when the
+    /// lockers cannot be completed with the notes that are left.
+    /// </summary>
+    public void ChangeDenomination(PickableNote _prefab)
+    {
+        if (_prefab == null)
+            return;
+        noteId = _prefab.noteId;
+        itemName = _prefab.itemName;
+        var _filter = GetComponent<MeshFilter>();
+        var _other = _prefab.GetComponent<MeshFilter>();
+        if (_filter != null && _other != null)
+        {
+            _filter.sharedMesh = _other.sharedMesh;
+        }
+    }
+
     /// <summary>Washes the note (clean texture) or makes it dirty again.</summary>
     public void SetWashed(bool _washed)
     {
@@ -72,6 +90,34 @@ public class PickableNote : PickableItem
         {
             _renderer.sharedMaterial = _material;
         }
+    }
+
+    /// <summary>A note below this height fell out of the world.</summary>
+    const float LostHeight = -10f;
+
+    public override void Update()
+    {
+        base.Update();
+        // Backup of the FallRespawnZone under the environment: a note that fell through the floor goes back to the
+        // heap, it must never be lost (the lockers need every note)
+        if (transform.position.y < LostHeight && !isPlayerPicked)
+        {
+            RespawnAtHeap();
+        }
+    }
+
+    /// <summary>Puts the note back on the heap with no speed (used when it fell out of the world).</summary>
+    public void RespawnAtHeap()
+    {
+        var _heap = NoteHeapManager.instance;
+        Vector3 _center = _heap != null && _heap.heapRoot != null ? _heap.heapRoot.position : Vector3.zero;
+        if (body != null)
+        {
+            body.linearVelocity = Vector3.zero;
+            body.angularVelocity = Vector3.zero;
+        }
+        Vector2 _flat = Random.insideUnitCircle * 0.4f;
+        transform.SetPositionAndRotation(_center + new Vector3(_flat.x, 0.4f, _flat.y), Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
     }
 
     /// <summary>A destroyed note simply disappears from the registry, so the next save drops it from the heap and the placed notes.</summary>

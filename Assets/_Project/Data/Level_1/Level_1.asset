@@ -18,23 +18,27 @@ MonoBehaviour:
   heapPointPrefab: {fileID: 6908454016476151955, guid: 1070a88422c104a4d879a578cabc259a, type: 3}
   playerSpawnPointPrefab: {fileID: 3303966015885098150, guid: 9855ed85661ec36478471d1085a81690, type: 3}
   noteTypes:
-  - noteId: 1-Dollar
-    prefab: {fileID: 553414375462917575, guid: 52509eb450dc35c42ad6d9c72c882d00, type: 3}
-    spawnCount: 28
-    maxCount: 100
-  - noteId: 5-Dollar
-    prefab: {fileID: 2205015306765718456, guid: c404840e8c8577d4eb173927d7a4233b, type: 3}
-    spawnCount: 28
-    maxCount: 100
-  - noteId: 10-Dollar
-    prefab: {fileID: 7939348897900788235, guid: 454d7651a7e2d384b9b4e3fd206dd522, type: 3}
-    spawnCount: 28
+  - noteId: 100-Dollar
+    prefab: {fileID: 4128370353530898451, guid: 46b3573f14da1c34dbacb7aa579a2084, type: 3}
+    spawnCount: 160
+    maxCount: 160
+  - noteId: 50-Dollar
+    prefab: {fileID: 6408797098769881090, guid: 7eb30dfe64671df4e97c25167ffa237f, type: 3}
+    spawnCount: 100
     maxCount: 100
   - noteId: 20-Dollar
     prefab: {fileID: 2114924869788037435, guid: b4634054ba8735f4ead9b17b50126939, type: 3}
-    spawnCount: 28
-    maxCount: 100
-  - noteId: 50-Dollar
-    prefab: {fileID: 6408797098769881090, guid: 7eb30dfe64671df4e97c25167ffa237f, type: 3}
-    spawnCount: 28
-    maxCount: 100
+    spawnCount: 60
+    maxCount: 60
+  - noteId: 10-Dollar
+    prefab: {fileID: 7939348897900788235, guid: 454d7651a7e2d384b9b4e3fd206dd522, type: 3}
+    spawnCount: 60
+    maxCount: 60
+  - noteId: 5-Dollar
+    prefab: {fileID: 2205015306765718456, guid: c404840e8c8577d4eb173927d7a4233b, type: 3}
+    spawnCount: 40
+    maxCount: 40
+  - noteId: 1-Dollar
+    prefab: {fileID: 553414375462917575, guid: 52509eb450dc35c42ad6d9c72c882d00, type: 3}
+    spawnCount: 30
+    maxCount: 30

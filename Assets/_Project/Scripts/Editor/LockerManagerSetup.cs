@@ -188,6 +188,29 @@ public static class LockerManagerSetup
             _box.size = Mathf.Abs(front.z) > 0.5f
                 ? new Vector3(across, 0.02f, depth)
                 : new Vector3(depth, 0.02f, across);
+
+            // the place zone fills the whole inside of the locker (also the lower lip in front and the opening), so the
+            // note can be put down wherever the player aims in the locker, it is only found by the placing ray
+            var zone = _floor.Find("Place Zone");
+            if (zone == null)
+            {
+                zone = new GameObject("Place Zone").transform;
+                zone.SetParent(_floor, false);
+            }
+            zone.rotation = Quaternion.identity;
+            zone.localScale = Vector3.one;
+            zone.position = new Vector3(center.x, floorY + 0.35f, center.z) + front * 0.075f;
+            var zoneBox = zone.GetComponent<BoxCollider>();
+            if (zoneBox == null)
+            {
+                zoneBox = zone.gameObject.AddComponent<BoxCollider>();
+            }
+            zoneBox.isTrigger = true;
+            zoneBox.center = Vector3.zero;
+            zoneBox.size = Mathf.Abs(front.z) > 0.5f
+                ? new Vector3(across + 0.04f, 0.7f, depth + 0.15f)
+                : new Vector3(depth + 0.15f, 0.7f, across + 0.04f);
+            zone.gameObject.layer = LockerColliderLayerSetup.EnsureLayer(AimLayers.PlaceZoneLayerName);
         }
         catch (System.Exception e)
         {
