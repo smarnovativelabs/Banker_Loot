@@ -32,8 +32,11 @@ public static class SaveDataTools
                 "Delete", "Cancel"))
             return;
 
-        SerializationManager.DeleteFile("NoteHeapData");
-        SerializationManager.DeleteFile("LockerData");
+        foreach (var _suffix in new[] { "", "_Level2" })
+        {
+            SerializationManager.DeleteFile("NoteHeapData" + _suffix);
+            SerializationManager.DeleteFile("LockerData" + _suffix);
+        }
         Debug.Log("[BankerLoot] NoteHeapData and LockerData deleted.");
     }
 }

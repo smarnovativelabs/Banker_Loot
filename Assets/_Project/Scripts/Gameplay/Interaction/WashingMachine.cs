@@ -100,6 +100,7 @@ public class WashingMachine : MonoBehaviour, ICarryInteractable
     State state = State.Idle;
     float remaining;
     float doorAngle;
+    Quaternion doorBaseRotation = Quaternion.identity;
     int flying;
     AudioClip beepClip;
 
@@ -115,6 +116,7 @@ public class WashingMachine : MonoBehaviour, ICarryInteractable
         if (door != null)
         {
             doorBasePosition = door.localPosition;
+            doorBaseRotation = door.localRotation;
         }
         // the water turns at the same speed as the notes (radians per second), so it flows with them
         if (waterEffect != null)
@@ -529,7 +531,7 @@ public class WashingMachine : MonoBehaviour, ICarryInteractable
         doorAngle = _angle;
         if (door != null)
         {
-            door.localRotation = Quaternion.Euler(0f, _angle, 0f);
+            door.localRotation = doorBaseRotation * Quaternion.Euler(0f, _angle, 0f);
         }
     }
 

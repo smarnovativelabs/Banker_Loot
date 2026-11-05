@@ -14,7 +14,13 @@ public static class CashCountingMachineSetup
     const string RootName = "Cash Counter";
 
     [MenuItem("Banker Loot/Setup Cash Counting Machine")]
-    public static void Setup()
+    public static void Setup() { Setup(false); }
+
+    /// <summary>Same, but the feed, roller and output points are put back to their default place for the mesh (use after the mesh was moved or turned).</summary>
+    [MenuItem("Banker Loot/Setup Cash Counting Machine (Reset Points)")]
+    public static void SetupResetPoints() { Setup(true); }
+
+    static void Setup(bool _resetPoints)
     {
         var mesh = FindInScene(MeshName);
         if (mesh == null)
@@ -56,12 +62,14 @@ public static class CashCountingMachineSetup
         {
             Object.DestroyImmediate(oldIntake.gameObject);
         }
-        // feed tray on top at the back, the rollers in the middle, the output stack at the front (the machine faces -Z).
-        // The points only get their start position when they are created, move them in the scene to fine tune.
-        float x = bounds.center.x;
-        machine.hopperPoint = GetOrCreatePoint(root.transform, "Hopper Point", new Vector3(x, bounds.max.y - 0.01f, bounds.min.z + 0.26f));
-        machine.rollerPoint = GetOrCreatePoint(root.transform, "Roller Point", new Vector3(x, bounds.min.y + 0.14f, bounds.min.z + 0.17f));
-        machine.outputPoint = GetOrCreatePoint(root.transform, "Output Point", new Vector3(x, bounds.min.y + 0.06f, bounds.min.z + 0.07f));
+        // feed tray on top at the back, the rollers in the middle, the output stack at the front (the mesh faces its local -Z, so the
+        // points follow the way the mesh is turned). The points only get their position when they are created (or on reset).
+        Vector3 back = mesh.transform.forward; back.y = 0f; back.Normalize();
+        float half = Mathf.Abs(back.x) * bounds.extents.x + Mathf.Abs(back.z) * bounds.extents.z;
+        Vector3 front = bounds.center - back * half;
+        machine.hopperPoint = GetOrCreatePoint(root.transform, "Hopper Point", new Vector3(front.x, bounds.max.y - 0.01f, front.z) + back * 0.26f, _resetPoints);
+        machine.rollerPoint = GetOrCreatePoint(root.transform, "Roller Point", new Vector3(front.x, bounds.min.y + 0.14f, front.z) + back * 0.17f, _resetPoints);
+        machine.outputPoint = GetOrCreatePoint(root.transform, "Output Point", new Vector3(front.x, bounds.min.y + 0.06f, front.z) + back * 0.07f, _resetPoints);
 
         // the screen floats above the machine and shows the notes inside and their worth
         var screen = root.transform.Find("Screen Text");
@@ -108,13 +116,17 @@ public static class CashCountingMachineSetup
         Debug.Log("[BankerLoot] Cash counting machine set up.");
     }
 
-    static Transform GetOrCreatePoint(Transform _parent, string _name, Vector3 _worldPosition)
+    static Transform GetOrCreatePoint(Transform _parent, string _name, Vector3 _worldPosition, bool _reset)
     {
         var point = _parent.Find(_name);
         if (point == null)
         {
             point = new GameObject(_name).transform;
             point.SetParent(_parent, false);
+            point.position = _worldPosition;
+        }
+        else if (_reset)
+        {
             point.position = _worldPosition;
         }
         return point;

@@ -33,6 +33,23 @@ public static class LockerBoardSetup
     [MenuItem("Banker Loot/Setup Locker Board")]
     public static void Setup()
     {
+        Build(new Vector3(BoardCenterX, BoardCenterY, BoardZ), Quaternion.identity, ColumnCenters, RowCenters);
+    }
+
+    /// <summary>The casino board on the +X wall (faces -X): 7 columns x 3 rows = 21 cells.</summary>
+    [MenuItem("Banker Loot/Setup Locker Board (Casino 21)")]
+    public static void SetupCasino()
+    {
+        var columns = new float[7];
+        for (int i = 0; i < columns.Length; i++)
+        {
+            columns[i] = 500f + (i - 3) * 160f;
+        }
+        Build(new Vector3(3.40f, 1.2f, 0.75f), Quaternion.Euler(0f, 90f, 0f), columns, RowCenters);
+    }
+
+    static void Build(Vector3 _boardPosition, Quaternion _boardRotation, float[] _columnCenters, float[] _rowCenters)
+    {
         var managerObject = GameObject.Find("Locker_Manager");
         var manager = managerObject != null ? managerObject.GetComponent<LockerManager>() : null;
         if (manager == null)
@@ -65,8 +82,8 @@ public static class LockerBoardSetup
         }
         canvas.renderMode = RenderMode.WorldSpace;
         var rootRect = root.GetComponent<RectTransform>();
-        rootRect.position = new Vector3(BoardCenterX, BoardCenterY, BoardZ);
-        rootRect.rotation = Quaternion.identity;
+        rootRect.position = _boardPosition;
+        rootRect.rotation = _boardRotation;
         rootRect.sizeDelta = new Vector2(1000f, 560f);
         rootRect.localScale = Vector3.one * MetersPerPixel;
 
@@ -74,18 +91,18 @@ public static class LockerBoardSetup
         for (int i = 0; i < manager.lockers.Count; i++)
         {
             var entry = manager.lockers[i];
-            int column = i % Columns;
-            int row = i / Columns;
-            if (row >= RowCenters.Length)
+            int column = i % _columnCenters.Length;
+            int row = i / _columnCenters.Length;
+            if (row >= _rowCenters.Length)
             {
-                Debug.LogWarning("[BankerLoot] The board only has " + Columns * RowCenters.Length + " cells, " + entry.id + " got none.");
+                Debug.LogWarning("[BankerLoot] The board only has " + _columnCenters.Length * _rowCenters.Length + " cells, " + entry.id + " got none.");
                 continue;
             }
 
             string display = DisplayName(entry.id);
             var cell = GetOrCreateChild(rootRect, "Locker_" + display);
             cell.anchorMin = cell.anchorMax = cell.pivot = new Vector2(0.5f, 0.5f);
-            cell.anchoredPosition = new Vector2(ColumnCenters[column] - 500f, 280f - RowCenters[row]);
+            cell.anchoredPosition = new Vector2(_columnCenters[column] - 500f, 280f - _rowCenters[row]);
             cell.sizeDelta = CellSize;
             cell.localScale = Vector3.one;
             cell.localRotation = Quaternion.identity;

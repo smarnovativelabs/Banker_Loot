@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -22,7 +23,9 @@ public class NoteHeapManager : MonoBehaviour
 {
     public static NoteHeapManager instance;
 
-    const string SaveFileName = "NoteHeapData";
+    const string SaveBaseName = "NoteHeapData";
+    /// <summary>Each level has its own heap save (level 1 keeps the plain name so older saves still load).</summary>
+    static string SaveFileName => SaveNameFor(SaveBaseName);
     const int SaveVersion = 1;
 
     [Header("Levels")]
@@ -298,12 +301,35 @@ public class NoteHeapManager : MonoBehaviour
         _thickness = Mathf.Max(0.01f, _box != null ? _box.size.y * _scale : 0.016f);
     }
 
+    /// <summary>The level of the open scene: the LevelData whose scene is loaded, else GameData.currentLevel, else 1.</summary>
+    public static int GetActiveLevel()
+    {
+        if (instance != null)
+        {
+            string _scene = SceneManager.GetActiveScene().name;
+            for (int i = 0; i < instance.levels.Count; i++)
+            {
+                var _data = instance.levels[i];
+                if (_data != null && _data.SceneName == _scene)
+                    return _data.level;
+            }
+        }
+        return GameController.instance != null && GameController.instance.gameData != null
+            ? GameController.instance.gameData.currentLevel
+            : 1;
+    }
+
+    /// <summary>Save file name of the active level: level 1 = the base name, other levels get "_Level<n>".</summary>
+    public static string SaveNameFor(string _baseName)
+    {
+        int _level = GetActiveLevel();
+        return _level <= 1 ? _baseName : _baseName + "_Level" + _level;
+    }
+
     /// <summary>The LevelData of the current level (GameData.currentLevel), the first assigned one when none matches.</summary>
     LevelData PickLevel()
     {
-        int _level = GameController.instance != null && GameController.instance.gameData != null
-            ? GameController.instance.gameData.currentLevel
-            : 1;
+        int _level = GetActiveLevel();
         LevelData _first = null;
         for (int i = 0; i < levels.Count; i++)
         {

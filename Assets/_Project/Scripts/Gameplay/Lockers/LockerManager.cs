@@ -37,7 +37,9 @@ public class LockerManager : MonoBehaviour
         [NonSerialized] public Vector3 outward = Vector3.zero;
     }
 
-    const string SaveFileName = "LockerData";
+    const string SaveBaseName = "LockerData";
+    /// <summary>Each level has its own locker save (level 1 keeps the plain name so older saves still load).</summary>
+    static string SaveFileName => NoteHeapManager.SaveNameFor(SaveBaseName);
 
     public List<LockerEntry> lockers = new List<LockerEntry>();
 
@@ -286,7 +288,7 @@ public class LockerManager : MonoBehaviour
         }
         if (_count == 0)
             return;
-        int _level = GameController.instance != null && GameController.instance.gameData != null ? GameController.instance.gameData.currentLevel : 1;
+        int _level = NoteHeapManager.GetActiveLevel();
         LevelProgress.CompleteLevel(_level);
     }
 

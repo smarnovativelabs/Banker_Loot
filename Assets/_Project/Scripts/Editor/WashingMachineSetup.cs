@@ -93,7 +93,10 @@ public static class WashingMachineSetup
             drum = new GameObject("Drum Point").transform;
             drum.SetParent(root.transform, false);
         }
-        drum.position = new Vector3(doorBounds.center.x + 0.2f, doorBounds.center.y, doorBounds.center.z);
+        // the door faces its local -X, the drum sits 0.2 inside it and its axis (local X) is turned to face out of the door
+        Vector3 outward = -door.transform.right; outward.y = 0f; outward.Normalize();
+        drum.position = doorBounds.center - outward * 0.2f;
+        drum.rotation = Quaternion.Euler(0f, door.transform.eulerAngles.y, 0f);
         machine.drumPoint = drum;
 
         machine.body = body.transform;
