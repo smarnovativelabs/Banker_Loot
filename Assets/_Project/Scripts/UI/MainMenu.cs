@@ -97,13 +97,41 @@ public class MainMenu : MonoBehaviour
         GameManager.instance.OnDiscordLinkPressed();
     }
     private bool isStartingGame; // by ss
+    [Header("Level Select")]
+    [Tooltip("The level selection panel of this scene, opened by Play. Without it Play loads the current level directly.")]
+    public LevelSelectScreen levelScreen;
+
+    /// <summary>Play opens the level selection screen, the level is loaded when one is chosen there.</summary>
     public void OnPressPlay()
     {
         if (isStartingGame)
             return;
 
-        isStartingGame = true;
         SoundController.instance.OnPlayInteractionSound(uiButtonSound);
+        bool _hasLevel = levels != null && levels.Exists(_level => _level != null && !string.IsNullOrEmpty(_level.SceneName));
+        if (!_hasLevel || levelScreen == null)
+        {
+            StartLevel(null);
+            return;
+        }
+        levelScreen.Show(levels, StartLevel);
+    }
+
+    /// <summary>Loads the chosen level (null: the current level of the save).</summary>
+    void StartLevel(LevelData _chosen)
+    {
+        if (isStartingGame)
+            return;
+
+        isStartingGame = true;
+        if (_chosen != null)
+        {
+            LevelProgress.SelectLevel(_chosen.level);
+        }
+        if (levelScreen != null)
+        {
+            levelScreen.Hide();
+        }
         // GameManager.instance.EnableLoadingScreen(true,"Please Wait...");
         // SceneManager.LoadScene(1);
          GameManager.instance.CallFireBase("OnPlay", "Play", 1);

@@ -89,6 +89,7 @@ public class LockerManager : MonoBehaviour
             }
         }
         registerRoutine = StartCoroutine(RegisterSaving());
+        CheckLevelComplete();
 
         // when the notes left cannot complete the lockers anymore, the balancer changes them
         if (GetComponent<LockerNoteBalancer>() == null)
@@ -268,6 +269,25 @@ public class LockerManager : MonoBehaviour
         UpdateLabel(_locker, 0);
         StartCoroutine(CloseDoor(_locker));
         StartCoroutine(SaveAfterFrame());
+        CheckLevelComplete();
+    }
+
+    /// <summary>When every locker is complete the level is complete: the next level is unlocked for good.</summary>
+    void CheckLevelComplete()
+    {
+        int _count = 0;
+        for (int i = 0; i < lockers.Count; i++)
+        {
+            if (lockers[i].door == null)
+                continue;
+            if (!lockers[i].completed)
+                return;
+            _count++;
+        }
+        if (_count == 0)
+            return;
+        int _level = GameController.instance != null && GameController.instance.gameData != null ? GameController.instance.gameData.currentLevel : 1;
+        LevelProgress.CompleteLevel(_level);
     }
 
     IEnumerator CloseDoor(LockerEntry _locker)
