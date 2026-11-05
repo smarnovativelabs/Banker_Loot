@@ -30,6 +30,7 @@ public class PickableNote : PickableItem
 
     PickableNote highlighted;
     bool isWashed;
+    Material glowMaterial;
 
     /// <summary>True once the note went through the washing machine. Saved with the note.</summary>
     public bool IsWashed => isWashed;
@@ -82,8 +83,42 @@ public class PickableNote : PickableItem
         ApplyLook();
     }
 
+    /// <summary>
+    /// Makes only this note glow: 0 is off, 1 is the full glow (emission of a temporary copy of the note material).
+    /// </summary>
+    public void SetGlow(float _level, Color _color, float _intensity = 2f)
+    {
+        var _renderer = GetComponent<MeshRenderer>();
+        if (_renderer == null)
+            return;
+        if (_level <= 0.001f)
+        {
+            if (glowMaterial != null)
+            {
+                Destroy(glowMaterial);
+                glowMaterial = null;
+                ApplyLook();
+            }
+            return;
+        }
+        if (glowMaterial == null)
+        {
+            var _source = _renderer.sharedMaterial;
+            if (_source == null)
+                return;
+            glowMaterial = new Material(_source);
+            glowMaterial.EnableKeyword("_EMISSION");
+            glowMaterial.globalIlluminationFlags = MaterialGlobalIlluminationFlags.None;
+            _renderer.sharedMaterial = glowMaterial;
+        }
+        glowMaterial.SetColor("_EmissionColor", _color * (Mathf.Clamp01(_level) * _intensity));
+    }
+
     void ApplyLook()
     {
+        // while glowing the note keeps its glow material, the look is restored when the glow ends
+        if (glowMaterial != null)
+            return;
         var _material = isWashed ? cleanMaterial : dirtyMaterial;
         var _renderer = GetComponent<MeshRenderer>();
         if (_renderer != null && _material != null && _renderer.sharedMaterial != _material)
@@ -124,6 +159,10 @@ public class PickableNote : PickableItem
     protected virtual void OnDestroy()
     {
         All.Remove(this);
+        if (glowMaterial != null)
+        {
+            Destroy(glowMaterial);
+        }
     }
 
     public override bool CanPickItem()

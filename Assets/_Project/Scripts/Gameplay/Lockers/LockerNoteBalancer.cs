@@ -7,11 +7,10 @@ using UnityEngine;
 /// unable to complete the lockers (for example a locker needs $4 and only $20 notes are left).
 /// When that is really the case ("no possible combination left", it lasts a few seconds) the balancer:
 /// 1. shows the message "No possible combination left!",
-/// 2. makes the lockers that are not complete glow,
-/// 3. changes the notes that are not in a locker so that they add up to exactly what the lockers still need, none is
+/// 2. changes the notes that are not in a locker so that they add up to exactly what the lockers still need, none is
 ///    left over and none is missing (notes are turned into other denominations, surplus notes are removed and missing
 ///    notes appear in the heap),
-/// 4. shows the message that the notes were changed and lets the glow fade out.
+/// 3. shows the message that the notes were changed; only the changed and the new notes glow, then the glow fades out.
 /// Nothing happens while a combination still exists, or while a machine holds notes.
 /// </summary>
 [RequireComponent(typeof(LockerManager))]
@@ -22,10 +21,13 @@ public class LockerNoteBalancer : MonoBehaviour
     public float checkInterval = 1f;
     [Tooltip("Seconds the situation must last before the notes are changed (so a short pause of the player is not enough)")]
     public float stuckDelay = 3f;
-    [Tooltip("Seconds the first message is on the screen before the glow starts")]
+    [Tooltip("Seconds the first message is on the screen before the notes change")]
     public float messageTime = 2f;
-    public float glowRiseTime = 1.2f;
-    public float glowFadeTime = 1.4f;
+    [Tooltip("Seconds the changed and new notes glow (the glow fades out)")]
+    public float glowTime = 3f;
+
+    static readonly Color GlowColor = new Color(1f, 0.85f, 0.45f);
+    const float GlowIntensity = 2.5f;
 
     [Header("Messages")]
     public string noCombinationMessage = "No possible combination left!";
@@ -226,21 +228,12 @@ public class LockerNoteBalancer : MonoBehaviour
             yield break;
         }
 
-        // 2. the lockers that are not complete glow
-        float _time = 0f;
-        while (_time < glowRiseTime)
-        {
-            _time += Time.deltaTime;
-            manager.SetGlowLevel(_time / glowRiseTime);
-            yield return null;
-        }
-        manager.SetGlowLevel(1f);
-
-        // 3. the notes change while the glow is at its brightest
+        // 2. the notes change, only the changed and the new notes glow
+        var _glowing = new List<PickableNote>();
         if (StillStuck())
         {
             CollectState(out var _open, out var _loose);
-            Rebalance(_open, _loose);
+            Rebalance(_open, _loose, _glowing);
             if (UIController.instance != null)
             {
                 UIController.instance.DisplayInstructions(changedMessage);
@@ -248,15 +241,28 @@ public class LockerNoteBalancer : MonoBehaviour
             StartCoroutine(SaveAfterFrame());
         }
 
-        // 4. the glow fades out
-        _time = 0f;
-        while (_time < glowFadeTime)
+        // 3. the glow fades out
+        SetNotesGlow(_glowing, 1f);
+        float _time = 0f;
+        while (_time < glowTime)
         {
             _time += Time.deltaTime;
-            manager.SetGlowLevel(1f - _time / glowFadeTime);
+            SetNotesGlow(_glowing, 1f - _time / glowTime);
             yield return null;
         }
+        SetNotesGlow(_glowing, 0f);
         FinishRescue();
+    }
+
+    static void SetNotesGlow(List<PickableNote> _notes, float _level)
+    {
+        for (int i = 0; i < _notes.Count; i++)
+        {
+            if (_notes[i] != null)
+            {
+                _notes[i].SetGlow(_level, GlowColor, GlowIntensity);
+            }
+        }
     }
 
     bool StillStuck()
@@ -269,7 +275,6 @@ public class LockerNoteBalancer : MonoBehaviour
 
     void FinishRescue()
     {
-        manager.SetGlowLevel(0f);
         stuckTime = 0f;
         running = false;
     }
@@ -288,7 +293,7 @@ public class LockerNoteBalancer : MonoBehaviour
     /// existing notes that already fit stay as they are, the other notes are changed to the missing denominations,
     /// extra notes are removed and missing ones are spawned in the heap.
     /// </summary>
-    void Rebalance(List<int> _needs, List<PickableNote> _loose)
+    void Rebalance(List<int> _needs, List<PickableNote> _loose, List<PickableNote> _glowing)
     {
         var _heap = NoteHeapManager.instance;
         var _prefabs = new Dictionary<int, PickableNote>();
@@ -378,6 +383,7 @@ public class LockerNoteBalancer : MonoBehaviour
         for (int i = 0; i < _changed; i++)
         {
             _toChange[i].ChangeDenomination(_prefabs[_missing[i]]);
+            _glowing.Add(_toChange[i]);
         }
         for (int i = _changed; i < _toChange.Count; i++)
         {
@@ -386,7 +392,11 @@ public class LockerNoteBalancer : MonoBehaviour
         int _spawned = 0;
         for (int i = _changed; i < _missing.Count; i++)
         {
-            SpawnNote(_prefabs[_missing[i]], _spawned++);
+            var _new = SpawnNote(_prefabs[_missing[i]], _spawned++);
+            if (_new != null)
+            {
+                _glowing.Add(_new);
+            }
         }
     }
 
@@ -409,7 +419,7 @@ public class LockerNoteBalancer : MonoBehaviour
     }
 
     /// <summary>A missing note drops into the heap.</summary>
-    static void SpawnNote(PickableNote _prefab, int _index)
+    static PickableNote SpawnNote(PickableNote _prefab, int _index)
     {
         var _heap = NoteHeapManager.instance;
         Transform _root = _heap != null ? _heap.heapRoot : null;
@@ -441,6 +451,7 @@ public class LockerNoteBalancer : MonoBehaviour
             _body.angularVelocity = Vector3.zero;
             _body.Sleep();
         }
+        return _note;
     }
     #endregion
 }

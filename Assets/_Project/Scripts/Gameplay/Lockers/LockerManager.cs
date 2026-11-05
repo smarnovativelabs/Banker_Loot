@@ -34,11 +34,7 @@ public class LockerManager : MonoBehaviour
         [NonSerialized] public Quaternion closedRotation;
         [NonSerialized] public float doorAngle;
         [NonSerialized] public int lastShownRemaining = -2;
-        [NonSerialized] public Light glowLight;
         [NonSerialized] public Vector3 outward = Vector3.zero;
-        [NonSerialized] public Color labelColor = Color.white;
-        [NonSerialized] public Color nameColor = Color.white;
-        [NonSerialized] public Color iconColor = Color.white;
     }
 
     const string SaveFileName = "LockerData";
@@ -54,12 +50,6 @@ public class LockerManager : MonoBehaviour
     [Header("Labels")]
     [Tooltip("Turn the label texts to the player (for floating labels). The texts of the locker board stay flat on the board.")]
     public bool billboardLabels = false;
-
-    [Header("Glow")]
-    [Tooltip("Light of the lockers that are not complete while the notes are being changed")]
-    public Color glowColor = new Color(1f, 0.85f, 0.45f);
-    public float glowIntensity = 2.5f;
-    public float glowRange = 1.3f;
 
     [Header("Messages")]
     public string alreadyCompleteMessage = "This locker is already full!";
@@ -90,10 +80,7 @@ public class LockerManager : MonoBehaviour
             // session must show DONE and not the text of the scene)
             _locker.lastShownRemaining = -2;
             UpdateLabel(_locker, _locker.amount);
-            if (_locker.label != null) _locker.labelColor = _locker.label.color;
-            if (_locker.nameText != null) _locker.nameColor = _locker.nameText.color;
-            if (_locker.icon != null) _locker.iconColor = _locker.icon.color;
-            CreateGlowLight(_locker);
+            ComputeOutward(_locker);
 
             var _captured = _locker;
             if (_locker.surface != null)
@@ -110,13 +97,10 @@ public class LockerManager : MonoBehaviour
         }
     }
 
-    #region Glow
-    /// <summary>A soft light in front of every locker, off until the notes are changed.</summary>
-    void CreateGlowLight(LockerEntry _locker)
+    #region Need
+    /// <summary>The direction the locker door faces (notes that are ejected fly this way).</summary>
+    static void ComputeOutward(LockerEntry _locker)
     {
-        if (_locker.surface == null)
-            return;
-        var _box = _locker.surface.GetComponent<BoxCollider>();
         var _body = _locker.door.parent != null ? _locker.door.parent.GetComponent<MeshRenderer>() : null;
         var _doorRenderer = _locker.door.GetComponent<MeshRenderer>();
         Vector3 _outward = Vector3.zero;
@@ -127,42 +111,6 @@ public class LockerManager : MonoBehaviour
             _outward = _outward.normalized;
         }
         _locker.outward = _outward;
-
-        var _go = new GameObject(_locker.id + " Glow");
-        _go.transform.SetParent(transform, false);
-        _go.transform.position = (_box != null ? _box.bounds.center : _locker.surface.transform.position) + Vector3.up * 0.25f + _outward * 0.3f;
-        var _light = _go.AddComponent<Light>();
-        _light.type = LightType.Point;
-        _light.color = glowColor;
-        _light.range = glowRange;
-        _light.intensity = 0f;
-        _light.shadows = LightShadows.None;
-        _light.enabled = false;
-        _locker.glowLight = _light;
-    }
-
-    /// <summary>
-    /// Makes the lockers that are not complete glow: 0 is off, 1 is the full glow. The light in front of the locker
-    /// and the texts of the locker on the board light up together.
-    /// </summary>
-    public void SetGlowLevel(float _level)
-    {
-        _level = Mathf.Clamp01(_level);
-        for (int i = 0; i < lockers.Count; i++)
-        {
-            var _locker = lockers[i];
-            bool _glows = !_locker.completed && _level > 0.001f;
-            if (_locker.glowLight != null)
-            {
-                _locker.glowLight.enabled = _glows;
-                _locker.glowLight.intensity = _glows ? _level * glowIntensity : 0f;
-            }
-            if (_locker.completed)
-                continue;
-            if (_locker.label != null) _locker.label.color = Color.Lerp(_locker.labelColor, glowColor, _level);
-            if (_locker.nameText != null) _locker.nameText.color = Color.Lerp(_locker.nameColor, Color.white, _level);
-            if (_locker.icon != null) _locker.icon.color = Color.Lerp(_locker.iconColor, glowColor, _level);
-        }
     }
 
     /// <summary>What the locker still needs: its amount minus the notes in it.</summary>
