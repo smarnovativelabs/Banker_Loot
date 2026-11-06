@@ -271,11 +271,12 @@ public class LockerManager : MonoBehaviour
         UpdateLabel(_locker, 0);
         StartCoroutine(CloseDoor(_locker));
         StartCoroutine(SaveAfterFrame());
-        CheckLevelComplete();
+        CheckLevelComplete(true);
     }
 
     /// <summary>When every locker is complete the level is complete: the next level is unlocked for good.</summary>
-    void CheckLevelComplete()
+    /// <param name="_announce">true when a locker was just completed: the Level Completed panel opens</param>
+    void CheckLevelComplete(bool _announce = false)
     {
         int _count = 0;
         for (int i = 0; i < lockers.Count; i++)
@@ -289,7 +290,12 @@ public class LockerManager : MonoBehaviour
         if (_count == 0)
             return;
         int _level = NoteHeapManager.GetActiveLevel();
+        bool _firstTime = !LevelProgress.IsCompleted(_level);
         LevelProgress.CompleteLevel(_level);
+        if (_announce && UIController.instance != null && UIController.instance.levelCompletePanel != null)
+        {
+            UIController.instance.levelCompletePanel.Show(_firstTime);
+        }
     }
 
     IEnumerator CloseDoor(LockerEntry _locker)

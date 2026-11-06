@@ -319,6 +319,20 @@ public class NoteHeapManager : MonoBehaviour
             : 1;
     }
 
+    /// <summary>The LevelData of the active level, null when no manager or no matching data exists.</summary>
+    public static LevelData GetActiveLevelData()
+    {
+        if (instance == null)
+            return null;
+        int _level = GetActiveLevel();
+        for (int i = 0; i < instance.levels.Count; i++)
+        {
+            if (instance.levels[i] != null && instance.levels[i].level == _level)
+                return instance.levels[i];
+        }
+        return null;
+    }
+
     /// <summary>Save file name of the active level: level 1 = the base name, other levels get "_Level<n>".</summary>
     public static string SaveNameFor(string _baseName)
     {

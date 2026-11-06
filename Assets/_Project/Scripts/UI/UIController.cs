@@ -21,7 +21,10 @@ public class UIController : MonoBehaviour
     public Image xpBar;
     public Text XPText;
     public Text XPTextAnimation;
+    [Tooltip("Level box, top line: the name of the level")]
     public Text cargoLevelText;
+    [Tooltip("Level box, bottom line: 'Level 1', 'Level 2', ...")]
+    public Text levelNumberText;
 
     [Header("-----------------------> Calendar")]
     public Text dayDisplay;
@@ -48,6 +51,10 @@ public class UIController : MonoBehaviour
     public GameObject notificationPopupPanel;
     public Text notificationText;
     public bool questDisplayed = false;
+
+    [Header("-----------------------> Level Complete")]
+    [Tooltip("Opened by the LockerManager when every locker is complete")]
+    public LevelCompletePanel levelCompletePanel;
 
     bool isPlayingCurrencyAnim;
     bool isPlayingBlitzAnim;
@@ -383,10 +390,18 @@ public class UIController : MonoBehaviour
     {
         if (LevelManager.Instance != null)
         {
-            xpBar.fillAmount = LevelManager.Instance.GetLevelBarFillValue();
-            XPText.text = LevelManager.Instance.GetCurrentAndNextLevelRequiredXPS();
+            if (xpBar != null)
+                xpBar.fillAmount = LevelManager.Instance.GetLevelBarFillValue();
+            if (XPText != null)
+                XPText.text = LevelManager.Instance.GetCurrentAndNextLevelRequiredXPS();
         }
-        cargoLevelText.text = "LEVEL " + PlayerDataManager.instance.playerData.playerLevel;
+        // the level box shows the level being played (its name and number), not the player's xp level
+        int _levelNumber = NoteHeapManager.GetActiveLevel();
+        var _levelData = NoteHeapManager.GetActiveLevelData();
+        if (cargoLevelText != null)
+            cargoLevelText.text = _levelData != null && !string.IsNullOrEmpty(_levelData.displayName) ? _levelData.displayName : "Level " + _levelNumber;
+        if (levelNumberText != null)
+            levelNumberText.text = "Level " + _levelNumber;
     }
     #endregion
 

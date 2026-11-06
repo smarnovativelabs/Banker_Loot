@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Level_1
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   level: 1
+  displayName: Wallet Bank
   scene: {fileID: 102900000, guid: 6a84a7a6201ffbe428d9688790dbcac9, type: 3}
   scenePath: Assets/_Project/Scenes/Level_1.unity
   heapPointPrefab: {fileID: 6908454016476151955, guid: 1070a88422c104a4d879a578cabc259a, type: 3}

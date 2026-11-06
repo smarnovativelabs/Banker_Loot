@@ -42,6 +42,14 @@ public class LevelCardUI : MonoBehaviour
     public Color closedPreview = new Color(0.141f, 0.212f, 0.325f);
     public Color closedText = new Color(0.42f, 0.486f, 0.588f);
 
+    [Header("Per level look (optional, index 0 = level 1)")]
+    [Tooltip("Card frame of each level, used for the border image")]
+    public Sprite[] frameSprites;
+    [Tooltip("Picture of each level, used for the preview image")]
+    public Sprite[] previewSprites;
+    [Tooltip("Name shown for each level, empty uses 'Level N'")]
+    public string[] levelNames;
+
     [Header("Texts")]
     public string playableSymbol = "$";
     public string closedSymbol = "?";
@@ -54,6 +62,11 @@ public class LevelCardUI : MonoBehaviour
     public void Setup(int _number, State _state, bool _completed, Action _onPlay)
     {
         bool _open = _state == State.Playable;
+        int _index = _number - 1;
+        if (border != null && frameSprites != null && _index < frameSprites.Length && frameSprites[_index] != null)
+            border.sprite = frameSprites[_index];
+        if (preview != null && previewSprites != null && _index < previewSprites.Length && previewSprites[_index] != null)
+            preview.sprite = previewSprites[_index];
         if (border != null) border.color = _open ? openBorder : closedBorder;
         if (background != null) background.color = _open ? openBackground : closedBackground;
         if (preview != null) preview.color = _open ? openPreview : closedPreview;
@@ -64,7 +77,8 @@ public class LevelCardUI : MonoBehaviour
         }
         if (nameText != null)
         {
-            nameText.text = "Level " + _number;
+            bool _hasName = levelNames != null && _index < levelNames.Length && !string.IsNullOrEmpty(levelNames[_index]);
+            nameText.text = _hasName ? levelNames[_index] : "Level " + _number;
             nameText.color = _open ? openName : closedText;
         }
         if (statusText != null)

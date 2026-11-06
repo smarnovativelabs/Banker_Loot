@@ -583,6 +583,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9050067636944190301}
     m_Modifications:
+    - target: {fileID: 569912330, guid: 69a3369e75525fd47ab4c7abe7346a88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 569912331, guid: 69a3369e75525fd47ab4c7abe7346a88, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 195.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1347696162, guid: 69a3369e75525fd47ab4c7abe7346a88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881605481, guid: 69a3369e75525fd47ab4c7abe7346a88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2031986398, guid: 69a3369e75525fd47ab4c7abe7346a88, type: 3}
       propertyPath: m_Name
       value: Gameplay HUD
@@ -667,9 +683,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 778839975800320812, guid: 69a3369e75525fd47ab4c7abe7346a88, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 778839975800320812, guid: 69a3369e75525fd47ab4c7abe7346a88, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 778839975800320812, guid: 69a3369e75525fd47ab4c7abe7346a88, type: 3}
+      propertyPath: m_EffectColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7717794116230720298, guid: 69a3369e75525fd47ab4c7abe7346a88, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209762466401793112, guid: 69a3369e75525fd47ab4c7abe7346a88, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978544987853860914, guid: 69a3369e75525fd47ab4c7abe7346a88, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 9100237524080265357, guid: 69a3369e75525fd47ab4c7abe7346a88, type: 3}
       propertyPath: holdFillImage
