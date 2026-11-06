@@ -20,10 +20,23 @@ public class LevelSelectScreen : MonoBehaviour
     [Tooltip("How many cards are shown: the levels that exist and then 'coming soon' cards up to this number")]
     [Min(1)] public int slotCount = 3;
 
+    [Header("Continue / Restart")]
+    [Tooltip("Popup shown when the chosen level has saved progress")]
+    public GameObject choicePanel;
+    public Text choiceTitle;
+    public Button continueButton;
+    public Button restartButton;
+    [Tooltip("Closes the popup without starting the level")]
+    public Button choiceCancelButton;
+
     Action<LevelData> onPlay;
 
     void Awake()
     {
+        if (choiceCancelButton != null)
+        {
+            choiceCancelButton.onClick.AddListener(CloseChoice);
+        }
         if (backButton != null)
         {
             backButton.onClick.AddListener(Hide);
@@ -39,6 +52,7 @@ public class LevelSelectScreen : MonoBehaviour
 
     public void Hide()
     {
+        CloseChoice();
         gameObject.SetActive(false);
     }
 
@@ -64,7 +78,45 @@ public class LevelSelectScreen : MonoBehaviour
             var _state = _data == null ? LevelCardUI.State.ComingSoon
                 : (LevelProgress.IsUnlocked(_number) ? LevelCardUI.State.Playable : LevelCardUI.State.Locked);
             bool _completed = _data != null && LevelProgress.IsCompleted(_number);
-            _card.Setup(_number, _state, _completed, () => onPlay?.Invoke(_data));
+            _card.Setup(_number, _state, _completed, () => OnCardPressed(_data));
+        }
+    }
+
+    /// <summary>A level with saved progress asks Continue or Restart first, a fresh level starts directly.</summary>
+    void OnCardPressed(LevelData _data)
+    {
+        if (_data == null)
+            return;
+        if (choicePanel == null || continueButton == null || restartButton == null || !LevelProgress.HasProgress(_data.level))
+        {
+            onPlay?.Invoke(_data);
+            return;
+        }
+        if (choiceTitle != null)
+        {
+            choiceTitle.text = "Level " + _data.level;
+        }
+        continueButton.onClick.RemoveAllListeners();
+        restartButton.onClick.RemoveAllListeners();
+        continueButton.onClick.AddListener(() =>
+        {
+            choicePanel.SetActive(false);
+            onPlay?.Invoke(_data);
+        });
+        restartButton.onClick.AddListener(() =>
+        {
+            LevelProgress.ResetLevel(_data.level);
+            choicePanel.SetActive(false);
+            onPlay?.Invoke(_data);
+        });
+        choicePanel.SetActive(true);
+    }
+
+    void CloseChoice()
+    {
+        if (choicePanel != null)
+        {
+            choicePanel.SetActive(false);
         }
     }
 

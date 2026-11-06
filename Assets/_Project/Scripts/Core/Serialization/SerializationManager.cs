@@ -91,16 +91,8 @@ public static class SerializationManager
 
     public static void DeleteFile(string _fileName)
     {
-#if UNITY_ANDROID
-        string path = Application.persistentDataPath + _fileName + ".meta";
-#else
-        if (!Directory.Exists(Application.persistentDataPath + projectName))
-        {
-            Directory.CreateDirectory(Application.persistentDataPath + projectName);
-        }
+        // the same path as Save and LoadFile (they no longer have an Android-only path)
         string path = Application.persistentDataPath + projectName + "/" + _fileName + ".meta";
-
-#endif
         if (File.Exists(path))
         {
             File.Delete(path);

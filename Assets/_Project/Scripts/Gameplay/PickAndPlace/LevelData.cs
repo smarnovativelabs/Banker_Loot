@@ -26,8 +26,8 @@ public class LevelData : ScriptableObject
     [Min(1)] public int level = 1;
     [Tooltip("Name shown on the level box in the gameplay HUD (empty shows 'Level N')")]
     public string displayName;
-    [Tooltip("Cash paid when the level is completed for the first time (shown on the Level Completed panel)")]
-    [Min(0)] public int rewardCash = 1000;
+    [Tooltip("Cash paid every time the level is completed (shown on the Level Completed panel)")]
+    [Min(0)] public int rewardCash = 100;
 #if UNITY_EDITOR
     [Tooltip("The scene that is loaded for this level. It must be in the Build Settings.")]
     [SerializeField] UnityEditor.SceneAsset scene;

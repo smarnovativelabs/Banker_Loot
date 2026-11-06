@@ -59,6 +59,29 @@ public static class LevelProgress
         SerializationManager.Save(_game, GameDataFileName);
     }
 
+    // save file base names of the level state (see NoteHeapManager and LockerManager)
+    static readonly string[] LevelStateFiles = { "NoteHeapData", "LockerData" };
+
+    /// <summary>True when the level has a saved state (notes / lockers), so it can be continued.</summary>
+    public static bool HasProgress(int _level)
+    {
+        for (int i = 0; i < LevelStateFiles.Length; i++)
+        {
+            if (SerializationManager.LoadFile(NoteHeapManager.SaveNameFor(LevelStateFiles[i], _level)) != null)
+                return true;
+        }
+        return false;
+    }
+
+    /// <summary>Deletes the saved state of the level, it starts from the beginning the next time.</summary>
+    public static void ResetLevel(int _level)
+    {
+        for (int i = 0; i < LevelStateFiles.Length; i++)
+        {
+            SerializationManager.DeleteFile(NoteHeapManager.SaveNameFor(LevelStateFiles[i], _level));
+        }
+    }
+
     /// <summary>Resets the unlock progress (only level 1 is unlocked again).</summary>
     public static void ResetSave()
     {

@@ -336,7 +336,12 @@ public class NoteHeapManager : MonoBehaviour
     /// <summary>Save file name of the active level: level 1 = the base name, other levels get "_Level<n>".</summary>
     public static string SaveNameFor(string _baseName)
     {
-        int _level = GetActiveLevel();
+        return SaveNameFor(_baseName, GetActiveLevel());
+    }
+
+    /// <summary>Save file name of the given level.</summary>
+    public static string SaveNameFor(string _baseName, int _level)
+    {
         return _level <= 1 ? _baseName : _baseName + "_Level" + _level;
     }
 
