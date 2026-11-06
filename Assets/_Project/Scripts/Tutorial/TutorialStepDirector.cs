@@ -2,7 +2,9 @@ using UnityEngine;
 
 /// <summary>
 /// Runs the gameplay steps of the tutorial (the "Gameplay" area of the GameTutorialManager). For every step it
-///  - points the 3D arrow at the thing to go to (note stack, washing machine, counting machine, table, locker screen, locker A01),
+///  - marks the thing to go to with the location ring on the floor (note stack, washing machine, counting machine, table,
+///    locker screen, locker A01); the pointer has a Target on it, so the off screen indicator shows the direction arrow
+///    at the edge of the screen while the place is not in view (the same as in the Food and Motel games),
 ///  - puts the hand on the HUD button to press (the button is forced on screen so it can be pressed),
 ///  - and watches the game to complete the step when the player really did it (no events are needed in the gameplay code).
 /// It also completes the "Move Around" step of the controls tutorial by watching the player move.
@@ -27,14 +29,8 @@ public class TutorialStepDirector : MonoBehaviour
     public int fastPickCount = 5;
     [Tooltip("The Walk to the locker screen step finishes at this distance (meters)")]
     public float boardDistance = 6f;
-    [Tooltip("Size of the pointer (ring and arrow), 1 = the size of the prefab")]
-    public float pointerScale = 0.3f;
-    [Tooltip("The arrow is hidden when the player is closer than this (meters) to the target, so it never blocks the view")]
-    public float arrowHideDistance = 1.8f;
-    [Tooltip("The tip of the arrow stays this far (meters) above the top of its target")]
-    public float pointerHeight = 0.2f;
-    [Tooltip("The tip of the arrow never goes above this height (meters), so it stays under the roof")]
-    public float maxArrowTop = 2.7f;
+    [Tooltip("Size of the location ring on the floor, 1 = the size of the prefab")]
+    public float pointerScale = 1f;
 
     GameTutorialManager tutorial;
     TutorialSubTask step;
@@ -271,50 +267,22 @@ public class TutorialStepDirector : MonoBehaviour
         }
         var _pointer = tutorial.targetPointer;
         if (!_pointer.activeSelf)
-        {
             _pointer.SetActive(true);
-            if (tutorial.targetArrow != null)
-            {
-                var _renderer = tutorial.targetArrow.GetComponent<MeshRenderer>();
-                if (_renderer != null)
-                    _renderer.enabled = true;
-                var _outline = tutorial.targetArrow.GetComponent<Outline>();
-                if (_outline != null)
-                    _outline.enabled = true;
-            }
+        // like in the Food game: the 3D arrow stays off, the ring on the floor is the location sign
+        // and the direction arrows on the floor (below) lead the way
+        if (tutorial.targetArrow != null)
+        {
+            var _arrowRenderer = tutorial.targetArrow.GetComponent<MeshRenderer>();
+            if (_arrowRenderer != null && _arrowRenderer.enabled)
+                _arrowRenderer.enabled = false;
         }
-        // the pointer (ring on the floor + arrow above it) keeps a fixed size, only its place changes
         if (!Mathf.Approximately(_pointer.transform.localScale.x, pointerScale))
             _pointer.transform.localScale = Vector3.one * pointerScale;
 
+        // the ring lies on the floor at the target
         Bounds _bounds = BoundsOf(pointerTarget);
-        // how far the tip of the arrow reaches above the pointer's own position
-        float _rise = 1f;
-        if (tutorial.targetArrow != null)
-        {
-            var _arrowRenderer = tutorial.targetArrow.GetComponent<MeshRenderer>();
-            if (_arrowRenderer != null)
-                _rise = Mathf.Max(0.2f, _arrowRenderer.bounds.max.y - _pointer.transform.position.y);
-        }
-        // the arrow just clears the top of the target, never goes below its base and never through the ceiling
-        float _y = _bounds.max.y + pointerHeight - _rise;
-        _y = Mathf.Max(_y, _bounds.min.y);
-        _y = Mathf.Min(_y, maxArrowTop - _rise);
-        _pointer.transform.position = new Vector3(_bounds.center.x, _y, _bounds.center.z);
+        _pointer.transform.position = new Vector3(_bounds.center.x, _bounds.min.y + 0.02f, _bounds.center.z);
 
-        // close to the target the arrow would only block the view, the ring on the floor stays as the location sign
-        if (tutorial.targetArrow != null)
-        {
-            var _arrowRenderer = tutorial.targetArrow.GetComponent<MeshRenderer>();
-            if (_arrowRenderer != null)
-            {
-                var _camera = PlayerCamera();
-                float _distance = _camera != null
-                    ? Vector2.Distance(new Vector2(_camera.transform.position.x, _camera.transform.position.z), new Vector2(_pointer.transform.position.x, _pointer.transform.position.z))
-                    : 99f;
-                _arrowRenderer.enabled = _distance > arrowHideDistance;
-            }
-        }
     }
 
     void UpdateHand()

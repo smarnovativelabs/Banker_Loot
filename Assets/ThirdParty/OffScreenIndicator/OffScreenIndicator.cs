@@ -32,6 +32,15 @@ public class OffScreenIndicator : MonoBehaviour
 
     void LateUpdate()
     {
+        // the player camera is created with the game core, so it may not exist yet when this object wakes up
+        if (mainCamera == null || !mainCamera.isActiveAndEnabled)
+        {
+            mainCamera = GameController.instance != null && GameController.instance.gameMainCamera != null
+                ? GameController.instance.gameMainCamera
+                : Camera.main;
+            if (mainCamera == null)
+                return;
+        }
         DrawIndicators();
     }
 

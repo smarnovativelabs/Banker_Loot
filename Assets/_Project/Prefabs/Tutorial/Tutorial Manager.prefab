@@ -25308,10 +25308,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetColor: {r: 0, g: 1, b: 0.016898155, a: 1}
+  targetColor: {r: 1, g: 0.88, b: 0, a: 1}
   needBoxIndicator: 1
   needArrowIndicator: 1
-  needDistanceText: 1
+  needDistanceText: 0
   indicator: {fileID: 0}
 --- !u!1 &3042078495169126198
 GameObject:
@@ -26096,10 +26096,7 @@ MonoBehaviour:
   moveDistance: 1.5
   fastPickCount: 5
   boardDistance: 6
-  pointerScale: 0.3
-  arrowHideDistance: 1.8
-  pointerHeight: 0.2
-  maxArrowTop: 2.7
+  pointerScale: 1
 --- !u!1 &3913870516613700447
 GameObject:
   m_ObjectHideFlags: 0
