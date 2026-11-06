@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1809627186, guid: 0978c1506d4ac4f05990020985636546, type: 3}
+  m_Sprite: {fileID: -672592856, guid: 884270bc2b8044ba58f8bcae6f797e17, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4897,7 +4897,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &7890243842593577687
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4915,6 +4915,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4936,9 +4939,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
+  m_MaskInteraction: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4970,7 +4975,118 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
+--- !u!1 &593918660777342558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5268569892274990013}
+  - component: {fileID: 6861088568489598733}
+  - component: {fileID: 3867065684529579339}
+  - component: {fileID: 392657818312511264}
+  - component: {fileID: 8293864882538266207}
+  m_Layer: 0
+  m_Name: Instruction Text 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5268569892274990013
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593918660777342558}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5639328111985791018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -365}
+  m_SizeDelta: {x: -100, y: 120}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!222 &6861088568489598733
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593918660777342558}
+  m_CullTransparentMesh: 1
+--- !u!114 &3867065684529579339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593918660777342558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.04, g: 0.12, b: 0.32, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 10007ef852b9c7347aeac1bd0a499a70, type: 3}
+    m_FontSize: 28
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 30
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!114 &392657818312511264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593918660777342558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993edad862039b645b94844be4b1ba36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  textToDisplay: 
+  callbackCounter: 0
+  isInitialized: 0
+--- !u!114 &8293864882538266207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593918660777342558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c229e8425cf14606bac92561bbd7bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showTashkeel: 1
+  useHinduNumbers: 1
+  ignoreSelectedLanguage: 0
 --- !u!1 &655529593855973034
 GameObject:
   m_ObjectHideFlags: 0
@@ -9793,7 +9909,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &9187928496357095595
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9811,6 +9927,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9832,9 +9951,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
+  m_MaskInteraction: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -9866,7 +9987,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &671206282225585092
 GameObject:
   m_ObjectHideFlags: 0
@@ -9928,6 +10048,9 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9949,9 +10072,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1686027586167669766
 MonoBehaviour:
@@ -14793,7 +14918,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &203116023935955695
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -14811,6 +14936,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14832,9 +14960,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -14866,7 +14996,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &1009829552076230642
 GameObject:
   m_ObjectHideFlags: 0
@@ -14912,7 +15041,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d5a9af6c1b24427a03aca754eff254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCam: {fileID: 0}
   targetCam: {fileID: 0}
+  counterCameraTag: CounterCamera
 --- !u!1 &1603450649499395001
 GameObject:
   m_ObjectHideFlags: 0
@@ -14930,7 +15061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6984830972952650789
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15022,11 +15153,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5639328111985791018}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: -40, y: -160}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -80}
+  m_SizeDelta: {x: -100, y: 175}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1123538475735589935
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15048,7 +15179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.04, g: 0.12, b: 0.32, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15056,13 +15187,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 047f2d8d427cc9c46abf619fbc307746, type: 3}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 10007ef852b9c7347aeac1bd0a499a70, type: 3}
+    m_FontSize: 28
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 28
-    m_Alignment: 4
+    m_MaxSize: 30
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -15100,8 +15231,6 @@ MonoBehaviour:
   showTashkeel: 1
   useHinduNumbers: 1
   ignoreSelectedLanguage: 0
-  defaultFont: {fileID: 0}
-  isArabicFontApplied: 0
 --- !u!1 &1919708766871379509
 GameObject:
   m_ObjectHideFlags: 0
@@ -15129,7 +15258,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919708766871379509}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.4418868, y: 1.4418868, z: 1.4418868}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19962,7 +20091,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &8194228244575438103
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -19980,6 +20109,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20001,9 +20133,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -20035,7 +20169,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &2138371720448832143
 GameObject:
   m_ObjectHideFlags: 0
@@ -20066,16 +20199,19 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 793094397676513643}
+  - {fileID: 7081304718905836348}
   - {fileID: 7445730413657833862}
-  - {fileID: 2105160235959461446}
   - {fileID: 6984830972952650789}
+  - {fileID: 793094397676513643}
+  - {fileID: 5268569892274990013}
+  - {fileID: 3141811820573725534}
+  - {fileID: 9112026077581169263}
   m_Father: {fileID: 5056473592122092280}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 300}
+  m_SizeDelta: {x: 780, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7187485753935921476
 CanvasRenderer:
@@ -20098,15 +20234,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.9098039}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1798314756, guid: 94b97dd932bb1423ea219fbe286a8908, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 5804004237474404469, guid: 8c43edbb8eaaa7c429974e3f4a2111e5, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -20114,7 +20250,140 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 2.2325
+--- !u!1 &2266023449540937414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9112026077581169263}
+  - component: {fileID: 2984037652694314098}
+  - component: {fileID: 22204973148211202}
+  - component: {fileID: 5928710099192577002}
+  m_Layer: 0
+  m_Name: Continue Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9112026077581169263
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2266023449540937414}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2105160235959461446}
+  m_Father: {fileID: 5639328111985791018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 2}
+  m_SizeDelta: {x: 391.31146, y: 110}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2984037652694314098
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2266023449540937414}
+  m_CullTransparentMesh: 1
+--- !u!114 &22204973148211202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2266023449540937414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -6158696526684511695, guid: e227f381f03867f4a8ffc8a8579d1df0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5928710099192577002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2266023449540937414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 22204973148211202}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8165909531190629063}
+        m_TargetAssemblyTypeName: GameTutorialManager, Assembly-CSharp
+        m_MethodName: OnTutorialInstructionTapped
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2522270160050706165
 GameObject:
   m_ObjectHideFlags: 0
@@ -20160,7 +20429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d5a9af6c1b24427a03aca754eff254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCam: {fileID: 0}
   targetCam: {fileID: 0}
+  counterCameraTag: CounterCamera
 --- !u!1 &2906588252888503119
 GameObject:
   m_ObjectHideFlags: 0
@@ -24890,7 +25161,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &7669935971725190557
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -24908,6 +25179,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24929,9 +25203,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 1
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -24963,7 +25239,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &2921482313020659844
 GameObject:
   m_ObjectHideFlags: 0
@@ -25048,6 +25323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3689841495594080364}
   - component: {fileID: 8165909531190629063}
+  - component: {fileID: 5064795669650724208}
   m_Layer: 0
   m_Name: Tutorial Manager
   m_TagString: Untagged
@@ -25068,12 +25344,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8443921838008522252}
-  - {fileID: 4952003445050726262}
   - {fileID: 9088365707033707053}
   - {fileID: 3294622772211583733}
   - {fileID: 2347650466842572133}
+  - {fileID: 4952003445050726262}
   - {fileID: 5056473592122092280}
+  - {fileID: 8443921838008522252}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8165909531190629063
@@ -25096,26 +25372,114 @@ MonoBehaviour:
   overlayInstructionCntnr: {fileID: 5639328111985791018}
   overlayInstructionTxt: {fileID: 4233789548752662022}
   overlayInstructionTapPress: {fileID: 5716208126417999035}
+  overlayHeadingTxt: {fileID: 3042587724945801847}
+  overlayIconImg: {fileID: 5152664963420027830}
+  overlayInstructionTxt2: {fileID: 3867065684529579339}
   cutOutObjectParent: {fileID: 5056473592122092280}
   targetPointer: {fileID: 2921482313020659844}
   targetArrow: {fileID: 6640505480910352745}
+  navmeshPathDraw: {fileID: 0}
+  spawnEffect: {fileID: 0}
   tutorialAreas:
   - areadId: Controls
     tutorialHeading: Tutorial
     areaTutorialComplete: 0
     canShowAreaTutorial: 0
     isActionDependentTutorial: 0
+    highPriorityTutorial: 1
     tutorialTasks:
     - taskId: Control_T0
       taskHeading: Controls
       taskComplete: 0
       subTasks:
+      - subTaskId: Controls_T0_Intro
+        actionBtnId: 
+        taskInstruction: '<size=44><b>Welcome to The Banker: Locker Loot!</b></size>
+
+          Your
+          job is to manage the bank vault, organize lockers, store cash and valuables,
+          and keep the operation running smoothly.'
+        taskInstruction2: Unlock new locker sections, handle bigger deposits, and
+          grow your wealth as you progress through new levels.
+        questHeading: Tutorial
+        questInstruction: 
+        overlayTapInstruction: CONTINUE
+        overlayHeading: INTRODUCTION
+        overlayIcon: {fileID: -6157582428388939780, guid: 5618f7aebba3c8745911976e9008c515, type: 3}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 1
+        enableScreenTap: 1
+        fadeOverlayScreen: 1
+        displayOverlayInstruction: 1
+        updateQuestInstruction: 0
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Controls_T0_MoveInfo
+        actionBtnId: 
+        taskInstruction: '<size=44><b>Use your <color=#1E8E1E>left thumb</color>
+          to move</b></size>
+
+          Touch and drag on the left side of the screen
+          to walk around the vault.'
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: 
+        overlayTapInstruction: CONTINUE
+        overlayHeading: MOVEMENT
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 1
+        enableScreenTap: 1
+        fadeOverlayScreen: 1
+        displayOverlayInstruction: 1
+        updateQuestInstruction: 0
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
       - subTaskId: Controls_T0_Move
         actionBtnId: 
         taskInstruction: Use <color=#00FF00> Left thumb</color>to move around
+        taskInstruction2: 
         questHeading: Tutorial
         questInstruction: <color=#00FF00>Move Around</color> a bit
         overlayTapInstruction: 
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
         subTaskComplete: 0
         displayNavigationToTarget: 0
         displayUIOverlayScreen: 0
@@ -25128,18 +25492,68 @@ MonoBehaviour:
         isTapPressedAnim: 0
         unchildhandAnim: 0
         delayCutOut: 0
+        delayNavigate: 0
         dynamicBtnId: 
         dynamicItemId: 
+        dynamicParcelId: 
         taskTarget: {fileID: 0}
         btnToBeCutOut: {fileID: 0}
         subTaskUIObject: {fileID: 0}
         subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Controls_T0_LookInfo
+        actionBtnId: 
+        taskInstruction: '<size=44><b><color=#1E8E1E>Swipe</color> to look around</b></size>
+
+          Touch
+          and drag on the right side of the screen to look around and aim at what
+          you want to pick up.'
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: 
+        overlayTapInstruction: CONTINUE
+        overlayHeading: TOUCH
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 1
+        enableScreenTap: 1
+        fadeOverlayScreen: 1
+        displayOverlayInstruction: 1
+        updateQuestInstruction: 0
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
       - subTaskId: Controls_T0_Swipe
         actionBtnId: 
         taskInstruction: 
+        taskInstruction2: 
         questHeading: Tutorial
         questInstruction: <color=#00FF00>Look Around</color> a bit
         overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
         subTaskComplete: 0
         displayNavigationToTarget: 0
         displayUIOverlayScreen: 0
@@ -25152,20 +25566,540 @@ MonoBehaviour:
         isTapPressedAnim: 0
         unchildhandAnim: 0
         delayCutOut: 0
+        delayNavigate: 0
         dynamicBtnId: 
         dynamicItemId: 
+        dynamicParcelId: 
         taskTarget: {fileID: 0}
         btnToBeCutOut: {fileID: 0}
         subTaskUIObject: {fileID: 0}
         subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+  - areadId: Gameplay
+    tutorialHeading: Tutorial
+    areaTutorialComplete: 0
+    canShowAreaTutorial: 1
+    isActionDependentTutorial: 0
+    highPriorityTutorial: 1
+    tutorialTasks:
+    - taskId: Gameplay_T0
+      taskHeading: Gameplay
+      taskComplete: 0
+      subTasks:
+      - subTaskId: Gameplay_PickInfo
+        actionBtnId: 
+        taskInstruction: '<size=44><b>Pick the notes</b></size>
+
+          Aim at
+          a note in the stack and press the grab button on the right of the screen.'
+        taskInstruction2: 'Tap the button to grab <b>one</b> note.
+
+          <b>HOLD</b>
+          the button to grab many notes <b>very fast</b>!'
+        questHeading: Tutorial
+        questInstruction: 
+        overlayTapInstruction: CONTINUE
+        overlayHeading: NOTES
+        overlayIcon: {fileID: -6157582428388939780, guid: 5618f7aebba3c8745911976e9008c515, type: 3}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 1
+        enableScreenTap: 1
+        fadeOverlayScreen: 1
+        displayOverlayInstruction: 1
+        updateQuestInstruction: 0
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_Pick
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: Go to the <color=#00FF00>note stack</color>, aim at a note
+          and tap the grab button.
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 0
+        enableScreenTap: 0
+        fadeOverlayScreen: 0
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_PickHold
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: <color=#00FF00>HOLD</color> the grab button to pick many
+          notes very fast!
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 0
+        enableScreenTap: 0
+        fadeOverlayScreen: 0
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_Wash
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: Take the notes to the <color=#00FF00>washing machine</color>.
+          Aim at it and press the button to wash them.
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 0
+        enableScreenTap: 0
+        fadeOverlayScreen: 0
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_WashWait
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: Wait until the notes are <color=#00FF00>washed</color>...
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 0
+        enableScreenTap: 0
+        fadeOverlayScreen: 0
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_WashTake
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: Aim at the machine and press the pick button to take the
+          <color=#00FF00>washed notes</color>.
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 0
+        enableScreenTap: 0
+        fadeOverlayScreen: 0
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_CountInfo
+        actionBtnId: 
+        taskInstruction: '<size=44><b>Count your money</b></size>
+
+          The
+          counting machine counts only <b>washed</b> notes. Put the washed notes
+          in and it counts them for you.'
+        taskInstruction2: Its screen shows how many notes are inside and the <b>total
+          money</b>. Take the counted notes out when it is done.
+        questHeading: Tutorial
+        questInstruction: 
+        overlayTapInstruction: CONTINUE
+        overlayHeading: COUNTING MACHINE
+        overlayIcon: {fileID: -6157582428388939780, guid: 5618f7aebba3c8745911976e9008c515, type: 3}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 1
+        enableScreenTap: 1
+        fadeOverlayScreen: 1
+        displayOverlayInstruction: 1
+        updateQuestInstruction: 0
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_Count
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: Put the washed notes in the <color=#00FF00>counting machine</color>.
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 0
+        enableScreenTap: 0
+        fadeOverlayScreen: 0
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_CountTake
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: Wait for the count, then press the pick button to take
+          the notes out.
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 0
+        enableScreenTap: 0
+        fadeOverlayScreen: 0
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_Place
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: Carry the notes to the <color=#00FF00>table</color>. Tap
+          Place for one note or <color=#00FF00>HOLD</color> it to place many fast!
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 0
+        enableScreenTap: 0
+        fadeOverlayScreen: 0
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_Board
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: Walk to the <color=#00FF00>locker screen</color>. It shows
+          how much money each locker needs.
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 0
+        enableScreenTap: 0
+        fadeOverlayScreen: 0
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_Locker
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: Pick the notes from the table and place them in <color=#00FF00>locker
+          A01</color>. Hold the buttons to work fast!
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 0
+        enableScreenTap: 0
+        fadeOverlayScreen: 0
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_Done
+        actionBtnId: 
+        taskInstruction: '<size=44><b>You are ready!</b></size>
+
+          Fill every
+          locker with the exact money shown on the locker screen to complete the
+          level.'
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: 
+        overlayTapInstruction: CONTINUE
+        overlayHeading: WELL DONE
+        overlayIcon: {fileID: -6157582428388939780, guid: 5618f7aebba3c8745911976e9008c515, type: 3}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 1
+        enableScreenTap: 1
+        fadeOverlayScreen: 1
+        displayOverlayInstruction: 1
+        updateQuestInstruction: 0
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
   currentArea:
     areadId: 
     tutorialHeading: 
     areaTutorialComplete: 0
     canShowAreaTutorial: 0
     isActionDependentTutorial: 0
+    highPriorityTutorial: 1
     tutorialTasks: []
   isTutorialComplete: 0
+--- !u!114 &5064795669650724208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3042078495169126198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b61b0e6f83a6eea44b14811ed47657fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStepDirector
+  handRoot: {fileID: 8443921838008522252}
+  handAnimator: {fileID: 6945996550602466612}
+  handOffset: {x: 0, y: 0}
+  moveDistance: 1.5
+  fastPickCount: 5
+  boardDistance: 6
+  pointerScale: 0.3
+  arrowHideDistance: 1.8
+  pointerHeight: 0.2
+  maxArrowTop: 2.7
 --- !u!1 &3913870516613700447
 GameObject:
   m_ObjectHideFlags: 0
@@ -29952,7 +30886,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &6945985242039723725
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -29970,6 +30904,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -29991,9 +30928,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
+  m_MaskInteraction: 0
   m_RenderMode: 1
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -30025,7 +30964,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &4012256778660366872
 GameObject:
   m_ObjectHideFlags: 0
@@ -30094,6 +31032,81 @@ MonoBehaviour:
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4307629583878787123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7081304718905836348}
+  - component: {fileID: 1864036593074661095}
+  - component: {fileID: 1029866948010284958}
+  m_Layer: 0
+  m_Name: Title Plate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7081304718905836348
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4307629583878787123}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5639328111985791018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -6}
+  m_SizeDelta: {x: 400, y: 97.95918}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1864036593074661095
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4307629583878787123}
+  m_CullTransparentMesh: 1
+--- !u!114 &1029866948010284958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4307629583878787123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 200392633122980083, guid: f139bbfcab85a6642ae2c20877fed363, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -34869,7 +35882,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &3384017783306891063
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -34887,6 +35900,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -34908,9 +35924,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -34942,7 +35960,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &4602785319327019953
 GameObject:
   m_ObjectHideFlags: 0
@@ -39765,7 +40782,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &7963394476662166640
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -39783,6 +40800,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -39804,9 +40824,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -39838,7 +40860,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &4834958279349364506
 GameObject:
   m_ObjectHideFlags: 0
@@ -44570,7 +45591,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &1341043910194845934
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -44588,6 +45609,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -44609,9 +45633,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -44643,7 +45669,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &5718607524988004784
 GameObject:
   m_ObjectHideFlags: 0
@@ -44678,11 +45703,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5639328111985791018}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: 0, y: 50}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -6}
+  m_SizeDelta: {x: 380, y: 80}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4409813405828376402
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -44704,7 +45729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9921569, g: 0.8352942, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -44712,19 +45737,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 047f2d8d427cc9c46abf619fbc307746, type: 3}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 10007ef852b9c7347aeac1bd0a499a70, type: 3}
+    m_FontSize: 46
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 30
+    m_MaxSize: 46
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Instructions
+  m_Text: INTRODUCTION
 --- !u!114 &8407430867703776612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44738,9 +45763,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
-  textToDisplay: 
+  textToDisplay: INTRODUCTION
   callbackCounter: 0
-  isInitialized: 0
+  isInitialized: 1
 --- !u!114 &500140126320060440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44756,8 +45781,6 @@ MonoBehaviour:
   showTashkeel: 1
   useHinduNumbers: 1
   ignoreSelectedLanguage: 0
-  defaultFont: {fileID: 0}
-  isArabicFontApplied: 0
 --- !u!1 &6640505480910352745
 GameObject:
   m_ObjectHideFlags: 0
@@ -44819,10 +45842,13 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e29c056d4140447b3b3649097e234a84, type: 2}
+  - {fileID: 2100000, guid: 2f8b8478ef8ece044ab3983d47575394, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -44840,9 +45866,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2291306368648304694
 MonoBehaviour:
@@ -49518,7 +50546,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &3061564938623387373
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -49536,6 +50564,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -49557,9 +50588,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -49591,7 +50624,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &7162021904619506859
 GameObject:
   m_ObjectHideFlags: 0
@@ -49658,10 +50690,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2ebaab569c835458ade76dc8293c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerRelatedTo: 1
-  areaId: Room_1
-  taskId: R1_Enter
-  subTaskId: R1_Enter_S0
+  tutorialIndex: 0
+--- !u!1 &7324131644162293944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2503999906068737167}
+  - component: {fileID: 1721693728908301591}
+  - component: {fileID: 5624797024682390669}
+  m_Layer: 0
+  m_Name: Divider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2503999906068737167
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324131644162293944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3141811820573725534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -6}
+  m_SizeDelta: {x: 660, y: 6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1721693728908301591
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324131644162293944}
+  m_CullTransparentMesh: 1
+--- !u!114 &5624797024682390669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324131644162293944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 7411251675368000849, guid: 76b334fe4d132b14996ff3866db554db, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7450436380032619357
 GameObject:
   m_ObjectHideFlags: 0
@@ -49750,12 +50854,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5639328111985791018}
+  m_Father: {fileID: 9112026077581169263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: -40, y: 40}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 8}
+  m_SizeDelta: {x: -40, y: -16}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4548228254217457661
 CanvasRenderer:
@@ -49778,27 +50882,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 047f2d8d427cc9c46abf619fbc307746, type: 3}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 10007ef852b9c7347aeac1bd0a499a70, type: 3}
+    m_FontSize: 52
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 30
+    m_MinSize: 14
+    m_MaxSize: 54
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: CONTINUE
 --- !u!114 &2190612106536272652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49812,9 +50916,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
-  textToDisplay: 
+  textToDisplay: CONTINUE
   callbackCounter: 0
-  isInitialized: 0
+  isInitialized: 1
 --- !u!114 &3283372962601518613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49830,8 +50934,82 @@ MonoBehaviour:
   showTashkeel: 1
   useHinduNumbers: 1
   ignoreSelectedLanguage: 0
-  defaultFont: {fileID: 0}
-  isArabicFontApplied: 0
+--- !u!1 &7469347057559393609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3141811820573725534}
+  - component: {fileID: 5258869195329077344}
+  - component: {fileID: 5152664963420027830}
+  m_Layer: 0
+  m_Name: Overlay Icon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3141811820573725534
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469347057559393609}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2503999906068737167}
+  m_Father: {fileID: 5639328111985791018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -300}
+  m_SizeDelta: {x: 186.59793, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5258869195329077344
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469347057559393609}
+  m_CullTransparentMesh: 1
+--- !u!114 &5152664963420027830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469347057559393609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -6157582428388939780, guid: 5618f7aebba3c8745911976e9008c515, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7800403414111291237
 GameObject:
   m_ObjectHideFlags: 0
@@ -54618,7 +55796,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &1196130422325768587
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -54636,6 +55814,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -54657,9 +55838,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
+  m_MaskInteraction: 0
   m_RenderMode: 1
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -54691,7 +55874,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &7902253509976343435
 GameObject:
   m_ObjectHideFlags: 0
@@ -59421,7 +60603,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &2067364070893042293
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -59439,6 +60621,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -59460,9 +60645,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 1
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -59494,7 +60681,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &8361900741279800134
 GameObject:
   m_ObjectHideFlags: 0
@@ -59522,8 +60708,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8361900741279800134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 999}
-  m_LocalScale: {x: 1.4418868, y: 1.4418868, z: 1.4418868}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3689841495594080364}
@@ -59531,7 +60717,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1351.9637, y: 960.0252}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6009482703567900012
 CanvasRenderer:
@@ -59554,8 +60740,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -59652,8 +60838,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9127631647716394989}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 999}
-  m_LocalScale: {x: 1.4418868, y: 1.4418868, z: 1.4418868}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 628804972909154913}
@@ -59664,7 +60850,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1351.9637, y: 960.0252}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6676123492173984632
 MonoBehaviour:

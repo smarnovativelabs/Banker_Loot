@@ -25,6 +25,9 @@ public class NotePlacementHud : MonoBehaviour
     [Tooltip("Radial filled image inside the container")]
     public Image holdFillImage;
 
+    /// <summary>Set by the tutorial while its hand points at the Place button, so the button is on screen to be pressed.</summary>
+    public static bool ForceVisible;
+
     CanvasGroup group;
 
     void Awake()
@@ -102,7 +105,7 @@ public class NotePlacementHud : MonoBehaviour
         var _manager = NotePlacementManager.instance;
         UpdateHoldCircle(_manager);
         // the preview is hidden for a frame after each placement, the panel must keep receiving the held press
-        bool _show = _manager != null && (_manager.IsPreviewing || _manager.IsPlaceHeld);
+        bool _show = ForceVisible || (_manager != null && (_manager.IsPreviewing || _manager.IsPlaceHeld));
         SetVisible(_show);
         if (_show && placeButton != null && placeButton.targetGraphic != null)
         {

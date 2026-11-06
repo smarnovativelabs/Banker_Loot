@@ -15,6 +15,9 @@ public class CurrencyInteractButton : MonoBehaviour, IPointerDownHandler, IPoint
     public Sprite throwSprite;
     public Text countText;
 
+    /// <summary>Set by the tutorial while its hand points at this button, so the button is on screen to be pressed.</summary>
+    public static bool ForceVisible;
+
     CanvasGroup group;
     bool pressed;
 
@@ -43,7 +46,7 @@ public class CurrencyInteractButton : MonoBehaviour, IPointerDownHandler, IPoint
         // never shown together with the generic interact button: this one owns "aiming at a note" and "carrying
         // notes", the generic one owns everything else (including a carried non-note item)
         bool _carryingOtherItem = GameController.instance != null && GameController.instance.currentPicketItem != null;
-        bool _show = _hovered != null || (!_carryingOtherItem && (_manager.HeldCount > 0 || _manager.IsInteractHeld));
+        bool _show = ForceVisible || _hovered != null || (!_carryingOtherItem && (_manager.HeldCount > 0 || _manager.IsInteractHeld));
         SetVisible(_show);
 
         if (icon != null)

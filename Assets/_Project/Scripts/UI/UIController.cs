@@ -52,6 +52,16 @@ public class UIController : MonoBehaviour
     public Text notificationText;
     public bool questDisplayed = false;
 
+    [Header("-----------------------> Tutorial UI")]
+    [Tooltip("The tutorial panels (dim overlay, instruction panel, hand) are moved under this object when the tutorial starts, so they are drawn in this canvas. Use the HUD root so they cover the whole screen.")]
+    public RectTransform tutorialUiParent;
+
+    [Header("-----------------------> Tutorial Box (side instruction container)")]
+    [Tooltip("Tutorial instructions are shown here when assigned, the notification popup is only used for the short game messages then")]
+    public GameObject tutorialBox;
+    public Text tutorialHeadingText;
+    public Text tutorialMessageText;
+
     [Header("-----------------------> Level Complete")]
     [Tooltip("Opened by the LockerManager when every locker is complete")]
     public LevelCompletePanel levelCompletePanel;
@@ -98,6 +108,10 @@ public class UIController : MonoBehaviour
         if (notificationPopupPanel != null)
         {
             notificationPopupPanel.SetActive(false);
+        }
+        if (tutorialBox != null)
+        {
+            tutorialBox.SetActive(false);
         }
         SetPlayerCurrency();
         BlitzText.text = PlayerDataManager.instance.playerData.playerBlitz.ToString();
@@ -409,6 +423,19 @@ public class UIController : MonoBehaviour
     /// <summary>Tutorial instructions use the notification popup and stay until removed.</summary>
     public void DisplayQuestInstruction(string _instruction, string _heading, bool _show, bool _displayOnTop, bool _instantDisplay)
     {
+        if (tutorialBox != null)
+        {
+            // the side tutorial box has its own heading line, so the game messages popup stays free
+            var _slide = tutorialBox.GetComponent<TutorialBoxSlide>();
+            if (_slide != null)
+                _slide.Show();
+            else
+                tutorialBox.SetActive(true);
+            if (tutorialHeadingText != null)
+                SetText(tutorialHeadingText, string.IsNullOrEmpty(_heading) ? "Tutorial" : _heading);
+            SetText(tutorialMessageText, _instruction);
+            return;
+        }
         if (notificationPopupPanel == null)
             return;
         questDisplayed = true;
@@ -418,6 +445,15 @@ public class UIController : MonoBehaviour
 
     public void RemoveQuestInstruction()
     {
+        if (tutorialBox != null)
+        {
+            var _slide = tutorialBox.GetComponent<TutorialBoxSlide>();
+            if (_slide != null)
+                _slide.Hide();
+            else
+                tutorialBox.SetActive(false);
+            return;
+        }
         questDisplayed = false;
         if (notificationPopupPanel != null && !notificationRoutineRunning)
         {

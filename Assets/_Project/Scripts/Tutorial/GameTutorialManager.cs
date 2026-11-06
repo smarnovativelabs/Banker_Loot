@@ -17,6 +17,12 @@ public class GameTutorialManager : MonoBehaviour
     public RectTransform overlayInstructionCntnr;
     public Text overlayInstructionTxt;
     public Text overlayInstructionTapPress;
+    [Tooltip("Optional: heading of the instruction panel (INTRODUCTION, CONTROLS...), set from the sub task's Overlay Heading")]
+    public Text overlayHeadingTxt;
+    [Tooltip("Optional: picture of the instruction panel, set from the sub task's Overlay Icon")]
+    public Image overlayIconImg;
+    [Tooltip("Optional: second paragraph under the picture, set from the sub task's Task Instruction 2")]
+    public Text overlayInstructionTxt2;
     public Transform cutOutObjectParent;
 
     public GameObject targetPointer;
@@ -43,6 +49,7 @@ public class GameTutorialManager : MonoBehaviour
     #endregion
    
     public AreaTutorials currentArea;
+    Material dimMaskMaterial;
     bool isDataInitialized;
     public bool isTutorialComplete = false;
     private const string DataResetKey = "DataResetDone";
@@ -52,8 +59,58 @@ public class GameTutorialManager : MonoBehaviour
     }
 
     #region Initialization
+    /// <summary>Moves the tutorial panels into the HUD canvas (UIController.tutorialUiParent) so they are part of the game UI.</summary>
+    void AttachUiToHud()
+    {
+        if (UIController.instance == null || UIController.instance.tutorialUiParent == null)
+            return;
+        var _parent = UIController.instance.tutorialUiParent;
+        // the cut out and the hand are children of these two, they move along
+        MoveToHud(overlayTapPanel != null ? overlayTapPanel.transform : null, _parent);
+        MoveToHud(cutOutObjectParent, _parent);
+        MoveToHud(animHandObj != null ? animHandObj.transform : null, _parent);
+    }
+
+    /// <summary>Scales the instruction panel down when the screen (safe area) is too small for it, so it is never cut off.</summary>
+    void FitInstructionPanel()
+    {
+        var _panel = overlayInstructionCntnr;
+        var _area = _panel != null ? _panel.parent as RectTransform : null;
+        if (_area == null)
+            return;
+        // the title plate and the continue button stick out of the panel on top and bottom
+        float _needWidth = _panel.sizeDelta.x + 80f;
+        float _needHeight = _panel.sizeDelta.y + 180f;
+        float _scale = Mathf.Min(1f, _area.rect.width / _needWidth, _area.rect.height / _needHeight);
+        _panel.localScale = Vector3.one * Mathf.Max(0.3f, _scale);
+    }
+
+    static void MoveToHud(Transform _panel, RectTransform _parent)
+    {
+        if (_panel == null || _panel.parent == _parent)
+            return;
+        _panel.SetParent(_parent, false);
+        _panel.SetAsLastSibling();
+        var _rect = _panel as RectTransform;
+        if (_rect != null && _rect.anchorMin == Vector2.zero && _rect.anchorMax == Vector2.one)
+        {
+            // the HUD safe area object is bigger than its anchors by its size delta, so inset by that to match
+            // the real safe area exactly (the panels must not reach under the notch or off the screen)
+            var _size = _parent.sizeDelta;
+            var _pivot = _parent.pivot;
+            _rect.offsetMin = new Vector2(_size.x * _pivot.x, _size.y * _pivot.y);
+            _rect.offsetMax = new Vector2(-_size.x * (1f - _pivot.x), -_size.y * (1f - _pivot.y));
+        }
+        _panel.localScale = Vector3.one;
+        // the old overlay sat far in front of a camera, inside an overlay canvas that z is outside the view and nothing is drawn
+        var _local = _panel.localPosition;
+        _local.z = 0f;
+        _panel.localPosition = _local;
+    }
+
     public IEnumerator InitializeTutorial()
     {
+        AttachUiToHud();
         // ✅ STEP 3: Set up new tutorial
         tutorialOverlayPanel.SetActive(false);
         cutOutObject.gameObject.SetActive(false);
@@ -486,14 +543,50 @@ public class GameTutorialManager : MonoBehaviour
         CheckToDisplayTutorial();
     }
 
+    /// <summary>The sub task that is on screen right now (null between steps and when the tutorial is over).</summary>
+    public TutorialSubTask CurrentSubTask { get; private set; }
+    /// <summary>Raised when a sub task is about to be shown, before its targets are used. The director assigns targets here.</summary>
+    public static event Action<TutorialSubTask> SubTaskDisplayed;
+
     public void DisplaySubTask(TutorialSubTask _subTask)
     {
+        CurrentSubTask = _subTask;
+        SubTaskDisplayed?.Invoke(_subTask);
         Debug.Log("isssssssssssssssssss");
         tutorialOverlayPanel.SetActive(_subTask.displayUIOverlayScreen);
         overlayTapPanel.SetActive(_subTask.enableScreenTap);
         overlayInstructionCntnr.gameObject.SetActive(_subTask.displayOverlayInstruction);
+        if (_subTask.displayOverlayInstruction)
+            FitInstructionPanel();
         overlayInstructionTxt.GetComponent<LocalizeText>().UpdateText(_subTask.taskInstruction);
         overlayInstructionTapPress.GetComponent<LocalizeText>().UpdateText(_subTask.overlayTapInstruction);
+        if (overlayHeadingTxt != null && !string.IsNullOrEmpty(_subTask.overlayHeading))
+        {
+            var _headingLocalize = overlayHeadingTxt.GetComponent<LocalizeText>();
+            if (_headingLocalize != null)
+                _headingLocalize.UpdateText(_subTask.overlayHeading);
+            else
+                overlayHeadingTxt.text = _subTask.overlayHeading;
+        }
+        if (overlayInstructionTxt2 != null)
+        {
+            bool _hasSecond = !string.IsNullOrEmpty(_subTask.taskInstruction2);
+            overlayInstructionTxt2.gameObject.SetActive(_hasSecond);
+            if (_hasSecond)
+            {
+                var _secondLocalize = overlayInstructionTxt2.GetComponent<LocalizeText>();
+                if (_secondLocalize != null)
+                    _secondLocalize.UpdateText(_subTask.taskInstruction2);
+                else
+                    overlayInstructionTxt2.text = _subTask.taskInstruction2;
+            }
+        }
+        if (overlayIconImg != null)
+        {
+            overlayIconImg.gameObject.SetActive(_subTask.overlayIcon != null);
+            if (_subTask.overlayIcon != null)
+                overlayIconImg.sprite = _subTask.overlayIcon;
+        }
         if (_subTask.subTaskUIObject != null)
         {
             _subTask.subTaskUIObject.SetActive(true);
@@ -692,23 +785,32 @@ public class GameTutorialManager : MonoBehaviour
         {
             Color _color = Color.black;
             _color.a = _subTask.fadeOverlayScreen ? 0.6f : 0f;
-            tutorialOverlayPanel.GetComponent<Image>().color = _color;
-            if (_subTask.delayCutOut)
+            var _dimImage = tutorialOverlayPanel.GetComponent<Image>();
+            _dimImage.color = _color;
+            // the mask material is only needed to cut a hole for a button, an instruction panel gets a plain see-through dim
+            if (dimMaskMaterial == null && _dimImage.material != null && _dimImage.material != _dimImage.defaultMaterial)
+                dimMaskMaterial = _dimImage.material;
+            _dimImage.material = _subTask.btnToBeCutOut != null ? dimMaskMaterial : null;
+            // a sub task without a button to cut out only dims the screen (instruction panels)
+            if (_subTask.btnToBeCutOut != null)
             {
-                if (delayedCutout != null)
+                if (_subTask.delayCutOut)
                 {
-                    StopCoroutine(delayedCutout);
-                }
-                delayedCutout = StartCoroutine("SetDelayedCutoutTarget", (_subTask.btnToBeCutOut.GetComponent<RectTransform>()));
+                    if (delayedCutout != null)
+                    {
+                        StopCoroutine(delayedCutout);
+                    }
+                    delayedCutout = StartCoroutine("SetDelayedCutoutTarget", (_subTask.btnToBeCutOut.GetComponent<RectTransform>()));
 
-            }
-            else
-            {
-                SetCutOutImageToTarget(_subTask.btnToBeCutOut.GetComponent<RectTransform>());
+                }
+                else
+                {
+                    SetCutOutImageToTarget(_subTask.btnToBeCutOut.GetComponent<RectTransform>());
+                }
             }
 
         }
-        if (_subTask.displayHandAnim)
+        if (_subTask.displayHandAnim && _subTask.btnToBeCutOut != null)
         {
             string _anim = (_subTask.isTapPressedAnim ? "Tap" : "Point");
             animHandObj.gameObject.SetActive(true);
@@ -995,6 +1097,8 @@ public class GameTutorialManager : MonoBehaviour
 
                         //GameManager.instance.CallFireBase(_currentArea.areadId + i.ToString() + "_" + j.ToString());
                         _currentArea.tutorialTasks[i].subTasks[j].subTaskComplete = true;
+                        if (CurrentSubTask == _currentArea.tutorialTasks[i].subTasks[j])
+                            CurrentSubTask = null;
                         if (_currentArea.tutorialTasks[i].subTasks[j].isDrawPath)
 
                         {
@@ -1431,9 +1535,15 @@ public class TutorialSubTask
     public string subTaskId;
     public string actionBtnId;
     public string taskInstruction;
+    [Tooltip("Second paragraph of the instruction panel, shown under the picture (empty hides it)")]
+    [TextArea] public string taskInstruction2;
     public string questHeading = "Tutorial";
     public string questInstruction;
     public string overlayTapInstruction = "Tap To Continue";
+    [Tooltip("Heading of the instruction panel (empty keeps the heading as it is)")]
+    public string overlayHeading;
+    [Tooltip("Picture of the instruction panel (empty hides the picture)")]
+    public Sprite overlayIcon;
     public bool subTaskComplete;
     public bool displayNavigationToTarget;
     public bool displayUIOverlayScreen;
