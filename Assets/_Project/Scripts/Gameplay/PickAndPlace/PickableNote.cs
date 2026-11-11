@@ -248,14 +248,18 @@ public class PickableNote : PickableItem
             var _other = _hits[i].attachedRigidbody;
             if (_other != null && _other != body)
             {
-                // a resting heap note is kinematic: it becomes a normal body so it falls when its support is gone
+                // a resting heap note is kinematic: only the notes lying ON this one become normal bodies, so they fall
+                // when their support is gone (the notes beside or below it stay at rest, the pile is not woken up)
                 if (_other.isKinematic)
                 {
                     var _otherNote = _other.GetComponent<PickableNote>();
-                    if (_otherNote != null && !_otherNote.isPlayerPicked && _otherNote.GetComponent<PlacedNote>() == null)
+                    bool _above = _other.position.y > transform.position.y + 0.0005f;
+                    if (_otherNote != null && _above && !_otherNote.isPlayerPicked && _otherNote.GetComponent<PlacedNote>() == null)
                     {
                         _other.isKinematic = false;
+                        _other.WakeUp();
                     }
+                    continue;
                 }
                 _other.WakeUp();
             }

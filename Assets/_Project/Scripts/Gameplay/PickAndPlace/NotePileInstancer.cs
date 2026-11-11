@@ -14,6 +14,12 @@ public class NotePileInstancer : MonoBehaviour
 {
     [Tooltip("Seconds between two checks for notes that came to rest or started moving")]
     public float scanInterval = 0.15f;
+    [Tooltip("A falling or thrown note slower than this (m/s) counts as calm")]
+    public float calmSpeed = 0.08f;
+    [Tooltip("Spin slower than this (rad/s) counts as calm")]
+    public float calmAngularSpeed = 1.2f;
+    [Tooltip("Seconds a note must stay calm before it is frozen and drawn with the pile again")]
+    public float calmTime = 0.4f;
     [Tooltip("Instances per draw call")]
     public int chunkSize = 500;
 
@@ -27,6 +33,7 @@ public class NotePileInstancer : MonoBehaviour
         public bool instanced;
         public Group group;
         public Matrix4x4 matrix;
+        public float calmTime;
     }
 
     class Group
@@ -150,6 +157,7 @@ public class NotePileInstancer : MonoBehaviour
         {
             if (_t.note == null || _t.renderer == null)
                 continue;
+            FreezeWhenCalm(_t);
             bool _rest = CanInstance(_t);
             if (_rest && !_t.instanced)
             {
@@ -159,6 +167,35 @@ public class NotePileInstancer : MonoBehaviour
             {
                 Activate(_t);
             }
+        }
+    }
+
+    /// <summary>
+    /// A note that fell (its support was picked) or was thrown and now hardly moves is frozen again (kinematic), like the
+    /// notes of the pile. Touching notes never fall fully asleep, so waiting for sleep would keep them out of the batches.
+    /// </summary>
+    void FreezeWhenCalm(Tracked _t)
+    {
+        var _body = _t.body;
+        if (_body == null || _body.isKinematic || _t.note.isPlayerPicked || _t.note.transform.parent != heapRoot)
+        {
+            _t.calmTime = 0f;
+            return;
+        }
+        if (_body.linearVelocity.sqrMagnitude < calmSpeed * calmSpeed && _body.angularVelocity.sqrMagnitude < calmAngularSpeed * calmAngularSpeed)
+        {
+            _t.calmTime += scanInterval;
+            if (_t.calmTime >= calmTime && _t.note.GetComponent<PlacedNote>() == null)
+            {
+                _body.linearVelocity = Vector3.zero;
+                _body.angularVelocity = Vector3.zero;
+                _body.isKinematic = true;
+                _t.calmTime = 0f;
+            }
+        }
+        else
+        {
+            _t.calmTime = 0f;
         }
     }
 
