@@ -57,13 +57,43 @@ public class TutorialStepDirector : MonoBehaviour
     bool sawBusy;
     int placedBaseline;
 
+    static TutorialStepDirector active;
+    static readonly string[] StepOrder =
+    {
+        "Controls_T0_Intro", "Gameplay_PickInfo", "Gameplay_Pick", "Gameplay_PickHold", "Gameplay_Wash", "Gameplay_WashWait",
+        "Gameplay_WashTake", "Gameplay_CountInfo", "Gameplay_Count", "Gameplay_CountTake", "Gameplay_Board", "Gameplay_BoardInfo",
+        "Gameplay_Locker", "Gameplay_Done"
+    };
+
+    /// <summary>
+    /// While the tutorial runs, the washing / counting machine cannot be used before its step. Returns true (and tells
+    /// the player to follow the tutorial) when the machine is not allowed yet; the caller must then skip the interaction.
+    /// </summary>
+    public static bool BlocksMachine(object _machine)
+    {
+        if (active == null || string.IsNullOrEmpty(active.stepId))
+            return false;
+        string _firstStep = _machine is WashingMachine ? "Gameplay_Wash" : _machine is CashCountingMachine ? "Gameplay_Count" : null;
+        if (_firstStep == null)
+            return false;
+        int _now = System.Array.IndexOf(StepOrder, active.stepId);
+        if (_now >= System.Array.IndexOf(StepOrder, _firstStep))
+            return false;
+        if (UIController.instance != null)
+            UIController.instance.DisplayInstructions("Follow Tutorial instructions");
+        return true;
+    }
+
     void OnEnable()
     {
+        active = this;
         GameTutorialManager.SubTaskDisplayed += OnStepDisplayed;
     }
 
     void OnDisable()
     {
+        if (active == this)
+            active = null;
         GameTutorialManager.SubTaskDisplayed -= OnStepDisplayed;
         ClearHelpers();
     }
@@ -304,7 +334,12 @@ public class TutorialStepDirector : MonoBehaviour
         {
             var _placer = NotePlacementManager.instance;
             NotePlacementHud.ForceVisible = false;
-            if (_placer == null || !(_placer.IsPreviewing || _placer.IsPlaceHeld))
+            // only while aiming at the surface of this step (locker A01), not the table or other lockers
+            NotePlaceSurface _wanted = stepId == "Gameplay_Locker" ? lockerSurface : table;
+            bool _onWanted = _placer != null && _wanted != null
+                && (_placer.PreviewSurface == _wanted || (_placer.IsPlaceHeld && _placer.PreviewSurface == null && handWasOnWanted));
+            handWasOnWanted = _onWanted || (_placer != null && _placer.IsPlaceHeld && handWasOnWanted);
+            if (!_onWanted)
                 _target = null;
         }
         // the grab button hand is shown only while a note is aimed at (the button itself shows then too)
@@ -312,10 +347,32 @@ public class TutorialStepDirector : MonoBehaviour
         if (_target != null && (_isPick || _target == CurrencyButtonRect()))
         {
             var _pickup = NotePickupManager.instance;
-            // aimed at a note, or at a machine that takes the carried notes (washing / counting machine)
+            // each step shows the hand only while the player aims at ITS object:
+            // pick steps -> a note; wash steps -> the washing machine; count steps -> the counting machine
+            // (putting notes in also needs notes in hand)
             var _player = FindFirstObjectByType<PlayerInteraction>();
-            bool _atMachine = _player != null && _player.currentInteractingObj is ICarryInteractable;
-            bool _aimed = _pickup != null && (_pickup.HoveredNote != null || _pickup.IsInteractHeld || _atMachine);
+            var _aimObj = _player != null ? _player.currentInteractingObj as MonoBehaviour : null;
+            bool _holdingNotes = _pickup != null && _pickup.HeldCount > 0;
+            bool _aimed = false;
+            switch (stepId)
+            {
+                case "Gameplay_Pick":
+                case "Gameplay_PickHold":
+                    _aimed = _pickup != null && (_pickup.HoveredNote != null || _pickup.IsInteractHeld);
+                    break;
+                case "Gameplay_Wash":
+                    _aimed = _holdingNotes && washer != null && _aimObj == washer;
+                    break;
+                case "Gameplay_WashTake":
+                    _aimed = washer != null && _aimObj == washer;
+                    break;
+                case "Gameplay_Count":
+                    _aimed = _holdingNotes && counter != null && _aimObj == counter;
+                    break;
+                case "Gameplay_CountTake":
+                    _aimed = counter != null && _aimObj == counter;
+                    break;
+            }
             CurrencyInteractButton.ForceVisible = false;
             if (!_aimed)
                 _target = null;
@@ -346,6 +403,7 @@ public class TutorialStepDirector : MonoBehaviour
         }
     }
 
+    bool handWasOnWanted;   // the preview hides for a frame after each placement while Place is held
     Image holdRipple;
     Text holdLabel;
 

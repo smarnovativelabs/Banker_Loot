@@ -212,7 +212,8 @@ public class NotePickupManager : MonoBehaviour
         var _player = PlayerInteraction.instance;
         if (_player != null && _player.currentInteractingObj is ICarryInteractable _machine)
         {
-            _machine.OnInteract();
+            if (!TutorialStepDirector.BlocksMachine(_machine))
+                _machine.OnInteract();
             return;
         }
 

@@ -114,6 +114,8 @@ public class PlayerInteraction : MonoBehaviour
         }
         if (currentInteractingObj != null)
         {
+            if (TutorialStepDirector.BlocksMachine(currentInteractingObj))
+                return;
             currentInteractingObj.OnInteract();
         }
     }

@@ -67,6 +67,8 @@ public class NotePlacementManager : MonoBehaviour
     PlacedNote holdAnchor;
 
     public bool IsPlaceHeld => placeHeld;
+    /// <summary>The surface the preview is currently aimed at (null when not previewing).</summary>
+    public NotePlaceSurface PreviewSurface => previewing ? previewSurface : null;
     /// <summary>0..1 while the Place button is held and the repeat has not started yet, otherwise 0.</summary>
     public float HoldProgress => IsHoldCharging ? Mathf.Clamp01((Time.time - placeDownTime - tapTime) / Mathf.Max(0.01f, holdDelay - tapTime)) : 0f;
     /// <summary>True from the moment the press is no longer a tap until the repeat starts, this is when the circle shows.</summary>
