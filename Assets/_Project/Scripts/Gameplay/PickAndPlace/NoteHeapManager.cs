@@ -35,6 +35,10 @@ public class NoteHeapManager : MonoBehaviour
     [Header("Heap")]
     [Tooltip("Fallback only: the heap point normally comes from the LevelData's Heap Point Prefab, which is spawned at runtime. Heap notes are parented to the point (also the thrown ones).")]
     public Transform heapRoot;
+    [Tooltip("Size of the spawn circle: radius = note size x sqrt(note count) x this. Smaller = a tighter, taller pile (keeps notes away from tables).")]
+    [Range(0.1f, 0.6f)] public float spreadFactor = 0.35f;
+    [Tooltip("Largest radius (meters) of the spawn circle, 0 = no limit")]
+    public float maxSpread = 0f;
     [Tooltip("The floor is searched for from this far above the heap root")]
     public float liftHeight = 0.5f;
     [Tooltip("Notes already under the heap root are removed when the game starts, the manager spawns the heap itself")]
@@ -236,7 +240,9 @@ public class NoteHeapManager : MonoBehaviour
             GetFootprint(_prefab, out float _radius, out float _thickness);
 
             // the pile widens with the amount of notes, so it grows in layers instead of one tall column
-            float _spread = _radius * Mathf.Sqrt(_queue.Count) * 0.5f;
+            float _spread = _radius * Mathf.Sqrt(_queue.Count) * spreadFactor;
+            if (maxSpread > 0f)
+                _spread = Mathf.Min(_spread, maxSpread);
             Vector2 _flat = Random.insideUnitCircle * _spread;
             float _x = heapRoot.position.x + _flat.x;
             float _z = heapRoot.position.z + _flat.y;
