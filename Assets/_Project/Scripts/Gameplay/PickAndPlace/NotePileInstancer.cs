@@ -102,11 +102,11 @@ public class NotePileInstancer : MonoBehaviour
         // the note that is aimed at must be drawn by its own renderer (the outline needs it), also between two scans
         var _pickup = NotePickupManager.instance;
         var _hovered = _pickup != null ? _pickup.HoveredNote : null;
-        if (_hovered != null && tracked.TryGetValue(_hovered, out Tracked _hoverTracked) && _hoverTracked.instanced)
+        if (_hovered != null)
         {
-            Activate(_hoverTracked);
-            if (_hoverTracked.group != null)
-                _hoverTracked.group.dirty = true;
+            ActivateNow(_hovered);
+            // aiming at any note of a tower highlights the top note of that tower
+            ActivateNow(NotePickupManager.ResolvePickTarget(_hovered));
         }
 
         if (Time.unscaledTime >= nextScan)
@@ -116,6 +116,14 @@ public class NotePileInstancer : MonoBehaviour
         }
         RebuildDirty();
         Draw();
+    }
+
+    void ActivateNow(PickableNote _note)
+    {
+        if (_note != null && tracked.TryGetValue(_note, out Tracked _tracked) && _tracked.instanced)
+        {
+            Activate(_tracked);
+        }
     }
 
     #region Scan
@@ -227,15 +235,25 @@ public class NotePileInstancer : MonoBehaviour
             return false;
         if (_note.isPlayerPicked || _note.IsGlowing)
             return false;
-        // resting: a kinematic heap note, or a falling body that came to sleep
-        if (!_t.body.isKinematic && !_t.body.IsSleeping())
-            return false;
         if (_t.outline != null && _t.outline.enabled)
             return false;
-        if (_note.transform.parent != heapRoot)
+
+        var _placed = _note.GetComponent<PlacedNote>();
+        if (_placed != null)
+        {
+            // a note lying on a table or in a locker: drawn with the others once it has settled on its spot
+            if (_placed.pickedUp || _placed.surface == null || !_t.body.isKinematic)
+                return false;
+            if ((_note.transform.position - _placed.placedPosition).sqrMagnitude > 0.000009f)
+                return false;
+            return _t.renderer.sharedMaterial != null;
+        }
+
+        // a heap note: resting means kinematic, or a falling body that came to sleep
+        if (!_t.body.isKinematic && !_t.body.IsSleeping())
             return false;
-        // notes lying on a table, in a locker or in a machine are handled by their own renderers
-        if (_note.GetComponent<PlacedNote>() != null)
+        // notes in a machine or anywhere else are handled by their own renderers
+        if (_note.transform.parent != heapRoot)
             return false;
         return _t.renderer.sharedMaterial != null;
     }
