@@ -35,6 +35,9 @@ public class PickableNote : PickableItem
     /// <summary>True once the note went through the washing machine. Saved with the note.</summary>
     public bool IsWashed => isWashed;
 
+    /// <summary>True while the note has its own glow material (the heap instancing then keeps it on its own renderer).</summary>
+    public bool IsGlowing => glowMaterial != null;
+
     /// <summary>Worth of the note in dollars, read from the start of the note id ("50-Dollar" is 50).</summary>
     public int Value
     {
@@ -245,6 +248,15 @@ public class PickableNote : PickableItem
             var _other = _hits[i].attachedRigidbody;
             if (_other != null && _other != body)
             {
+                // a resting heap note is kinematic: it becomes a normal body so it falls when its support is gone
+                if (_other.isKinematic)
+                {
+                    var _otherNote = _other.GetComponent<PickableNote>();
+                    if (_otherNote != null && !_otherNote.isPlayerPicked && _otherNote.GetComponent<PlacedNote>() == null)
+                    {
+                        _other.isKinematic = false;
+                    }
+                }
                 _other.WakeUp();
             }
         }

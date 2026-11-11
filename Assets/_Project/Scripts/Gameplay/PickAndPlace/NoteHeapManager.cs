@@ -36,9 +36,11 @@ public class NoteHeapManager : MonoBehaviour
     [Tooltip("Fallback only: the heap point normally comes from the LevelData's Heap Point Prefab, which is spawned at runtime. Heap notes are parented to the point (also the thrown ones).")]
     public Transform heapRoot;
     [Tooltip("Size of the spawn circle: radius = note size x sqrt(note count) x this. Smaller = a tighter, taller pile (keeps notes away from tables).")]
-    [Range(0.1f, 0.6f)] public float spreadFactor = 0.35f;
+    [Range(0.1f, 0.6f)] public float spreadFactor = 0.2f;
     [Tooltip("Largest radius (meters) of the spawn circle, 0 = no limit")]
     public float maxSpread = 0f;
+    [Tooltip("Draw the notes that lie still in the heap with GPU instancing (far fewer draw calls). The notes stay normal objects.")]
+    public bool useInstancing = true;
     [Tooltip("The floor is searched for from this far above the heap root")]
     public float liftHeight = 0.5f;
     [Tooltip("Notes already under the heap root are removed when the game starts, the manager spawns the heap itself")]
@@ -234,6 +236,9 @@ public class NoteHeapManager : MonoBehaviour
         // in front of the player: each note goes to a random spot around the root and on top of the notes below it.
         float _groundY = FindGroundY();
         var _placedNotes = new List<Vector3>(); // x, z, top height of each placed note
+        var _spawned = new List<PickableNote>();
+        var _spawnRadius = new List<float>();
+        float _maxTop = _groundY;
         for (int i = 0; i < _queue.Count; i++)
         {
             var _prefab = _queue[i].entry.prefab;
@@ -247,23 +252,16 @@ public class NoteHeapManager : MonoBehaviour
             float _x = heapRoot.position.x + _flat.x;
             float _z = heapRoot.position.z + _flat.y;
 
-            float _top = _groundY;
-            for (int j = 0; j < _placedNotes.Count; j++)
-            {
-                float _dx = _placedNotes[j].x - _x;
-                float _dz = _placedNotes[j].y - _z;
-                if (_dx * _dx + _dz * _dz < _radius * _radius)
-                {
-                    _top = Mathf.Max(_top, _placedNotes[j].z);
-                }
-            }
-            float _y = _top + _thickness * 0.5f + 0.002f;
-            _placedNotes.Add(new Vector3(_x, _z, _y + _thickness * 0.5f));
+            // Each note lands on what is under it: it is dropped (ray casts) from above the pile onto the floor
+            // or the notes below its footprint, so no note hangs in the air.
+            Quaternion _rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+            GetHalfSize(_prefab, _thickness, out Vector3 _half);
+            float _startY = Mathf.Max(_groundY, _maxTop) + _thickness + 0.05f;
+            Vector3 _start = new Vector3(_x, _startY, _z);
 
-            var _note = Instantiate(_prefab, heapRoot);
+            var _note = Instantiate(_prefab, _start, _rotation, heapRoot);
             _note.noteId = _queue[i].entry.noteId;
             _note.SetWashed(_queue[i].washed);
-            _note.transform.SetPositionAndRotation(new Vector3(_x, _y, _z), Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
             var _body = _note.GetComponent<Rigidbody>();
             if (_body != null)
             {
@@ -271,9 +269,52 @@ public class NoteHeapManager : MonoBehaviour
                 _body.angularVelocity = Vector3.zero;
                 _body.Sleep();
             }
+
+            // the notes placed before are at their final place, make their colliders known to the physics queries
+            Physics.SyncTransforms();
+            // The note lands at the AVERAGE height under five points of its footprint (centre and four corners). Landing on
+            // the highest point instead would build thin towers that grow into the air.
+            float _sum = 0f;
+            for (int s = 0; s < 5; s++)
+            {
+                Vector3 _offset = s == 0 ? Vector3.zero : new Vector3((s % 2 == 0 ? -1f : 1f) * _half.x * 0.7f, 0f, (s < 3 ? 1f : -1f) * _half.z * 0.7f);
+                Vector3 _from = _start + _rotation * _offset;
+                _sum += Physics.Raycast(_from, Vector3.down, out RaycastHit _hit, _startY - _groundY + 1f, ~0, QueryTriggerInteraction.Ignore)
+                    ? Mathf.Max(_hit.point.y, _groundY)
+                    : _groundY;
+            }
+            float _landY = _sum / 5f;
+            float _y = _landY + _thickness * 0.5f + 0.002f;
+            _note.transform.SetPositionAndRotation(new Vector3(_x, _y, _z), _rotation);
+            if (_body != null)
+            {
+                // The pile is built already at rest, so its notes stay kinematic (no physics cost for ~1600 touching
+                // bodies). A note becomes a normal falling body when it is thrown, or when the note it rests on is
+                // picked (PickableNote.WakeNeighbours).
+                _body.linearVelocity = Vector3.zero;
+                _body.angularVelocity = Vector3.zero;
+                _body.isKinematic = true;
+            }
+            _maxTop = Mathf.Max(_maxTop, _y + _thickness * 0.5f);
+            _placedNotes.Add(new Vector3(_x, _z, _y + _thickness * 0.5f));
+            _spawned.Add(_note);
+            _spawnRadius.Add(_radius);
+            if (i % 200 == 199)
+                yield return null;
+        }
+        // the notes that lie still are drawn with GPU instancing (a few draw calls instead of one per note)
+        if (useInstancing)
+        {
+            var _instancer = GetComponent<NotePileInstancer>();
+            if (_instancer == null)
+            {
+                _instancer = gameObject.AddComponent<NotePileInstancer>();
+            }
+            _instancer.Begin(heapRoot);
         }
         yield return null;
     }
+
 
     /// <summary>Height of the floor under the lifted heap root (the root's own height when nothing is hit).</summary>
     float FindGroundY()
@@ -297,6 +338,15 @@ public class NoteHeapManager : MonoBehaviour
     }
 
     /// <summary>Radius (meters) other notes must stay out of horizontally, and the thickness of the note at its normal scale.</summary>
+    /// <summary>Half size of the note's footprint (x, z at its normal scale) and half its thickness, for the drop cast.</summary>
+    static void GetHalfSize(PickableNote _prefab, float _thickness, out Vector3 _half)
+    {
+        var _filter = _prefab.GetComponent<MeshFilter>();
+        Vector3 _extents = _filter != null && _filter.sharedMesh != null ? _filter.sharedMesh.bounds.extents : new Vector3(0.1f, 0f, 0.05f);
+        float _scale = _prefab.normalScale;
+        _half = new Vector3(_extents.x * _scale, Mathf.Max(0.004f, _thickness * 0.5f), _extents.z * _scale);
+    }
+
     static void GetFootprint(PickableNote _prefab, out float _radius, out float _thickness)
     {
         float _scale = _prefab.normalScale;
