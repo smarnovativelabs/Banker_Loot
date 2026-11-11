@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Runs the gameplay steps of the tutorial (the "Gameplay" area of the GameTutorialManager). For every step it
@@ -297,8 +298,29 @@ public class TutorialStepDirector : MonoBehaviour
             bool _holding = _pick != null && _pick.HeldCount > 0;
             _target = _holding ? PlaceButtonRect() : CurrencyButtonRect();
             CurrencyInteractButton.ForceVisible = !_holding;
-            NotePlacementHud.ForceVisible = _holding;
         }
+        // the Place button and its hand show only while aiming at a spot where a note can be placed
+        if (_target != null && _target == PlaceButtonRect())
+        {
+            var _placer = NotePlacementManager.instance;
+            NotePlacementHud.ForceVisible = false;
+            if (_placer == null || !(_placer.IsPreviewing || _placer.IsPlaceHeld))
+                _target = null;
+        }
+        // the grab button hand is shown only while a note is aimed at (the button itself shows then too)
+        bool _isPick = _target != null && _target == PickButtonRect();
+        if (_target != null && (_isPick || _target == CurrencyButtonRect()))
+        {
+            var _pickup = NotePickupManager.instance;
+            // aimed at a note, or at a machine that takes the carried notes (washing / counting machine)
+            var _player = FindFirstObjectByType<PlayerInteraction>();
+            bool _atMachine = _player != null && _player.currentInteractingObj is ICarryInteractable;
+            bool _aimed = _pickup != null && (_pickup.HoveredNote != null || _pickup.IsInteractHeld || _atMachine);
+            CurrencyInteractButton.ForceVisible = false;
+            if (!_aimed)
+                _target = null;
+        }
+        UpdateHoldEffect(_target);
         if (_target == null)
         {
             if (handShown)
@@ -322,6 +344,62 @@ public class TutorialStepDirector : MonoBehaviour
             handAnimator.Play("Tap");
             handAnimPlaying = "Tap";
         }
+    }
+
+    Image holdRipple;
+    Text holdLabel;
+
+    /// <summary>On the hold step the grab button pulses outwards, the hand presses down and keeps holding, and a HOLD label shows.</summary>
+    void UpdateHoldEffect(RectTransform _target)
+    {
+        bool _on = _target != null && stepId == "Gameplay_PickHold";
+        if (_on && holdRipple == null)
+        {
+            var _src = _target.GetComponentInChildren<Image>();
+            var _go = new GameObject("Hold Ripple", typeof(RectTransform), typeof(Image));
+            _go.transform.SetParent(_target, false);
+            var _rt = (RectTransform)_go.transform;
+            _rt.sizeDelta = _target.rect.size;
+            _rt.localPosition = _target.rect.center;
+            holdRipple = _go.GetComponent<Image>();
+            holdRipple.raycastTarget = false;
+            if (_src != null) { holdRipple.sprite = _src.sprite; holdRipple.type = _src.type; }
+            holdRipple.color = new Color(1f, 0.85f, 0.2f, 0f);
+
+            var _lbl = new GameObject("Hold Label", typeof(RectTransform), typeof(Text));
+            _lbl.transform.SetParent(_target, false);
+            var _lrt = (RectTransform)_lbl.transform;
+            _lrt.sizeDelta = new Vector2(260f, 60f);
+            _lrt.localPosition = (Vector3)_target.rect.center + new Vector3(0f, _target.rect.height * 0.5f + 90f, 0f);
+            holdLabel = _lbl.GetComponent<Text>();
+            holdLabel.raycastTarget = false;
+            holdLabel.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            holdLabel.fontSize = 44;
+            holdLabel.fontStyle = FontStyle.Bold;
+            holdLabel.alignment = TextAnchor.MiddleCenter;
+            holdLabel.text = "HOLD!";
+            holdLabel.color = new Color(1f, 0.85f, 0.2f, 1f);
+            var _ol = _lbl.AddComponent<UnityEngine.UI.Outline>();
+            _ol.effectColor = Color.black;
+            _ol.effectDistance = new Vector2(2f, -2f);
+        }
+        if (holdRipple != null)
+        {
+            holdRipple.gameObject.SetActive(_on);
+            holdLabel.gameObject.SetActive(_on);
+        }
+        if (!_on)
+        {
+            if (handRoot != null) handRoot.localScale = Vector3.one;
+            return;
+        }
+        float _t = Mathf.Repeat(Time.unscaledTime, 0.9f) / 0.9f;
+        holdRipple.rectTransform.localScale = Vector3.one * Mathf.Lerp(1f, 1.45f, _t);
+        holdRipple.color = new Color(1f, 0.85f, 0.2f, (1f - _t) * 0.85f);
+        // the hand presses down quickly and stays down, as if holding
+        float _press = Mathf.Clamp01(Mathf.Repeat(Time.unscaledTime, 1.6f) / 0.2f);
+        handRoot.localScale = Vector3.one * Mathf.Lerp(1f, 0.82f, _press);
+        holdLabel.rectTransform.localScale = Vector3.one * (1f + 0.08f * Mathf.Sin(Time.unscaledTime * 10f));
     }
 
     void SetHand(RectTransform _button, bool _forceButtonVisible)

@@ -25432,154 +25432,6 @@ MonoBehaviour:
         particleEffect: {fileID: 0}
         pos: {x: 0, y: 0, z: 0}
         rot: {x: 0, y: 0, z: 0, w: 0}
-      - subTaskId: Controls_T0_MoveInfo
-        actionBtnId: 
-        taskInstruction: '<size=44><b>Use your <color=#1E8E1E>left thumb</color>
-          to move</b></size>
-
-          Touch and drag on the left side of the screen
-          to walk around the vault.'
-        taskInstruction2: 
-        questHeading: Tutorial
-        questInstruction: 
-        overlayTapInstruction: CONTINUE
-        overlayHeading: MOVEMENT
-        overlayIcon: {fileID: 0}
-        subTaskComplete: 0
-        displayNavigationToTarget: 0
-        displayUIOverlayScreen: 1
-        enableScreenTap: 1
-        fadeOverlayScreen: 1
-        displayOverlayInstruction: 1
-        updateQuestInstruction: 0
-        displayQuestOnTop: 1
-        displayHandAnim: 0
-        isTapPressedAnim: 0
-        unchildhandAnim: 0
-        delayCutOut: 0
-        delayNavigate: 0
-        dynamicBtnId: 
-        dynamicItemId: 
-        dynamicParcelId: 
-        taskTarget: {fileID: 0}
-        btnToBeCutOut: {fileID: 0}
-        subTaskUIObject: {fileID: 0}
-        subTaskObject: {fileID: 0}
-        isDrawPath: 0
-        objectiveTarget: {fileID: 0}
-        isSpawnParticleEffect: 0
-        particleEffect: {fileID: 0}
-        pos: {x: 0, y: 0, z: 0}
-        rot: {x: 0, y: 0, z: 0, w: 0}
-      - subTaskId: Controls_T0_Move
-        actionBtnId: 
-        taskInstruction: Use <color=#00FF00> Left thumb</color>to move around
-        taskInstruction2: 
-        questHeading: Tutorial
-        questInstruction: <color=#00FF00>Move Around</color> a bit
-        overlayTapInstruction: 
-        overlayHeading: 
-        overlayIcon: {fileID: 0}
-        subTaskComplete: 0
-        displayNavigationToTarget: 0
-        displayUIOverlayScreen: 0
-        enableScreenTap: 0
-        fadeOverlayScreen: 0
-        displayOverlayInstruction: 0
-        updateQuestInstruction: 1
-        displayQuestOnTop: 1
-        displayHandAnim: 0
-        isTapPressedAnim: 0
-        unchildhandAnim: 0
-        delayCutOut: 0
-        delayNavigate: 0
-        dynamicBtnId: 
-        dynamicItemId: 
-        dynamicParcelId: 
-        taskTarget: {fileID: 0}
-        btnToBeCutOut: {fileID: 0}
-        subTaskUIObject: {fileID: 0}
-        subTaskObject: {fileID: 0}
-        isDrawPath: 0
-        objectiveTarget: {fileID: 0}
-        isSpawnParticleEffect: 0
-        particleEffect: {fileID: 0}
-        pos: {x: 0, y: 0, z: 0}
-        rot: {x: 0, y: 0, z: 0, w: 0}
-      - subTaskId: Controls_T0_LookInfo
-        actionBtnId: 
-        taskInstruction: '<size=44><b><color=#1E8E1E>Swipe</color> to look around</b></size>
-
-          Touch
-          and drag on the right side of the screen to look around and aim at what
-          you want to pick up.'
-        taskInstruction2: 
-        questHeading: Tutorial
-        questInstruction: 
-        overlayTapInstruction: CONTINUE
-        overlayHeading: TOUCH
-        overlayIcon: {fileID: 0}
-        subTaskComplete: 0
-        displayNavigationToTarget: 0
-        displayUIOverlayScreen: 1
-        enableScreenTap: 1
-        fadeOverlayScreen: 1
-        displayOverlayInstruction: 1
-        updateQuestInstruction: 0
-        displayQuestOnTop: 1
-        displayHandAnim: 0
-        isTapPressedAnim: 0
-        unchildhandAnim: 0
-        delayCutOut: 0
-        delayNavigate: 0
-        dynamicBtnId: 
-        dynamicItemId: 
-        dynamicParcelId: 
-        taskTarget: {fileID: 0}
-        btnToBeCutOut: {fileID: 0}
-        subTaskUIObject: {fileID: 0}
-        subTaskObject: {fileID: 0}
-        isDrawPath: 0
-        objectiveTarget: {fileID: 0}
-        isSpawnParticleEffect: 0
-        particleEffect: {fileID: 0}
-        pos: {x: 0, y: 0, z: 0}
-        rot: {x: 0, y: 0, z: 0, w: 0}
-      - subTaskId: Controls_T0_Swipe
-        actionBtnId: 
-        taskInstruction: 
-        taskInstruction2: 
-        questHeading: Tutorial
-        questInstruction: <color=#00FF00>Look Around</color> a bit
-        overlayTapInstruction: Tap To Continue
-        overlayHeading: 
-        overlayIcon: {fileID: 0}
-        subTaskComplete: 0
-        displayNavigationToTarget: 0
-        displayUIOverlayScreen: 0
-        enableScreenTap: 0
-        fadeOverlayScreen: 0
-        displayOverlayInstruction: 0
-        updateQuestInstruction: 1
-        displayQuestOnTop: 1
-        displayHandAnim: 0
-        isTapPressedAnim: 0
-        unchildhandAnim: 0
-        delayCutOut: 0
-        delayNavigate: 0
-        dynamicBtnId: 
-        dynamicItemId: 
-        dynamicParcelId: 
-        taskTarget: {fileID: 0}
-        btnToBeCutOut: {fileID: 0}
-        subTaskUIObject: {fileID: 0}
-        subTaskObject: {fileID: 0}
-        isDrawPath: 0
-        objectiveTarget: {fileID: 0}
-        isSpawnParticleEffect: 0
-        particleEffect: {fileID: 0}
-        pos: {x: 0, y: 0, z: 0}
-        rot: {x: 0, y: 0, z: 0, w: 0}
   - areadId: Gameplay
     tutorialHeading: Tutorial
     areaTutorialComplete: 0
@@ -25922,42 +25774,6 @@ MonoBehaviour:
         particleEffect: {fileID: 0}
         pos: {x: 0, y: 0, z: 0}
         rot: {x: 0, y: 0, z: 0, w: 0}
-      - subTaskId: Gameplay_Place
-        actionBtnId: 
-        taskInstruction: 
-        taskInstruction2: 
-        questHeading: Tutorial
-        questInstruction: Carry the notes to the <color=#00FF00>table</color>. Tap
-          Place for one note or <color=#00FF00>HOLD</color> it to place many fast!
-        overlayTapInstruction: Tap To Continue
-        overlayHeading: 
-        overlayIcon: {fileID: 0}
-        subTaskComplete: 0
-        displayNavigationToTarget: 0
-        displayUIOverlayScreen: 0
-        enableScreenTap: 0
-        fadeOverlayScreen: 0
-        displayOverlayInstruction: 0
-        updateQuestInstruction: 1
-        displayQuestOnTop: 1
-        displayHandAnim: 0
-        isTapPressedAnim: 0
-        unchildhandAnim: 0
-        delayCutOut: 0
-        delayNavigate: 0
-        dynamicBtnId: 
-        dynamicItemId: 
-        dynamicParcelId: 
-        taskTarget: {fileID: 0}
-        btnToBeCutOut: {fileID: 0}
-        subTaskUIObject: {fileID: 0}
-        subTaskObject: {fileID: 0}
-        isDrawPath: 0
-        objectiveTarget: {fileID: 0}
-        isSpawnParticleEffect: 0
-        particleEffect: {fileID: 0}
-        pos: {x: 0, y: 0, z: 0}
-        rot: {x: 0, y: 0, z: 0, w: 0}
       - subTaskId: Gameplay_Board
         actionBtnId: 
         taskInstruction: 
@@ -25994,13 +25810,52 @@ MonoBehaviour:
         particleEffect: {fileID: 0}
         pos: {x: 0, y: 0, z: 0}
         rot: {x: 0, y: 0, z: 0, w: 0}
+      - subTaskId: Gameplay_BoardInfo
+        actionBtnId: 
+        taskInstruction: '<size=44><b>Check the <color=#1E8E1E>locker screen</color></b></size>
+
+          Every
+          locker shows the exact amount of money it needs.'
+        taskInstruction2: 'Match the note total to the price: <b>A01 = $100</b>,
+          A02 = $150, A03 = $200 and so on up to B08 = $800.'
+        questHeading: Tutorial
+        questInstruction: 
+        overlayTapInstruction: CONTINUE
+        overlayHeading: LOCKER SCREEN
+        overlayIcon: {fileID: 21300000, guid: dd90593bb786d8a4b9d5dd39f0abb3bd, type: 3}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 1
+        enableScreenTap: 1
+        fadeOverlayScreen: 1
+        displayOverlayInstruction: 1
+        updateQuestInstruction: 0
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 0}
       - subTaskId: Gameplay_Locker
         actionBtnId: 
         taskInstruction: 
         taskInstruction2: 
         questHeading: Tutorial
-        questInstruction: Pick the notes from the table and place them in <color=#00FF00>locker
-          A01</color>. Hold the buttons to work fast!
+        questInstruction: Carry the notes to <color=#00FF00>locker A01</color> and
+          place them. <color=#00FF00>HOLD</color> the Place button to place fast!
         overlayTapInstruction: Tap To Continue
         overlayHeading: 
         overlayIcon: {fileID: 0}
