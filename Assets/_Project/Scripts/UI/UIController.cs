@@ -41,6 +41,10 @@ public class UIController : MonoBehaviour
     public GameObject pausePanel;
     public AudioClip uiButtonSound;
 
+    [Header("-----------------------> Shop")]
+    [Tooltip("The in-game store, opened by the cash bar (plus button)")]
+    public ShopPanel shopPanel;
+
     [Header("-----------------------> Saving Notification")]
     public GameObject savingNotification;
     public Text savingNotificationText;
@@ -153,6 +157,18 @@ public class UIController : MonoBehaviour
         {
             savingNotificationImg.sprite = savingNotificationImgs[_typeIndex];
             savingNotificationImg.transform.GetChild(0).gameObject.SetActive(_typeIndex == 0);
+        }
+    }
+    #endregion
+
+    #region Shop
+    /// <summary>The cash bar of the HUD (with the plus button) opens the store.</summary>
+    public void OnPressCashContainer()
+    {
+        PlayButtonSound();
+        if (shopPanel != null)
+        {
+            shopPanel.Open(0);
         }
     }
     #endregion

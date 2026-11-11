@@ -238,7 +238,11 @@ public class StoreManager : MonoBehaviour
                 }
                 else if(_product.rewards[j].rewardType == RewardType.RemoveAds)
                 {
-                   // AdsMediation.AdsMediationManager.instance.OnRemoveAds();
+                    // the purchase takes effect right away (the shop shows the message)
+                    if (AdsMediation.AdsMediationManager.instance != null)
+                    {
+                        AdsMediation.AdsMediationManager.instance.OnRemoveAds();
+                    }
                 }
             }
         }
