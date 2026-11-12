@@ -6064,8 +6064,8 @@ MonoBehaviour:
   iosRewardedInterstitialAdUnitId: ENTER_IOS_REWARD_INTER_AD_UNIT_ID_HERE
   iosBannerAdUnitId: ENTER_IOS_BANNER_AD_UNIT_ID_HERE
   iosMRecAdUnitId: ENTER_IOS_MREC_AD_UNIT_ID_HERE
-  androidInterstitialAdUnitId: df37764ab25bceb2
-  androidRewardedAdUnitId: a51f06086b0865b8
+  androidInterstitialAdUnitId: 7755081517013cab
+  androidRewardedAdUnitId: 3219afcf1d53fbdf
   androidRewardedInterstitialAdUnitId: ENTER_ANDROID_REWARD_INTER_AD_UNIT_ID_HERE
   androidBannerAdUnitId: ENTER_ANDROID_BANNER_AD_UNIT_ID_HERE
   androidMRecAdUnitId: ENTER_ANDROID_MREC_AD_UNIT_ID_HERE
@@ -6083,11 +6083,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   androidBannerId: 
-  androidInterstitialId: ca-app-pub-9058006185556068/1497876855
-  androidRewardedVideoId: ca-app-pub-9058006185556068/6816301079
+  androidInterstitialId: 
+  androidRewardedVideoId: 
   iosBannerId: 
-  iosInterstitialId: ca-app-pub-9058006185556068/5844439022
-  iosRewardedVideoId: ca-app-pub-9058006185556068/9368751069
+  iosInterstitialId: 
+  iosRewardedVideoId: 
   isInitialized: 0
 --- !u!4 &623875939
 Transform:
@@ -15433,7 +15433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inAppProducts:
-  - productID: com.peri.bankerloot.removeads
+  - productID: com.peri.banker.locker.loot.removeads
     productName: Remove Ads
     price: 0.99
     localizedPriceString: $3.99
@@ -15449,7 +15449,7 @@ MonoBehaviour:
       rewardImg: {fileID: 0}
       rewardDesc: Remove Annoying Ads
       amount: -1
-  - productID: com.peri.bankerloot.40.Cash
+  - productID: com.peri.banker.locker.loot.40.Cash
     productName: Get Cash
     price: 0
     localizedPriceString: Free
@@ -15465,7 +15465,7 @@ MonoBehaviour:
       rewardImg: {fileID: 0}
       rewardDesc: Cash
       amount: 300
-  - productID: com.peri.bankerloot.cashpkg0
+  - productID: com.peri.banker.locker.loot.cashpkg0
     productName: Get Cash
     price: 0
     localizedPriceString: $0.99
@@ -15481,7 +15481,7 @@ MonoBehaviour:
       rewardImg: {fileID: 0}
       rewardDesc: Cash
       amount: 400
-  - productID: com.peri.bankerloot.cashpkg2
+  - productID: com.peri.banker.locker.loot.cashpkg2
     productName: Get Cash
     price: 0
     localizedPriceString: $0.99
@@ -15497,7 +15497,7 @@ MonoBehaviour:
       rewardImg: {fileID: 0}
       rewardDesc: Cash
       amount: 1300
-  - productID: com.peri.bankerloot.cashpkg3
+  - productID: com.peri.banker.locker.loot.cashpkg3
     productName: Get Cash
     price: 0
     localizedPriceString: $0.99
@@ -15513,7 +15513,7 @@ MonoBehaviour:
       rewardImg: {fileID: 0}
       rewardDesc: Cash
       amount: 2800
-  - productID: com.peri.bankerloot.cashpkg4
+  - productID: com.peri.banker.locker.loot.cashpkg4
     productName: Get Cash
     price: 0
     localizedPriceString: $0.99
@@ -15529,7 +15529,7 @@ MonoBehaviour:
       rewardImg: {fileID: 0}
       rewardDesc: Cash
       amount: 5500
-  - productID: com.peri.bankerloot.cashpkg5
+  - productID: com.peri.banker.locker.loot.cashpkg5
     productName: Get Cash
     price: 0
     localizedPriceString: $0.99
@@ -15545,7 +15545,7 @@ MonoBehaviour:
       rewardImg: {fileID: 0}
       rewardDesc: Cash
       amount: 11500
-  - productID: com.peri.bankerloot.cashpkg6
+  - productID: com.peri.banker.locker.loot.cashpkg6
     productName: Get Cash
     price: 0
     localizedPriceString: $0.99
@@ -19813,7 +19813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79eb790be6e9c4da28064c7b8ede1935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tenjinAndroidKey: 7GFVEB2FSKIFAWD5GADQHORFANHGV615
+  tenjinAndroidKey: VRESVXXBLHUBX5VHK31AVB7D5DXWIYYL
   tenjinIosKey: TW7T46A9F3H6XXYF2XVK6NGWJMOTVDN7
   revenueDataURL: https://docs.google.com/spreadsheets/d/e/2PACX-1vQQB5Agp8cKvZUGEzEZbPHghH_-vORLDDgzBKFuc0rt7IWk0aM9l3LrosSQ6GLtMQ-acXYwduK3xsKv/pub?output=tsv
   tenjinKey: 

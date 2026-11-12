@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "737267524996",
-    "project_id": "food-process-factory-simulator",
-    "storage_bucket": "food-process-factory-simulator.firebasestorage.app"
+    "project_number": "968359636704",
+    "project_id": "the-banker-7aaaf",
+    "storage_bucket": "the-banker-7aaaf.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:737267524996:android:89a168af8dce63a2e8e9d1",
+        "mobilesdk_app_id": "1:968359636704:android:c59933bc294f0738bc2a85",
         "android_client_info": {
-          "package_name": "com.peri.food.processing.simulator.game.factory"
+          "package_name": "com.peri.banker.locker.loot"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDU4szItUKgtkCRX3Tf4Utd9INIdThn31s"
+          "current_key": "AIzaSyBA1RyU_HBFDw7E3-LBUSm5vTHR6Im9s5U"
         }
       ],
       "services": {

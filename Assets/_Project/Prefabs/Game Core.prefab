@@ -5620,6 +5620,7 @@ MonoBehaviour:
   uiButtonSound: {fileID: 8300000, guid: 2384feb9f93f68f4eb75782aa72013a6, type: 3}
   shopPanel: {fileID: 5802101930481908634}
   shopButtonTab: 1
+  shopButton: {fileID: 2796981542977642640}
   savingNotification: {fileID: 1687641115726935082}
   savingNotificationText: {fileID: 1687641116033968089}
   savingNotificationImg: {fileID: 1687641115255096897}

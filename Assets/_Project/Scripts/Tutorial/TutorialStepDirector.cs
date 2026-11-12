@@ -32,7 +32,6 @@ public class TutorialStepDirector : MonoBehaviour
     public float boardDistance = 6f;
     [Tooltip("Size of the location ring on the floor, 1 = the size of the prefab")]
     public float pointerScale = 1f;
-
     GameTutorialManager tutorial;
     TutorialSubTask step;
     string stepId;
@@ -62,8 +61,30 @@ public class TutorialStepDirector : MonoBehaviour
     {
         "Controls_T0_Intro", "Gameplay_PickInfo", "Gameplay_Pick", "Gameplay_PickHold", "Gameplay_Wash", "Gameplay_WashWait",
         "Gameplay_WashTake", "Gameplay_CountInfo", "Gameplay_Count", "Gameplay_CountTake", "Gameplay_Board", "Gameplay_BoardInfo",
-        "Gameplay_Locker", "Gameplay_Done"
+        "Gameplay_Locker", "Shop_Open", "Shop_Buy", "Shop_Bought", "Shop_Close", "Shop_Done"
     };
+
+    public const string ShopTask = "Shop_T0";
+
+    /// <summary>True while a step of the shop tutorial is on screen.</summary>
+    public static bool IsRunning
+    {
+        get { return active != null && active.stepId != null && active.stepId.StartsWith("Shop_"); }
+    }
+
+    /// <summary>
+    /// The shop cannot be opened until the tutorial of placing notes in the locker is finished. Returns true (and tells the
+    /// player) when it is still locked; the caller must then not open the shop.
+    /// </summary>
+    public static bool BlocksShop()
+    {
+        var _tutorial = GameTutorialManager.instance;
+        if (_tutorial == null || _tutorial.isTutorialComplete || _tutorial.IsAreaTutorialComplete("Gameplay"))
+            return false;
+        if (UIController.instance != null)
+            UIController.instance.DisplayInstructions("Finish the tutorial first");
+        return true;
+    }
 
     /// <summary>
     /// While the tutorial runs, the washing / counting machine cannot be used before its step. Returns true (and tells
@@ -87,6 +108,9 @@ public class TutorialStepDirector : MonoBehaviour
     void OnEnable()
     {
         active = this;
+        // the store pauses the game, the hand must keep tapping
+        if (handAnimator != null)
+            handAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
         GameTutorialManager.SubTaskDisplayed += OnStepDisplayed;
     }
 
@@ -100,6 +124,12 @@ public class TutorialStepDirector : MonoBehaviour
 
     void ClearHelpers()
     {
+        PickingUpgrade.TutorialFree = false;
+        if (cutoutRefresh != null)
+        {
+            StopCoroutine(cutoutRefresh);
+            cutoutRefresh = null;
+        }
         CurrencyInteractButton.ForceVisible = false;
         NotePlacementHud.ForceVisible = false;
         if (handRoot != null)
@@ -117,17 +147,78 @@ public class TutorialStepDirector : MonoBehaviour
         tutorial = GameTutorialManager.instance;
         step = _step;
         stepId = _step != null ? _step.subTaskId : null;
-        taskId = stepId != null && stepId.StartsWith("Gameplay_") ? GameplayTask : ControlsTask;
+        taskId = stepId == null ? ControlsTask
+            : stepId.StartsWith("Gameplay_") ? GameplayTask
+            : stepId.StartsWith("Shop_") ? ShopTask : ControlsTask;
         sawBusy = false;
         ClearHelpers();
         if (string.IsNullOrEmpty(stepId))
             return;
 
         FindTargets();
+        if (stepId.StartsWith("Shop_"))
+            PrepareShopStep(_step);
         startPosition = PlayerPosition();
         placedBaseline = CountPlaced();
         StartHelpers();
     }
+
+    #region Shop steps
+    int upgradeBaseline;
+    Coroutine cutoutRefresh;
+
+    static ShopPanel Shop()
+    {
+        return UIController.instance != null ? UIController.instance.shopPanel : null;
+    }
+
+    /// <summary>
+    /// Shop steps: the screen is dimmed with a hole over the one button to press (the dim blocks every other touch), and the
+    /// hand taps it. The first upgrade is free so the player can always finish the step.
+    /// </summary>
+    void PrepareShopStep(TutorialSubTask _step)
+    {
+        var _shop = Shop();
+        RectTransform _button = null;
+        switch (stepId)
+        {
+            case "Shop_Open":
+                _button = UIController.instance != null && UIController.instance.shopButton != null
+                    ? (RectTransform)UIController.instance.shopButton.transform : null;
+                break;
+            case "Shop_Buy":
+                upgradeBaseline = PickingUpgrade.Level;
+                PickingUpgrade.TutorialFree = true;
+                if (_shop != null && _shop.upgradeCard != null)
+                {
+                    _shop.upgradeCard.Refresh();
+                    _button = _shop.upgradeCard.buyButton != null ? (RectTransform)_shop.upgradeCard.buyButton.transform : null;
+                }
+                break;
+            case "Shop_Close":
+                _button = _shop != null && _shop.closeButton != null ? (RectTransform)_shop.closeButton.transform : null;
+                break;
+        }
+        if (_button == null)
+            return;
+        // the manager cuts the hole for this object (it reads the target right after the step is announced)
+        _step.btnToBeCutOut = _button.gameObject;
+        SetHand(_button, false);
+        // the store has just opened: cut the hole again once its layout is in place
+        if (stepId != "Shop_Open")
+            cutoutRefresh = StartCoroutine(RefreshCutOut(_button));
+    }
+
+    System.Collections.IEnumerator RefreshCutOut(RectTransform _button)
+    {
+        yield return null;
+        yield return null;
+        Canvas.ForceUpdateCanvases();
+        if (tutorial != null && _button != null && _button.gameObject.activeInHierarchy)
+            tutorial.RefreshCutOut(_button);
+        cutoutRefresh = null;
+    }
+    #endregion
 
     void FindTargets()
     {
@@ -264,6 +355,18 @@ public class TutorialStepDirector : MonoBehaviour
                 return board == null || CameraDistance(board.position) <= boardDistance;
             case "Gameplay_Locker":
                 return lockerSurface == null || CountPlaced() > placedBaseline;
+            case "Shop_Open":
+            {
+                var _shop = Shop();
+                return _shop == null || _shop.gameObject.activeInHierarchy;
+            }
+            case "Shop_Buy":
+                return PickingUpgrade.IsMaxed || PickingUpgrade.Level > upgradeBaseline;
+            case "Shop_Close":
+            {
+                var _shop = Shop();
+                return _shop == null || !_shop.gameObject.activeInHierarchy;
+            }
         }
         return false;
     }

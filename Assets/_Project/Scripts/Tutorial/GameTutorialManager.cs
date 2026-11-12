@@ -24,6 +24,8 @@ public class GameTutorialManager : MonoBehaviour
     [Tooltip("Optional: second paragraph under the picture, set from the sub task's Task Instruction 2")]
     public Text overlayInstructionTxt2;
     public Transform cutOutObjectParent;
+    [Tooltip("Rounded readable sprite used for the hole when the sprite of the target button cannot be read")]
+    public Sprite fallbackHoleSprite;
 
     public GameObject targetPointer;
     public GameObject targetArrow;
@@ -830,6 +832,12 @@ public class GameTutorialManager : MonoBehaviour
         targetArrow.GetComponent<MeshRenderer>().enabled = true;//////////by ss
         navgationDelay = null;
     }
+    /// <summary>Cuts the hole of the dim overlay again around the target (after its layout changed).</summary>
+    public void RefreshCutOut(RectTransform _target)
+    {
+        if (_target != null && _target.GetComponent<Image>() != null)
+            SetCutOutImageToTarget(_target);
+    }
     Coroutine delayedCutout;
     IEnumerator SetDelayedCutoutTarget(RectTransform _target)
     {
@@ -841,8 +849,21 @@ public class GameTutorialManager : MonoBehaviour
     {
         var _cutOutImage = cutOutObject.GetComponent<Image>();
         var _targetImage = _target.GetComponent<Image>();
-        _cutOutImage.sprite = _targetImage.sprite;
-        _cutOutImage.pixelsPerUnitMultiplier = _targetImage.pixelsPerUnitMultiplier;   // a sliced target (panel) keeps its border size
+        // the mask lets touches through the hole by reading the pixels of the hole sprite, which needs a readable texture:
+        // a button whose picture is not readable gets the plain rounded hole instead
+        var _holeSprite = _targetImage.sprite;
+        bool _readable = _holeSprite != null && _holeSprite.texture != null && _holeSprite.texture.isReadable;
+        if (!_readable && fallbackHoleSprite != null)
+        {
+            _holeSprite = fallbackHoleSprite;
+            _cutOutImage.type = Image.Type.Sliced;
+            _cutOutImage.pixelsPerUnitMultiplier = 1f;
+        }
+        else
+        {
+            _cutOutImage.pixelsPerUnitMultiplier = _targetImage.pixelsPerUnitMultiplier;   // a sliced target (panel) keeps its border size
+        }
+        _cutOutImage.sprite = _holeSprite;
         cutOutObject.transform.SetParent(_target.transform.parent);
 
         cutOutObject.anchorMin = _target.anchorMin;

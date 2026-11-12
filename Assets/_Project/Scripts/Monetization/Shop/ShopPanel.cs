@@ -84,6 +84,9 @@ public class ShopPanel : MonoBehaviour
     /// <summary>Opens the store on the given tab and pauses the game.</summary>
     public void Open(int _tab = 0)
     {
+        // the store stays closed until the tutorial has taught the player to place notes in a locker
+        if (TutorialStepDirector.BlocksShop())
+            return;
         gameObject.SetActive(true);
         if (!opened)
         {
@@ -121,6 +124,8 @@ public class ShopPanel : MonoBehaviour
 
     void OnUpgradeBought(bool _ok)
     {
+        if (_ok && TutorialStepDirector.IsRunning)
+            return;   // the tutorial explains the result itself
         if (!_ok && GamePopups.Instance != null)
         {
             GamePopups.Instance.ShowNotEnoughCash();

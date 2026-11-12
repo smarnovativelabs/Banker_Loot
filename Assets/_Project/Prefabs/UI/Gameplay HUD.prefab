@@ -4665,6 +4665,7 @@ MonoBehaviour:
   uiButtonSound: {fileID: 8300000, guid: 2384feb9f93f68f4eb75782aa72013a6, type: 3}
   shopPanel: {fileID: 5183221302907874702}
   shopButtonTab: 1
+  shopButton: {fileID: 5543084594051737349}
   savingNotification: {fileID: 399221310}
   savingNotificationText: {fileID: 1635299789}
   savingNotificationImg: {fileID: 871043157}

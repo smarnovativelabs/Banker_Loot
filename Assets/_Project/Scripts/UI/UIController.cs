@@ -46,6 +46,8 @@ public class UIController : MonoBehaviour
     public ShopPanel shopPanel;
     [Tooltip("Store tab opened by the shop button under the pause button")]
     public int shopButtonTab = 1;
+    [Tooltip("The shop button under the pause button (the tutorial points at it)")]
+    public Button shopButton;
 
     [Header("-----------------------> Saving Notification")]
     public GameObject savingNotification;

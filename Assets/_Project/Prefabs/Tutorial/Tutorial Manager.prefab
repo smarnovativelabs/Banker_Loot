@@ -25376,6 +25376,7 @@ MonoBehaviour:
   overlayIconImg: {fileID: 5152664963420027830}
   overlayInstructionTxt2: {fileID: 3867065684529579339}
   cutOutObjectParent: {fileID: 5056473592122092280}
+  fallbackHoleSprite: {fileID: 21300000, guid: 2e559d75cf0ba6f4aab318119221bcea, type: 3}
   targetPointer: {fileID: 2921482313020659844}
   targetArrow: {fileID: 6640505480910352745}
   navmeshPathDraw: {fileID: 0}
@@ -25885,7 +25886,162 @@ MonoBehaviour:
         particleEffect: {fileID: 0}
         pos: {x: 0, y: 0, z: 0}
         rot: {x: 0, y: 0, z: 0, w: 0}
-      - subTaskId: Gameplay_Done
+  - areadId: Shop
+    tutorialHeading: Shop
+    areaTutorialComplete: 0
+    canShowAreaTutorial: 1
+    isActionDependentTutorial: 0
+    highPriorityTutorial: 1
+    tutorialTasks:
+    - taskId: Shop_T0
+      taskHeading: Shop
+      taskComplete: 0
+      subTasks:
+      - subTaskId: Shop_Open
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: Tap the <color=#00FF00>Shop</color> button to open it.
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 1
+        enableScreenTap: 0
+        fadeOverlayScreen: 1
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 1}
+      - subTaskId: Shop_Buy
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: Press <color=#00FF00>BUY</color> to upgrade your hand capacity.
+          It is free!
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 1
+        enableScreenTap: 0
+        fadeOverlayScreen: 1
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 1}
+      - subTaskId: Shop_Bought
+        actionBtnId: 
+        taskInstruction: '<size=44><b>Bigger hands!</b></size>
+
+          You can
+          carry more notes at once now.'
+        taskInstruction2: Buy more hand capacity any time with your game cash.
+        questHeading: Tutorial
+        questInstruction: 
+        overlayTapInstruction: CONTINUE
+        overlayHeading: HAND UPGRADED
+        overlayIcon: {fileID: 5795584713163941102, guid: 0ebefb58ce781ea44ad2b243fbfc1244, type: 3}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 1
+        enableScreenTap: 1
+        fadeOverlayScreen: 1
+        displayOverlayInstruction: 1
+        updateQuestInstruction: 0
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 1}
+      - subTaskId: Shop_Close
+        actionBtnId: 
+        taskInstruction: 
+        taskInstruction2: 
+        questHeading: Tutorial
+        questInstruction: Close the shop to continue.
+        overlayTapInstruction: Tap To Continue
+        overlayHeading: 
+        overlayIcon: {fileID: 0}
+        subTaskComplete: 0
+        displayNavigationToTarget: 0
+        displayUIOverlayScreen: 1
+        enableScreenTap: 0
+        fadeOverlayScreen: 1
+        displayOverlayInstruction: 0
+        updateQuestInstruction: 1
+        displayQuestOnTop: 1
+        displayHandAnim: 0
+        isTapPressedAnim: 0
+        unchildhandAnim: 0
+        delayCutOut: 0
+        delayNavigate: 0
+        dynamicBtnId: 
+        dynamicItemId: 
+        dynamicParcelId: 
+        taskTarget: {fileID: 0}
+        btnToBeCutOut: {fileID: 0}
+        subTaskUIObject: {fileID: 0}
+        subTaskObject: {fileID: 0}
+        isDrawPath: 0
+        objectiveTarget: {fileID: 0}
+        isSpawnParticleEffect: 0
+        particleEffect: {fileID: 0}
+        pos: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 1}
+      - subTaskId: Shop_Done
         actionBtnId: 
         taskInstruction: '<size=44><b>You are ready!</b></size>
 

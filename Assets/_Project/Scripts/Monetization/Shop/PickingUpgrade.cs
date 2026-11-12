@@ -36,7 +36,9 @@ public static class PickingUpgrade
 
     public static int Capacity => CapacityAt(Level);
     public static int NextCapacity => CapacityAt(Level + 1);
-    public static int NextPrice => PriceAt(Level);
+    /// <summary>Set by the tutorial while it makes the player buy the first upgrade: that purchase is free.</summary>
+    public static bool TutorialFree;
+    public static int NextPrice => TutorialFree ? 0 : PriceAt(Level);
     public static bool IsMaxed => Level >= MaxLevel;
 
     public static bool CanAfford()
@@ -56,7 +58,7 @@ public static class PickingUpgrade
         _manager.playerData.pickingUpgrades = Level + 1;
         _manager.SavePlayerData();
         ApplyToPlayer();
-        if (UIController.instance != null)
+        if (_price > 0 && UIController.instance != null)
         {
             UIController.instance.UpdateCurrency(-_price);
         }

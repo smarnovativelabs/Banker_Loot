@@ -34,7 +34,7 @@ public class ShopUpgradeCard : MonoBehaviour
         }
         if (priceText != null)
         {
-            priceText.text = "$" + PickingUpgrade.NextPrice.ToString("N0");
+            priceText.text = PickingUpgrade.NextPrice > 0 ? "$" + PickingUpgrade.NextPrice.ToString("N0") : "FREE";
         }
         if (buyButton != null)
         {
