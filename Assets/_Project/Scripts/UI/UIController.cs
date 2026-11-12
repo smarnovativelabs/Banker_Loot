@@ -377,9 +377,11 @@ public class UIController : MonoBehaviour
         var _animator = _animText.GetComponent<Animator>();
         if (_animator != null)
         {
+            // the shop pauses the game (timeScale 0): the +/- text must still play and finish
+            _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
             _animator.SetInteger("fade", 1);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         _applyValue();
         if (_animator != null)
         {

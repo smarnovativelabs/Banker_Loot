@@ -172,6 +172,7 @@ public class PlayerData
     public Quaternion playerRotation;
     public string utcforwelcomebackreward;
     public int countryIndex;
+    public int pickingUpgrades;   // how many picking capacity upgrades were bought (see PickingUpgrade)
 
     public PlayerData()
     {

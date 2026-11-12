@@ -28,6 +28,8 @@ public class ShopPanel : MonoBehaviour
     public Text messageText;
     public Tab[] tabs;
     public ShopItemCard[] cards;
+    [Tooltip("The picking capacity upgrade (bought with game cash)")]
+    public ShopUpgradeCard upgradeCard;
     [Tooltip("The sideways scrolling row of cards; it starts at the first card every time the store opens")]
     public ScrollRect cardScroll;
     [Tooltip("Seconds a message stays on the screen")]
@@ -51,6 +53,10 @@ public class ShopPanel : MonoBehaviour
             {
                 tabs[i].button.onClick.AddListener(() => SelectTab(_index));
             }
+        }
+        if (upgradeCard != null)
+        {
+            upgradeCard.Bought = OnUpgradeBought;
         }
         for (int i = 0; i < cards.Length; i++)
         {
@@ -113,9 +119,18 @@ public class ShopPanel : MonoBehaviour
         }
     }
 
+    void OnUpgradeBought(bool _ok)
+    {
+        ShowMessage(_ok ? "Hand capacity: " + PickingUpgrade.Capacity + " notes!" : "Not enough cash!");
+    }
+
     void RefreshAll()
     {
         RefreshCash();
+        if (upgradeCard != null)
+        {
+            upgradeCard.Refresh();
+        }
         for (int i = 0; i < cards.Length; i++)
         {
             if (cards[i] != null)

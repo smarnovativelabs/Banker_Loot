@@ -286,6 +286,12 @@ public class NotePickupManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        // the capacity bought in the shop (10 at the start of the game)
+        PickingUpgrade.ApplyToPlayer();
+    }
+
     void Update()
     {
         if (!isDown)
