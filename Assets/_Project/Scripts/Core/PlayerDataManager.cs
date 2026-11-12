@@ -177,7 +177,7 @@ public class PlayerData
     public PlayerData()
     {
   ///revised cash according to the document
-        playerCash = 10000;
+        playerCash = 100;
         playerBlitz = 100;
         playerXP = 0;
         playerHealth = 100;

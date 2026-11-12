@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   level: 2
   displayName: Casino
-  rewardCash: 1000
+  rewardCash: 400
   scene: {fileID: 102900000, guid: 42b3d6dc9c216e0409d8ca754702c477, type: 3}
   scenePath: Assets/_Project/Scenes/Level_2 Casino.unity
   heapPointPrefab: {fileID: 6908454016476151955, guid: 8d2f6b1c4e3a4f7b8c9d2e3f4a5b6c72, type: 3}
