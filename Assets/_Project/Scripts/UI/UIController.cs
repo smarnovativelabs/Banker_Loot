@@ -44,6 +44,8 @@ public class UIController : MonoBehaviour
     [Header("-----------------------> Shop")]
     [Tooltip("The in-game store, opened by the cash bar (plus button)")]
     public ShopPanel shopPanel;
+    [Tooltip("Store tab opened by the shop button under the pause button")]
+    public int shopButtonTab = 1;
 
     [Header("-----------------------> Saving Notification")]
     public GameObject savingNotification;
@@ -169,6 +171,16 @@ public class UIController : MonoBehaviour
         if (shopPanel != null)
         {
             shopPanel.Open(0);
+        }
+    }
+
+    /// <summary>The shop button under the pause button opens the store on the upgrades tab.</summary>
+    public void OnPressShopButton()
+    {
+        PlayButtonSound();
+        if (shopPanel != null)
+        {
+            shopPanel.Open(shopButtonTab);
         }
     }
     #endregion
