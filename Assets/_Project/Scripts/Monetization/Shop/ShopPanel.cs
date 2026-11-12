@@ -121,6 +121,16 @@ public class ShopPanel : MonoBehaviour
 
     void OnUpgradeBought(bool _ok)
     {
+        if (!_ok && GamePopups.Instance != null)
+        {
+            GamePopups.Instance.ShowNotEnoughCash();
+            return;
+        }
+        if (_ok && GamePopups.Instance != null)
+        {
+            GamePopups.Instance.ShowSuccess("Hand capacity: " + PickingUpgrade.Capacity + " notes!", GamePopups.Instance.successIcon);
+            return;
+        }
         ShowMessage(_ok ? "Hand capacity: " + PickingUpgrade.Capacity + " notes!" : "Not enough cash!");
     }
 
@@ -189,6 +199,12 @@ public class ShopPanel : MonoBehaviour
     {
         if (_product == null)
             return;
+        if (GamePopups.Instance != null)
+        {
+            // the popup shows the result and plays the cash animation
+            RefreshAll();
+            return;
+        }
         string _text = "Purchase successful!";
         for (int i = 0; _product.rewards != null && i < _product.rewards.Count; i++)
         {
@@ -212,6 +228,8 @@ public class ShopPanel : MonoBehaviour
 
     void OnPurchaseFailed(string _reason)
     {
+        if (GamePopups.Instance != null)
+            return;
         ShowMessage(string.IsNullOrEmpty(_reason) ? "Purchase failed!" : _reason);
     }
     #endregion
