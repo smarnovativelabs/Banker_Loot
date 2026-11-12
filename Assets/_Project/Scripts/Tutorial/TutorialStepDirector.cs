@@ -481,6 +481,10 @@ public class TutorialStepDirector : MonoBehaviour
                 _target = null;
         }
         UpdateHoldEffect(_target);
+        // the shop button sits at the left edge of the screen: the hand is mirrored so it points from the right side
+        // and stays on the screen
+        if (stepId == "Shop_Open")
+            handRoot.localScale = new Vector3(-1f, 1f, 1f);
         if (_target == null)
         {
             if (handShown)
@@ -498,6 +502,9 @@ public class TutorialStepDirector : MonoBehaviour
         }
         // the middle of the button (its position is only its pivot, the corner for the buttons in the screen corner)
         handRoot.position = _target.TransformPoint(_target.rect.center) + (Vector3)handOffset;
+        // the mirrored hand of the shop button points from the right and does not cover the cart
+        if (stepId == "Shop_Open")
+            handRoot.position += _target.TransformVector(new Vector3(36f, -8f, 0f));
         handRoot.localEulerAngles = Vector3.zero;
         if (handAnimator != null && handAnimPlaying != "Tap")
         {
