@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232fdbcaa0ad88d4bbb0b0902a0cf668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemCard
-  productID: com.peri.bankerloot.cashpkg0
+  productID: com.peri.banker.locker.loot.cashpkg0
   fallbackPrice: $0.99
   amountOverride: 
   nameText: {fileID: 4046524975075916940}
@@ -1444,7 +1444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232fdbcaa0ad88d4bbb0b0902a0cf668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemCard
-  productID: com.peri.bankerloot.cashpkg3
+  productID: com.peri.banker.locker.loot.cashpkg3
   fallbackPrice: $4.99
   amountOverride: 
   nameText: {fileID: 2768707838118697638}
@@ -3773,7 +3773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232fdbcaa0ad88d4bbb0b0902a0cf668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemCard
-  productID: com.peri.bankerloot.cashpkg5
+  productID: com.peri.banker.locker.loot.cashpkg5
   fallbackPrice: $19.99
   amountOverride: 
   nameText: {fileID: 8976117484579144761}
@@ -3951,7 +3951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232fdbcaa0ad88d4bbb0b0902a0cf668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemCard
-  productID: com.peri.bankerloot.removeads
+  productID: com.peri.banker.locker.loot.removeads
   fallbackPrice: $4.99
   amountOverride: PERMANENT!
   nameText: {fileID: 7026985461612778141}
@@ -4547,7 +4547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232fdbcaa0ad88d4bbb0b0902a0cf668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemCard
-  productID: com.peri.bankerloot.cashpkg2
+  productID: com.peri.banker.locker.loot.cashpkg2
   fallbackPrice: $1.99
   amountOverride: 
   nameText: {fileID: 3012738891303945467}
@@ -5128,7 +5128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232fdbcaa0ad88d4bbb0b0902a0cf668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemCard
-  productID: com.peri.bankerloot.cashpkg6
+  productID: com.peri.banker.locker.loot.cashpkg6
   fallbackPrice: $49.99
   amountOverride: 
   nameText: {fileID: 6425006809960531327}
@@ -5614,7 +5614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232fdbcaa0ad88d4bbb0b0902a0cf668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemCard
-  productID: com.peri.bankerloot.cashpkg4
+  productID: com.peri.banker.locker.loot.cashpkg4
   fallbackPrice: $9.99
   amountOverride: 
   nameText: {fileID: 5735179181525234917}

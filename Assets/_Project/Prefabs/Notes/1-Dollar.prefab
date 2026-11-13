@@ -190,4 +190,4 @@ MonoBehaviour:
   noteId: 1-Dollar
   wakeNeighboursRadius: 0.05
   dirtyMaterial: {fileID: 2100000, guid: 04338bcd764cb7549b7261c941f06b46, type: 2}
-  cleanMaterial: {fileID: 7355278152745759242, guid: 88805b9f172ab6b4fb07f56555fac3ee, type: 3}
+  cleanMaterial: {fileID: 2100000, guid: 9f8ca6c16ea8db0428d6f6c200497580, type: 2}

@@ -58,6 +58,9 @@ public class NotePileInstancer : MonoBehaviour
     /// <summary>Starts instancing the notes of the heap that lies under the given root.</summary>
     public void Begin(Transform _heapRoot)
     {
+        // a device without instancing keeps the normal renderers of the notes
+        if (!SystemInfo.supportsInstancing)
+            return;
         heapRoot = _heapRoot;
         nextScan = 0f;
         if (heapRoot != null)

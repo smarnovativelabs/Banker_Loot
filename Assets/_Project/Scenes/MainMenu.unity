@@ -15449,22 +15449,6 @@ MonoBehaviour:
       rewardImg: {fileID: 0}
       rewardDesc: Remove Annoying Ads
       amount: -1
-  - productID: com.peri.banker.locker.loot.40.Cash
-    productName: Get Cash
-    price: 0
-    localizedPriceString: Free
-    type: 0
-    purchaseMethod: 1
-    inAppCategory: 2
-    displayBtnRef: {fileID: 0}
-    iapBtnRef: {fileID: 0}
-    icon: {fileID: -2089998044, guid: 2b1816bda2ccfd149935a22528d25997, type: 3}
-    bgImg: {fileID: 1094438173, guid: e4b9298241bcbf04bbea4d8d01635e2b, type: 3}
-    rewards:
-    - rewardType: 7
-      rewardImg: {fileID: 0}
-      rewardDesc: Cash
-      amount: 300
   - productID: com.peri.banker.locker.loot.cashpkg0
     productName: Get Cash
     price: 0
