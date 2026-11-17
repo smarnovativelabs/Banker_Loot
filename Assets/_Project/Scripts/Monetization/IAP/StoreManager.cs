@@ -19,6 +19,9 @@ public class StoreManager : MonoBehaviour
     static void NotifyPurchaseFailed(string _reason) { PurchaseFailed?.Invoke(_reason); }
     Purchaser purchaserScript;
     public List<InAppProduct> inAppProducts;
+    [Header("Rewarded Video")]
+    [Tooltip("Cash given by the Watch RV button, independent of the IAP cash packs")]
+    public int rvCashAmount = 50;
     InAppProduct _adsProductInstance;
     public bool isIAPInitialized;
 
@@ -89,19 +92,11 @@ public class StoreManager : MonoBehaviour
     }
     public void OnUpdateRVCashPrice(int _val)
     {
-        if (inAppProducts.Count < 2)
-        {
-            return;
-        }
-        inAppProducts[1].rewards[0].amount = _val;
+        rvCashAmount = _val;
     }
     public int GetCashRVAmount()
     {
-        if (inAppProducts.Count < 2)
-        {
-            return 40;
-        }
-        return inAppProducts[1].rewards[0].amount;
+        return rvCashAmount;
     }
     public void OnInitializationFailed()
     {
