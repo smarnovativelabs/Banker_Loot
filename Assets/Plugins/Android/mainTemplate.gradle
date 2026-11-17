@@ -36,6 +36,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:21.0.0' // Assets/Firebase/Editor/DatabaseDependencies.xml:13
     implementation 'com.google.firebase:firebase-database-unity:12.10.0' // Assets/Firebase/Editor/DatabaseDependencies.xml:22
     implementation 'com.squareup.picasso:picasso:2.71828' // Assets/MaxSdk/Mediation/InMobi/Editor/Dependencies.xml:5
+    implementation 'com.tenjin:android-sdk:1.16.1' // Assets/ThirdParty/Tenjin/Editor/TenjinDependencies.xml:4
 // Android Resolver Dependencies End
 **DEPS**}
 
