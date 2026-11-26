@@ -46,6 +46,10 @@ public class LevelData : ScriptableObject
 #endif
     [Tooltip("The point the heap is built at. It is spawned at runtime at the position and rotation it has in the prefab, so each level can put its heap somewhere else.")]
     public GameObject heapPointPrefab;
+    [Tooltip("Optional extra heap points. When filled, the level's notes are split over the main heap point and these points, each pile getting a random share (the total stays the same). Empty = one pile at the main heap point.")]
+    public List<GameObject> extraHeapPointPrefabs = new List<GameObject>();
+    [Tooltip("Smallest share a pile can get, relative to an equal split (0.3 = at least 30% of an equal share), so no pile ends up empty")]
+    [Range(0.05f, 1f)] public float minPileShare = 0.35f;
     [Tooltip("Where the player starts the level. It is spawned at runtime and the player is moved to its position and rotation in the prefab.")]
     public GameObject playerSpawnPointPrefab;
     public List<NoteTypeEntry> noteTypes = new List<NoteTypeEntry>();

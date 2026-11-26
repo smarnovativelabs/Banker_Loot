@@ -186,7 +186,22 @@ public class NoteHeapManager : MonoBehaviour
         var _point = Instantiate(CurrentLevel.heapPointPrefab);
         _point.name = CurrentLevel.heapPointPrefab.name;
         heapRoot = _point.transform;
+
+        // optional extra piles: the notes stay children of the main heap root (the instancer needs that), the extra
+        // points only say where the notes of that pile are built
+        extraPoints.Clear();
+        for (int i = 0; i < CurrentLevel.extraHeapPointPrefabs.Count; i++)
+        {
+            var _prefab = CurrentLevel.extraHeapPointPrefabs[i];
+            if (_prefab == null)
+                continue;
+            var _extra = Instantiate(_prefab);
+            _extra.name = _prefab.name;
+            extraPoints.Add(_extra.transform);
+        }
     }
+
+    readonly List<Transform> extraPoints = new List<Transform>();
 
     void ClearExistingNotes()
     {
@@ -232,25 +247,72 @@ public class NoteHeapManager : MonoBehaviour
         }
         Shuffle(_queue);
 
+        // piles: the main heap point plus the level's extra points; every note goes to a pile picked with random
+        // weights, so the piles get different amounts and the total stays the same
+        var _centers = new List<Transform> { heapRoot };
+        _centers.AddRange(extraPoints);
+        int _pileCount = _centers.Count;
+        var _pileOf = new int[_queue.Count];
+        var _pileSize = new int[_pileCount];
+        if (_pileCount > 1)
+        {
+            float _min = CurrentLevel != null ? CurrentLevel.minPileShare : 0.35f;
+            var _weights = new float[_pileCount];
+            float _total = 0f;
+            for (int p = 0; p < _pileCount; p++)
+            {
+                _weights[p] = Random.Range(_min, 1f + (1f - _min));
+                _total += _weights[p];
+            }
+            for (int i = 0; i < _queue.Count; i++)
+            {
+                float _roll = Random.value * _total;
+                int _pile = _pileCount - 1;
+                for (int p = 0; p < _pileCount; p++)
+                {
+                    _roll -= _weights[p];
+                    if (_roll <= 0f)
+                    {
+                        _pile = p;
+                        break;
+                    }
+                }
+                _pileOf[i] = _pile;
+                _pileSize[_pile]++;
+            }
+        }
+        else
+        {
+            _pileSize[0] = _queue.Count;
+        }
+
         // The notes are placed already lying on the ground in a pile (no physics drop), so nothing falls or collides
         // in front of the player: each note goes to a random spot around the root and on top of the notes below it.
-        float _groundY = FindGroundY();
+        var _groundYs = new float[_pileCount];
+        var _maxTops = new float[_pileCount];
+        for (int p = 0; p < _pileCount; p++)
+        {
+            _groundYs[p] = FindGroundY(_centers[p]);
+            _maxTops[p] = _groundYs[p];
+        }
         var _placedNotes = new List<Vector3>(); // x, z, top height of each placed note
         var _spawned = new List<PickableNote>();
         var _spawnRadius = new List<float>();
-        float _maxTop = _groundY;
         for (int i = 0; i < _queue.Count; i++)
         {
+            int _p = _pileOf[i];
+            float _groundY = _groundYs[_p];
+            float _maxTop = _maxTops[_p];
             var _prefab = _queue[i].entry.prefab;
             GetFootprint(_prefab, out float _radius, out float _thickness);
 
             // the pile widens with the amount of notes, so it grows in layers instead of one tall column
-            float _spread = _radius * Mathf.Sqrt(_queue.Count) * spreadFactor;
+            float _spread = _radius * Mathf.Sqrt(_pileSize[_p]) * spreadFactor;
             if (maxSpread > 0f)
                 _spread = Mathf.Min(_spread, maxSpread);
             Vector2 _flat = Random.insideUnitCircle * _spread;
-            float _x = heapRoot.position.x + _flat.x;
-            float _z = heapRoot.position.z + _flat.y;
+            float _x = _centers[_p].position.x + _flat.x;
+            float _z = _centers[_p].position.z + _flat.y;
 
             // Each note lands on what is under it: it is dropped (ray casts) from above the pile onto the floor
             // or the notes below its footprint, so no note hangs in the air.
@@ -295,7 +357,7 @@ public class NoteHeapManager : MonoBehaviour
                 _body.angularVelocity = Vector3.zero;
                 _body.isKinematic = true;
             }
-            _maxTop = Mathf.Max(_maxTop, _y + _thickness * 0.5f);
+            _maxTops[_p] = Mathf.Max(_maxTop, _y + _thickness * 0.5f);
             _placedNotes.Add(new Vector3(_x, _z, _y + _thickness * 0.5f));
             _spawned.Add(_note);
             _spawnRadius.Add(_radius);
@@ -317,12 +379,12 @@ public class NoteHeapManager : MonoBehaviour
 
 
     /// <summary>Height of the floor under the lifted heap root (the root's own height when nothing is hit).</summary>
-    float FindGroundY()
+    float FindGroundY(Transform _center)
     {
-        Vector3 _origin = heapRoot.position + Vector3.up * liftHeight;
+        Vector3 _origin = _center.position + Vector3.up * liftHeight;
         var _hits = Physics.RaycastAll(_origin, Vector3.down, liftHeight + 20f, ~0, QueryTriggerInteraction.Ignore);
         float _best = float.MaxValue;
-        float _y = heapRoot.position.y;
+        float _y = _center.position.y;
         for (int i = 0; i < _hits.Length; i++)
         {
             // the notes of the old heap are still alive this frame, they are not the floor

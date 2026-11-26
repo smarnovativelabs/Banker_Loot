@@ -832,7 +832,7 @@ public static class HauntedMansionSetup
 
         // the heap holds exactly what the lockers need (see the other levels): 1 x counts add up to the locker total
         data.noteTypes.Clear();
-        int[] counts = { 410, 200, 500, 500, 130, 100 }; // 100, 50, 20, 10, 5, 1 dollar notes = 66750 (30 lockers: 1500 + 50 * index)
+        int[] counts = { 50, 100, 2000, 1200, 900, 250 }; // 100, 50, 20, 10, 5, 1 dollar notes = 66750 (30 lockers: 1500 + 50 * index), mostly small notes
         for (int i = 0; i < level2.noteTypes.Count && i < counts.Length; i++)
         {
             var source = level2.noteTypes[i];
@@ -847,6 +847,34 @@ public static class HauntedMansionSetup
         EditorUtility.SetDirty(data);
         AssetDatabase.SaveAssets();
         Debug.Log("[BankerLoot] Level_3 data ready: " + assetPath);
+    }
+
+    /// <summary>Extra heap points of Level 3: the notes are split at random over these and the main heap point.</summary>
+    static readonly Vector3[] ExtraPilePositions =
+    {
+        new Vector3(3.6f, -0.105f, 4.6f),
+        new Vector3(0.4f, -0.105f, 4.4f),
+        new Vector3(2.4f, -0.105f, 0.9f)
+    };
+
+    [MenuItem("Banker Loot/Setup Level 3 Multiple Note Piles")]
+    public static void SetupMultiplePiles()
+    {
+        var data = AssetDatabase.LoadAssetAtPath<LevelData>(DataFolder + "/Level_3.asset");
+        if (data == null)
+        {
+            Debug.LogError("[BankerLoot] Level_3 data not found, run 'Setup Level 3 (Haunted Mansion)' first.");
+            return;
+        }
+        data.extraHeapPointPrefabs.Clear();
+        for (int i = 0; i < ExtraPilePositions.Length; i++)
+        {
+            string name = "Level_3_Note Heap Point " + (i + 2);
+            data.extraHeapPointPrefabs.Add(MakePointPrefab(DataFolder + "/" + name + ".prefab", name, ExtraPilePositions[i], 0f));
+        }
+        EditorUtility.SetDirty(data);
+        AssetDatabase.SaveAssets();
+        Debug.Log("[BankerLoot] Level_3 now spawns its notes in " + (ExtraPilePositions.Length + 1) + " piles.");
     }
 
     static GameObject MakePointPrefab(string _path, string _name, Vector3 _position, float _yaw)

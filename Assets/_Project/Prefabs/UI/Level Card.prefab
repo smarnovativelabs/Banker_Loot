@@ -268,11 +268,11 @@ MonoBehaviour:
   frameSprites:
   - {fileID: -7284123894213243064, guid: 7436e0fac970a024385706e60fa8252e, type: 3}
   - {fileID: 7766611926994396979, guid: 7436e0fac970a024385706e60fa8252e, type: 3}
-  - {fileID: 7766611926994396979, guid: 7436e0fac970a024385706e60fa8252e, type: 3}
+  - {fileID: -2111150603, guid: f4705a63f231e294abfdd3f6621d8be3, type: 3}
   previewSprites:
   - {fileID: 21300000, guid: 2a684b2b08791954499cb93480f3a1a2, type: 3}
   - {fileID: 21300000, guid: 3a12d70af18020140b337ff5598fe8e1, type: 3}
-  - {fileID: 0}
+  - {fileID: 845531672, guid: 29058b449d2e30044b02527719484948, type: 3}
   levelNames:
   - Wallet Bank
   - Casino
@@ -515,7 +515,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -216.93333}
-  m_SizeDelta: {x: 320, y: 63.63}
+  m_SizeDelta: {x: 253.04, y: 63.63}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8165613840283524598
 CanvasRenderer:
