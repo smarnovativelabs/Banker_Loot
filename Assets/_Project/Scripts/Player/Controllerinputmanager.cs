@@ -21,6 +21,9 @@ namespace KinematicCharacterController.Examples
         public AudioClip footstep2;
 
         public float footstepInterval = 0.2f;
+
+        [Tooltip("Volume of the footstep sounds only (applied to the footstep AudioSource). 0 = silent, 1 = full.")]
+        [Range(0f, 1f)] public float footstepVolume = 0.2f;
         private bool isWalking = false;
         private bool isFootstep1 = true;
         private float footstepTimer = 0f;
@@ -76,6 +79,7 @@ namespace KinematicCharacterController.Examples
 
             // Alternate between footstep1 and footstep2
             audioSource.clip = isFootstep1 ? footstep1 : footstep2;
+            audioSource.volume = footstepVolume; // only this footstep AudioSource, other sounds untouched
             audioSource.Play();
             isFootstep1 = !isFootstep1;
         }

@@ -16810,6 +16810,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6735931415755565477, guid: 51cfea9e2fd51f34c8a2492bb67ff4e1, type: 3}
+      propertyPath: footstepVolume
+      value: 0.014
+      objectReference: {fileID: 0}
     - target: {fileID: 8582223225801013349, guid: 51cfea9e2fd51f34c8a2492bb67ff4e1, type: 3}
       propertyPath: m_Name
       value: Controls
