@@ -13,6 +13,7 @@ using UnityEngine.UI;
 public static class LockerBoardSetup
 {
     const string RootName = "RequireAmount";
+    const string IconSpritePath = "Assets/_Project/Art/UI/Sprites UI/Gameplay/Glossy Golden Safe Lockbox Icon.png";
     const string FontPath = "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF.asset";
 
     // The board seen straight on from the front: 1000 x 560 pixels = 5 x 2.8 meters, centred on (-4.6, 1.2) of the wall.
@@ -26,6 +27,9 @@ public static class LockerBoardSetup
     static readonly float[] ColumnCenters = { 182f, 351.5f, 521.5f, 691.5f, 861.5f };
     static readonly float[] RowCenters = { 192.5f, 310.5f, 428f };
     static readonly Vector2 CellSize = new Vector2(153f, 107f);
+
+    static float iconX = -53.6f;
+    static float textSize = 40f;
 
     static readonly Color NameColor = new Color(1f, 0.78f, 0.05f);
     static readonly Color AmountColor = new Color(0.92f, 0.92f, 0.92f);
@@ -48,7 +52,38 @@ public static class LockerBoardSetup
         Build(new Vector3(3.40f, 1.2f, 0.75f), Quaternion.Euler(0f, 90f, 0f), columns, RowCenters);
     }
 
-    static void Build(Vector3 _boardPosition, Quaternion _boardRotation, float[] _columnCenters, float[] _rowCenters)
+    /// <summary>
+    /// The haunted mansion board on the west wall (faces +X): 10 columns x 3 rows = 30 cells. The cells of the picture
+    /// are 0.70 m apart across and 0.59 m apart in height, so one canvas pixel is 4 mm here.
+    /// </summary>
+    [MenuItem("Banker Loot/Setup Locker Board (Haunted Mansion 30)")]
+    public static void SetupHaunted()
+    {
+        const float pixel = 0.004f;
+        const float columnSpacing = 0.70f / pixel; // 175 px
+        const float rowSpacing = 0.59f / pixel;    // 147.5 px
+        var columns = new float[10];
+        for (int i = 0; i < columns.Length; i++)
+        {
+            columns[i] = 500f + (i - 4.5f) * columnSpacing;
+        }
+        var rows = new float[] { 280f - rowSpacing, 280f, 280f + rowSpacing };
+        // board centre on the wall: z 4.85, y 2.11, in front of the board face (x about -7.55), viewed from +X
+        // the cell look of the haunted board (icon a bit more to the left, smaller texts), as set by hand on Locker_A01
+        iconX = -42.1f;
+        textSize = 35f;
+        try
+        {
+            Build(new Vector3(-7.71f, 2.07f, 4.85f), Quaternion.Euler(0f, -90f, 0f), columns, rows, pixel);
+        }
+        finally
+        {
+            iconX = -53.6f;
+            textSize = 40f;
+        }
+    }
+
+    static void Build(Vector3 _boardPosition, Quaternion _boardRotation, float[] _columnCenters, float[] _rowCenters, float _metersPerPixel = MetersPerPixel)
     {
         var managerObject = GameObject.Find("Locker_Manager");
         var manager = managerObject != null ? managerObject.GetComponent<LockerManager>() : null;
@@ -85,7 +120,7 @@ public static class LockerBoardSetup
         rootRect.position = _boardPosition;
         rootRect.rotation = _boardRotation;
         rootRect.sizeDelta = new Vector2(1000f, 560f);
-        rootRect.localScale = Vector3.one * MetersPerPixel;
+        rootRect.localScale = Vector3.one * _metersPerPixel;
 
         var font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(FontPath);
         for (int i = 0; i < manager.lockers.Count; i++)
@@ -110,13 +145,13 @@ public static class LockerBoardSetup
 
             // locker picture: an empty white image until the sprite is assigned
             var icon = GetOrCreateChild(cell, "Icon");
-            Place(icon, new Vector2(-53.6f, 31f), new Vector2(36f, 36f));
+            Place(icon, new Vector2(iconX, 31f), new Vector2(36f, 36f));
             var image = icon.GetComponent<Image>();
             if (image == null)
             {
                 image = icon.gameObject.AddComponent<Image>();
             }
-            image.sprite = null;
+            image.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(IconSpritePath);
             image.color = Color.white;
             image.raycastTarget = false;
 
@@ -176,7 +211,7 @@ public static class LockerBoardSetup
         {
             text.font = _font;
         }
-        text.fontSize = 40f;
+        text.fontSize = textSize;
         text.color = _color;
         text.alignment = TextAlignmentOptions.Center;
         text.enableWordWrapping = false;

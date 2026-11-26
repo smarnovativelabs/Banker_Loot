@@ -48,6 +48,8 @@ public class LockerManager : MonoBehaviour
     public float doorOpenAngle = -100f;
     public float doorMoveTime = 0.6f;
     public AudioClip doorCloseSound;
+    [Tooltip("Direction the doors face when a door has no locker body as its parent (one body for the whole wall). Ejected notes fly this way.")]
+    public Vector3 fallbackOutward = Vector3.zero;
 
     [Header("Labels")]
     [Tooltip("Turn the label texts to the player (for floating labels). The texts of the locker board stay flat on the board.")]
@@ -102,7 +104,7 @@ public class LockerManager : MonoBehaviour
 
     #region Need
     /// <summary>The direction the locker door faces (notes that are ejected fly this way).</summary>
-    static void ComputeOutward(LockerEntry _locker)
+    void ComputeOutward(LockerEntry _locker)
     {
         var _body = _locker.door.parent != null ? _locker.door.parent.GetComponent<MeshRenderer>() : null;
         var _doorRenderer = _locker.door.GetComponent<MeshRenderer>();
@@ -112,6 +114,11 @@ public class LockerManager : MonoBehaviour
             _outward = _doorRenderer.bounds.center - _body.bounds.center;
             _outward.y = 0f;
             _outward = _outward.normalized;
+        }
+        else
+        {
+            // the doors are not children of their own locker body (one body for the whole wall)
+            _outward = fallbackOutward.normalized;
         }
         _locker.outward = _outward;
     }
@@ -270,6 +277,29 @@ public class LockerManager : MonoBehaviour
         SetSurfaceEnabled(_locker, false);
         UpdateLabel(_locker, 0);
         StartCoroutine(CloseDoor(_locker));
+        StartCoroutine(SaveAfterFrame());
+        CheckLevelComplete(true);
+    }
+
+    /// <summary>
+    /// Completes the level at once (the "Complete Level" button): every locker that is not complete yet is completed like
+    /// a filled locker (notes removed, door closes), so the level is saved as complete and the Level Completed panel opens.
+    /// </summary>
+    public void CompleteAllLockers()
+    {
+        for (int i = 0; i < lockers.Count; i++)
+        {
+            var _locker = lockers[i];
+            if (_locker.door == null || _locker.completed)
+                continue;
+            _locker.completed = true;
+            var _notes = new List<PlacedNote>();
+            GetStoredWorth(_locker, out _, _notes);
+            RemoveNotes(_notes);
+            SetSurfaceEnabled(_locker, false);
+            UpdateLabel(_locker, 0);
+            StartCoroutine(CloseDoor(_locker));
+        }
         StartCoroutine(SaveAfterFrame());
         CheckLevelComplete(true);
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,8 @@ public class LevelSelectScreen : MonoBehaviour
     [Tooltip("The parent of the cards, with a layout group (for example a horizontal or grid layout)")]
     public RectTransform cardContainer;
     public Button backButton;
+    [Tooltip("Optional: the horizontal scroll view the cards are in (its content is the card container). The content is made at least as wide as the view and scrolled to the newest unlocked level.")]
+    public ScrollRect scrollRect;
     [Tooltip("How many cards are shown: the levels that exist and then 'coming soon' cards up to this number")]
     [Min(1)] public int slotCount = 3;
 
@@ -48,6 +51,37 @@ public class LevelSelectScreen : MonoBehaviour
         onPlay = _onPlay;
         Fill(_levels);
         gameObject.SetActive(true);
+        if (scrollRect != null)
+        {
+            StartCoroutine(FitScroll());
+        }
+    }
+
+    /// <summary>
+    /// Once the layout has run: the content is at least as wide as the view (so a few cards stay centered) and the
+    /// view is scrolled so the newest unlocked level is in the middle.
+    /// </summary>
+    IEnumerator FitScroll()
+    {
+        yield return new WaitForEndOfFrame();
+        Canvas.ForceUpdateCanvases();
+        var _content = scrollRect.content;
+        var _view = scrollRect.viewport != null ? scrollRect.viewport : scrollRect.GetComponent<RectTransform>();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_content);
+        float _width = Mathf.Max(LayoutUtility.GetPreferredWidth(_content), _view.rect.width);
+        _content.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _width);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_content);
+
+        float _scrollable = _width - _view.rect.width;
+        if (_scrollable <= 0f)
+        {
+            scrollRect.horizontalNormalizedPosition = 0f;
+            yield break;
+        }
+        int _target = Mathf.Clamp(LevelProgress.UnlockedLevel, 1, Mathf.Max(1, _content.childCount)) - 1;
+        var _card = _content.GetChild(Mathf.Min(_target, _content.childCount - 1)) as RectTransform;
+        float _center = _card.localPosition.x - _content.rect.xMin;
+        scrollRect.horizontalNormalizedPosition = Mathf.Clamp01((_center - _view.rect.width * 0.5f) / _scrollable);
     }
 
     public void Hide()

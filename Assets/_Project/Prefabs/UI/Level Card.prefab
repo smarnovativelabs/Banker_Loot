@@ -268,12 +268,15 @@ MonoBehaviour:
   frameSprites:
   - {fileID: -7284123894213243064, guid: 7436e0fac970a024385706e60fa8252e, type: 3}
   - {fileID: 7766611926994396979, guid: 7436e0fac970a024385706e60fa8252e, type: 3}
+  - {fileID: 7766611926994396979, guid: 7436e0fac970a024385706e60fa8252e, type: 3}
   previewSprites:
   - {fileID: 21300000, guid: 2a684b2b08791954499cb93480f3a1a2, type: 3}
   - {fileID: 21300000, guid: 3a12d70af18020140b337ff5598fe8e1, type: 3}
+  - {fileID: 0}
   levelNames:
   - Wallet Bank
   - Casino
+  - Haunted Mansion
   playableSymbol: $
   closedSymbol: '?'
   readyStatus: Ready
