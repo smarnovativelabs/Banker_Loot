@@ -9,6 +9,13 @@ public class SoundController : MonoBehaviour
     public bool isSoundOn;
 
     public bool isMusicOn;
+
+    /// <summary>Raised whenever the Music setting is switched on/off (true = on).</summary>
+    public static event System.Action<bool> MusicToggled;
+
+    /// <summary>True while a level plays its own background music (e.g. LevelMusic); the menu music stays silent.</summary>
+    [HideInInspector] public bool levelMusicActive;
+
     public AudioSource inGameSoundSource;
     public AudioSource bgMusicPlayer;
     public AudioSource interactionSoundPlayer;
@@ -43,7 +50,7 @@ public class SoundController : MonoBehaviour
     {
         PlayerPrefs.SetInt("Music", _val);
         isMusicOn = _val == 1;
-        if (isMusicOn)
+        if (isMusicOn && !levelMusicActive)
         {
             bgMusicPlayer.Play();
         }
@@ -51,6 +58,7 @@ public class SoundController : MonoBehaviour
         {
             bgMusicPlayer.Stop();
         }
+        MusicToggled?.Invoke(isMusicOn);
     }
     public void OnPlayInteractionSound(AudioClip _clip)
     {

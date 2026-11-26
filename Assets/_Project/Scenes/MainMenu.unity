@@ -8292,6 +8292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSoundOn: 1
   isMusicOn: 1
+  levelMusicActive: 0
   inGameSoundSource: {fileID: 1096960980}
   bgMusicPlayer: {fileID: 1993820270}
   interactionSoundPlayer: {fileID: 841003715}
@@ -20052,7 +20053,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.44
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
